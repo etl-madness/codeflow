@@ -996,6 +996,9 @@ func (e *Exporter) GenerateERDiagram(pm *model.ProcessModel) string {
 
 	// Draw Relationships from links
 	for _, l := range pm.Links {
+		if strings.EqualFold(l.Label, "executes next") {
+			continue
+		}
 		p1, ok1 := entPositions[l.SourceStepID]
 		p2, ok2 := entPositions[l.TargetStepID]
 		if !ok1 || !ok2 || l.SourceStepID == l.TargetStepID {

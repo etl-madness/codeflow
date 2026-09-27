@@ -21,6 +21,7 @@
   - **Python:** FastAPI & Flask endpoints, call hierarchies, and ORM/DB operations via Tree-sitter.
   - **SQL:** Strict DDL parsing and dialect-aware extraction (SQL Server / T-SQL, PostgreSQL, MySQL, SQLite, Oracle) for tables, views, stored procedures, temporary tables (`#table`, `##table`), bracketed schema objects (`[schema].[table]`), and variable-length types (`varchar(max)`, `sysname`).
   - **Flow XML, Pipelines & SSIS:** Native go-flow / ETL Madness pipeline XML (`<pipeline>`, `<preflight>`, `<flow>`, `<parallel>`, `<if>`, `<assert>`, `<script>`, `<sql>`), Custom workflow definitions, BPMN processes, and SQL Server Integration Services (SSIS) `.dtsx` packages (Data Flow Tasks, Execute SQL Tasks, Precedence Constraints, Connection Managers) via `encoding/xml`.
+  - **Liquibase Database Migrations:** Full parsing of Liquibase changelogs across XML (`<databaseChangeLog>`) and Formatted SQL (`--liquibase formatted sql`), extracting changeSets, cumulative schema evolution (`createTable`, `addColumn`, `modifyDataType`, `dropColumn`), table remarks/comments, milestones/tags, rollbacks, and cross-file foreign key constraints.
 - **Cross-Service Correlation Engine:** Automatically matches HTTP calls, database queries, stored procedure executions, and cross-package function/method invocations across disparate services and swimlanes.
 - **6 Supported Diagram Archetypes:**
   - **Flowchart TD (`td`):** Top-to-bottom flowchart with architectural swimlane groupings.
@@ -272,7 +273,28 @@ Export an interactive, self-contained multi-sheet Excel workbook that requires *
 
 ---
 
-### 9. Import into Microsoft Visio (Desktop & Web)
+### 9. Analyze Liquibase Database Migrations & Schemas
+
+Visualize database migration changelogs, cumulative schema states, and foreign key relationships across Liquibase XML and Formatted SQL changelogs:
+
+```bash
+.\bin\codeflow.exe analyze --source ./examples/liquibase \
+  --recursive \
+  --format mermaid,excel,json,svg \
+  -n liquibase \
+  --diagram-type all \
+  --output-dir ./docs/liquibase \
+  --no-truncate
+```
+
+- **Cumulative ER Diagrams:** Generates full Mermaid ER (`liquibase_er.mmd`) and SVG ER (`liquibase_er.svg`) diagrams showing the final schema state, data types, and primary keys.
+- **Cross-File Foreign Keys:** Automatically correlates foreign key constraints across files (e.g. `orders` in SQL referencing `customers` in XML).
+- **Execution Flowcharts & Lifelines:** Sequential changelog execution paths with author badges, rollbacks, and milestone tags.
+- See full live example in [docs/liquibase/README.md](docs/liquibase/README.md).
+
+---
+
+### 10. Import into Microsoft Visio (Desktop & Web)
 
 If you have a Microsoft Visio license and wish to use the native Data Visualizer wizard:
 

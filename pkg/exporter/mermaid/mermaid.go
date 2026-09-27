@@ -410,10 +410,24 @@ func (e *Exporter) GenerateERDiagram(pm *model.ProcessModel) string {
 	}
 	entities := make(map[string]*Entity)
 
+	hasExplicitEntities := false
+	for _, s := range pm.Steps {
+		if s.Type == "DatabaseTable" || s.Metadata["table"] != nil || s.Metadata["columns"] != nil {
+			hasExplicitEntities = true
+			break
+		}
+	}
+
 	for _, step := range pm.Steps {
+		if hasExplicitEntities && step.Type != "DatabaseTable" && step.Metadata["table"] == nil && step.Metadata["columns"] == nil {
+			continue
+		}
+
 		tableName := ""
 		if tbl, ok := step.Metadata["table"].(string); ok && tbl != "" {
 			tableName = tbl
+		} else if step.Type == "DatabaseTable" {
+			tableName = step.Name
 		} else if step.Type == "TableOperation" || step.Type == "DatabaseQuery" {
 			tableName = cleanEntityName(step.Name)
 		}
@@ -460,6 +474,10 @@ func (e *Exporter) GenerateERDiagram(pm *model.ProcessModel) string {
 
 	seenRels := make(map[string]bool)
 	for _, link := range pm.Links {
+		if strings.EqualFold(link.Label, "executes next") {
+			continue
+		}
+
 		srcStep := pm.FindStep(link.SourceStepID)
 		tgtStep := pm.FindStep(link.TargetStepID)
 		if srcStep == nil || tgtStep == nil {
@@ -470,6 +488,12 @@ func (e *Exporter) GenerateERDiagram(pm *model.ProcessModel) string {
 		tgtEnt := getStepEntityName(tgtStep, serviceEntities)
 
 		if srcEnt != "" && tgtEnt != "" && srcEnt != tgtEnt {
+			if _, ok := entities[srcEnt]; !ok {
+				continue
+			}
+			if _, ok := entities[tgtEnt]; !ok {
+				continue
+			}
 			relKey := fmt.Sprintf("%s->%s", srcEnt, tgtEnt)
 			if !seenRels[relKey] {
 				seenRels[relKey] = true

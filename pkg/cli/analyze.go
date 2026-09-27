@@ -13,6 +13,7 @@ import (
 	"codeflow/pkg/analyzer/csharp"
 	"codeflow/pkg/analyzer/flowxml"
 	"codeflow/pkg/analyzer/golang"
+	"codeflow/pkg/analyzer/liquibase"
 	"codeflow/pkg/analyzer/python"
 	"codeflow/pkg/analyzer/sql"
 	"codeflow/pkg/analyzer/ssis"
@@ -171,12 +172,13 @@ func RunAnalyze(opts *AnalyzeOptions) error {
 
 	// Register Analyzers
 	analyzers := map[string]analyzer.Analyzer{
-		discovery.LangGo:      golang.New(),
-		discovery.LangCSharp:  csharp.New(),
-		discovery.LangPython:  python.New(),
-		discovery.LangSQL:     sql.New(),
-		discovery.LangFlowXML: flowxml.New(),
-		discovery.LangSSIS:    ssis.New(),
+		discovery.LangGo:        golang.New(),
+		discovery.LangCSharp:    csharp.New(),
+		discovery.LangPython:    python.New(),
+		discovery.LangSQL:       sql.New(),
+		discovery.LangFlowXML:   flowxml.New(),
+		discovery.LangSSIS:      ssis.New(),
+		discovery.LangLiquibase: liquibase.New(),
 	}
 
 	var results []*analyzer.FileAnalysisResult

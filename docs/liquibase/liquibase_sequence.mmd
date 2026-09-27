@@ -1,0 +1,7 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
+sequenceDiagram
+    autonumber
+    participant P1 as Liquibase (01_core_schema)
+    participant P2 as Liquibase (02_orders_and_payments)
+    P2-->>P1: references (fk_orders_customer)
+    P2-->>P1: references (fk_orders_merchant)

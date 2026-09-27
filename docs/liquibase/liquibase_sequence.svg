@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 849 790" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="50" y="28" class="title">liquibase Workflow (Sequence Diagram)</text>
+<line x1="206" y1="120" x2="206" y2="680" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="50" y="75" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="206" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (01_core_schema)</text>
+<rect x="50" y="680" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="206" y="708" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (01_core_schema)</text>
+<line x1="643" y1="120" x2="643" y2="680" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="487" y="75" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="643" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (02_orders_and_payments)</text>
+<rect x="487" y="680" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="643" y="708" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (02_orders_and_payments)</text>
+<path d="M 206 160 L 251 160 L 251 184 L 206 184" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="258" y="164" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="262" y="176" class="edge-label" font-weight="600" fill="#1D4ED8">1. executes next</text>
+<path d="M 206 220 L 251 220 L 251 244 L 206 244" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="258" y="224" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="262" y="236" class="edge-label" font-weight="600" fill="#1D4ED8">2. executes next</text>
+<path d="M 643 280 L 688 280 L 688 304 L 643 304" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="695" y="284" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="699" y="296" class="edge-label" font-weight="600" fill="#1D4ED8">3. executes next</text>
+<path d="M 643 340 L 688 340 L 688 364 L 643 364" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="695" y="344" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="699" y="356" class="edge-label" font-weight="600" fill="#1D4ED8">4. executes next</text>
+<path d="M 643 400 L 688 400 L 688 424 L 643 424" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="695" y="404" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="699" y="416" class="edge-label" font-weight="600" fill="#1D4ED8">5. executes next</text>
+<path d="M 643 460 L 688 460 L 688 484 L 643 484" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="695" y="464" width="208" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="699" y="476" class="edge-label" font-weight="600" fill="#1D4ED8">6. references (fk_payments_order)</text>
+<rect x="200" y="512" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="643" y1="520" x2="206" y2="520" stroke="#DC2626" stroke-width="2" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="315" y="500" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="424" y="513" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">7. references (fk_orders_customer)</text>
+<rect x="200" y="572" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="643" y1="580" x2="206" y2="580" stroke="#DC2626" stroke-width="2" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="315" y="560" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="424" y="573" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">8. references (fk_orders_merchant)</text>
+</svg>

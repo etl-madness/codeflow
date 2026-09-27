@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"codeflow/pkg/analyzer"
+	"codeflow/pkg/analyzer/liquibase"
 	"codeflow/pkg/analyzer/ssis"
 	"codeflow/pkg/model"
 )
@@ -96,6 +97,11 @@ func (a *Analyzer) AnalyzeFile(path string, content []byte) (*analyzer.FileAnaly
 	// 0. Check for SSIS (.dtsx or DTS:Executable)
 	if strings.HasSuffix(strings.ToLower(path), ".dtsx") || bytes.Contains(content, []byte("<DTS:Executable")) || bytes.Contains(content, []byte("www.microsoft.com/SqlServer/Dts")) {
 		return ssis.New().AnalyzeFile(path, content)
+	}
+
+	// 0b. Check for Liquibase XML (<databaseChangeLog)
+	if bytes.Contains(content, []byte("<databaseChangeLog")) {
+		return liquibase.New().AnalyzeFile(path, content)
 	}
 
 	// 1. Try Go-Flow / ETL Madness Pipeline XML format (<pipeline ...>)

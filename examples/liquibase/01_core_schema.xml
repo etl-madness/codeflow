@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="db_admin" context="dev,prod" labels="v1.0">
+        <comment>Create customers table</comment>
+        <createTable tableName="customers" remarks="Customer profile and authentication records">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime" defaultValue="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            DROP TABLE customers;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="db_admin" context="dev,prod" labels="v1.0">
+        <comment>Create merchants table</comment>
+        <createTable tableName="merchants" remarks="Merchant store entities">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="merchant_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="api_key" type="varchar(64)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="status" type="varchar(20)" defaultValue="ACTIVE"/>
+        </createTable>
+        <rollback>
+            DROP TABLE merchants;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="3" author="db_admin">
+        <createIndex indexName="idx_customers_email" tableName="customers">
+            <column name="email"/>
+        </createIndex>
+        <tagDatabase tag="v1.0-baseline"/>
+    </changeSet>
+</databaseChangeLog>

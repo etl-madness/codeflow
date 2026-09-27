@@ -1,6 +1,7 @@
 package sql
 
 import (
+	"bytes"
 	"fmt"
 	"path/filepath"
 	"regexp"
@@ -9,6 +10,7 @@ import (
 	"github.com/xwb1989/sqlparser"
 
 	"codeflow/pkg/analyzer"
+	"codeflow/pkg/analyzer/liquibase"
 	"codeflow/pkg/model"
 )
 
@@ -43,6 +45,11 @@ var (
 
 // AnalyzeFile parses SQL scripts and extracts table operations, views, stored procedures, and queries.
 func (a *Analyzer) AnalyzeFile(path string, content []byte) (*analyzer.FileAnalysisResult, error) {
+	// Check for Liquibase Formatted SQL
+	if bytes.Contains(content, []byte("--liquibase formatted sql")) || bytes.Contains(content, []byte("--changeset ")) {
+		return liquibase.New().AnalyzeFile(path, content)
+	}
+
 	fileName := filepath.Base(path)
 	defaultSchema := strings.TrimSuffix(fileName, filepath.Ext(fileName))
 	swimlaneID := fmt.Sprintf("sql:%s", defaultSchema)

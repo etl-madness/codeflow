@@ -103,15 +103,17 @@ func (e *Engine) correlateRoutes(pm *model.ProcessModel) {
 }
 
 func (e *Engine) correlateDatabases(pm *model.ProcessModel) {
-	// Index SQL steps by table name or procedure name
+	// Index SQL & Liquibase tables and stored procedures
 	sqlTables := make(map[string]*model.Step)
 	sqlProcs := make(map[string]*model.Step)
 
 	for i := range pm.Steps {
 		s := &pm.Steps[i]
-		if s.Language == "sql" {
+		if s.Language == "sql" || s.Language == "liquibase" || s.Type == "DatabaseTable" {
 			if tbl, ok := s.Metadata["table"].(string); ok && tbl != "" {
 				sqlTables[strings.ToLower(tbl)] = s
+			} else if s.Type == "DatabaseTable" && s.Name != "" {
+				sqlTables[strings.ToLower(s.Name)] = s
 			}
 			if proc, ok := s.Metadata["procedure"].(string); ok && proc != "" {
 				sqlProcs[strings.ToLower(proc)] = s
@@ -119,10 +121,39 @@ func (e *Engine) correlateDatabases(pm *model.ProcessModel) {
 		}
 	}
 
+	// Match cross-file foreign keys between tables
+	for i := range pm.Steps {
+		s := &pm.Steps[i]
+		if s.Type != "DatabaseTable" {
+			continue
+		}
+		fksRaw, ok := s.Metadata["foreign_keys"].([]map[string]string)
+		if !ok || len(fksRaw) == 0 {
+			continue
+		}
+		for _, fk := range fksRaw {
+			refTblName := strings.ToLower(fk["referenced_table"])
+			if targetStep, exists := sqlTables[refTblName]; exists && targetStep.ID != s.ID {
+				label := "references"
+				if cName := fk["constraint_name"]; cName != "" {
+					label = fmt.Sprintf("references (%s)", cName)
+				}
+				linkID := fmt.Sprintf("%s->%s:fk", s.ID, targetStep.ID)
+				pm.AddLink(model.Link{
+					ID:             linkID,
+					SourceStepID:   s.ID,
+					TargetStepID:   targetStep.ID,
+					Label:          label,
+					IsCrossService: targetStep.SwimlaneID != s.SwimlaneID,
+				})
+			}
+		}
+	}
+
 	// Match code steps that query databases
 	for i := range pm.Steps {
 		s := &pm.Steps[i]
-		if s.Language != "sql" && (s.Type == "DatabaseQuery" || strings.Contains(s.Description, "Database") || strings.Contains(s.Description, "EF")) {
+		if s.Language != "sql" && s.Language != "liquibase" && (s.Type == "DatabaseQuery" || strings.Contains(s.Description, "Database") || strings.Contains(s.Description, "EF")) {
 			rawQuery := ""
 			if q, ok := s.Metadata["query"].(string); ok {
 				rawQuery = q
