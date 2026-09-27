@@ -1,6 +1,7 @@
 package liquibase_test
 
 import (
+	"os"
 	"strings"
 	"testing"
 
@@ -237,5 +238,96 @@ GROUP BY customer_id;
 	}
 	if fkLink == nil {
 		t.Error("expected foreign key link fk_orders_cust not found")
+	}
+}
+
+func TestLiquibasePrimaryChangelogOrder(t *testing.T) {
+	primaryPath := "../../../examples/liquibase/changesets.xml"
+	if _, err := os.Stat(primaryPath); err != nil {
+		primaryPath = "../../examples/liquibase/changesets.xml"
+	}
+	if _, err := os.Stat(primaryPath); err != nil {
+		primaryPath = "examples/liquibase/changesets.xml"
+	}
+	az := liquibase.New()
+
+	res, err := az.AnalyzeWithPrimaryOrder(primaryPath)
+	if err != nil {
+		t.Fatalf("AnalyzeWithPrimaryOrder failed: %v", err)
+	}
+
+	// Verify swimlanes order
+	if len(res.Swimlanes) < 3 {
+		t.Fatalf("expected at least 3 swimlanes, got %d", len(res.Swimlanes))
+	}
+	if !strings.Contains(res.Swimlanes[0].Name, "core_changeset") {
+		t.Errorf("expected first swimlane to be core_changeset, got: %s", res.Swimlanes[0].Name)
+	}
+	if !strings.Contains(res.Swimlanes[1].Name, "customer_changeset") {
+		t.Errorf("expected second swimlane to be customer_changeset, got: %s", res.Swimlanes[1].Name)
+	}
+	if !strings.Contains(res.Swimlanes[2].Name, "sql_changeset") {
+		t.Errorf("expected third swimlane to be sql_changeset, got: %s", res.Swimlanes[2].Name)
+	}
+
+	// Verify all changeSets exist in order
+	expectedOrder := []string{
+		"db_admin:1",
+		"db_admin:2",
+		"db_admin:3",
+		"me:20260927001",
+		"architect:orders-v1",
+		"architect:payments-v1",
+		"architect:views-and-procs",
+		"architect:milestone-v1.1",
+	}
+
+	var foundSteps []string
+	for _, s := range res.Steps {
+		if s.Type != "DatabaseTable" {
+			foundSteps = append(foundSteps, s.Name)
+		}
+	}
+
+	if len(foundSteps) != len(expectedOrder) {
+		t.Fatalf("expected %d changeset steps, got %d: %v", len(expectedOrder), len(foundSteps), foundSteps)
+	}
+
+	for i, expected := range expectedOrder {
+		if i == 3 {
+			if !strings.HasPrefix(foundSteps[i], "me:") {
+				t.Errorf("step %d: expected author me, got %s", i, foundSteps[i])
+			}
+			continue
+		}
+		if foundSteps[i] != expected {
+			t.Errorf("step %d: expected %s, got %s", i, expected, foundSteps[i])
+		}
+	}
+
+	// Verify continuous sequential link bridging across file boundary
+	var crossFileExecLink *model.Link
+	for i := range res.Links {
+		l := &res.Links[i]
+		if l.Label == "executes next" && strings.Contains(l.SourceStepID, "core_changeset.1.xml:3") && strings.Contains(l.TargetStepID, "customer_changeset.1.xml:") {
+			crossFileExecLink = l
+			break
+		}
+	}
+	if crossFileExecLink == nil {
+		t.Errorf("expected cross-file execution link from core_changeset to customer_changeset")
+	}
+
+	// Verify cross-file foreign key relationship
+	var crossFileFK *model.Link
+	for i := range res.Links {
+		l := &res.Links[i]
+		if strings.Contains(l.Label, "fk_orders_customer") {
+			crossFileFK = l
+			break
+		}
+	}
+	if crossFileFK == nil {
+		t.Errorf("expected cross-file FK link fk_orders_customer from orders to customers")
 	}
 }

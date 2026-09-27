@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 849 790" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1806 1030" width="100%" height="100%">
 <defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
     <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
@@ -27,40 +27,65 @@
 </style>
 <rect width="100%" height="100%" fill="#F8FAFC" />
 <text x="50" y="28" class="title">liquibase Workflow (Sequence Diagram)</text>
-<line x1="206" y1="120" x2="206" y2="680" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
-<rect x="50" y="75" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
-<text x="206" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (01_core_schema)</text>
-<rect x="50" y="680" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
-<text x="206" y="708" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (01_core_schema)</text>
-<line x1="643" y1="120" x2="643" y2="680" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
-<rect x="487" y="75" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
-<text x="643" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (02_orders_and_payments)</text>
-<rect x="487" y="680" width="312" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
-<text x="643" y="708" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (02_orders_and_payments)</text>
-<path d="M 206 160 L 251 160 L 251 184 L 206 184" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="258" y="164" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="262" y="176" class="edge-label" font-weight="600" fill="#1D4ED8">1. executes next</text>
-<path d="M 206 220 L 251 220 L 251 244 L 206 244" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="258" y="224" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="262" y="236" class="edge-label" font-weight="600" fill="#1D4ED8">2. executes next</text>
-<path d="M 643 280 L 688 280 L 688 304 L 643 304" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="695" y="284" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="699" y="296" class="edge-label" font-weight="600" fill="#1D4ED8">3. executes next</text>
-<path d="M 643 340 L 688 340 L 688 364 L 643 364" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="695" y="344" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="699" y="356" class="edge-label" font-weight="600" fill="#1D4ED8">4. executes next</text>
-<path d="M 643 400 L 688 400 L 688 424 L 643 424" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="695" y="404" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="699" y="416" class="edge-label" font-weight="600" fill="#1D4ED8">5. executes next</text>
-<path d="M 643 460 L 688 460 L 688 484 L 643 484" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
-<rect x="695" y="464" width="208" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
-<text x="699" y="476" class="edge-label" font-weight="600" fill="#1D4ED8">6. references (fk_payments_order)</text>
-<rect x="200" y="512" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
-<line x1="643" y1="520" x2="206" y2="520" stroke="#DC2626" stroke-width="2" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
-<rect x="315" y="500" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
-<text x="424" y="513" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">7. references (fk_orders_customer)</text>
-<rect x="200" y="572" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
-<line x1="643" y1="580" x2="206" y2="580" stroke="#DC2626" stroke-width="2" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
-<rect x="315" y="560" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
-<text x="424" y="573" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">8. references (fk_orders_merchant)</text>
+<line x1="214" y1="120" x2="214" y2="920" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="50" y="75" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="214" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (core_changeset.1)</text>
+<rect x="50" y="920" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="214" y="948" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (core_changeset.1)</text>
+<line x1="673" y1="120" x2="673" y2="920" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="509" y="75" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="673" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (customer_changeset.1)</text>
+<rect x="509" y="920" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="673" y="948" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (customer_changeset.1)</text>
+<line x1="1132" y1="120" x2="1132" y2="920" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="968" y="75" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="1132" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (sql_changeset.1)</text>
+<rect x="968" y="920" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="1132" y="948" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Liquibase (sql_changeset.1)</text>
+<line x1="1592" y1="120" x2="1592" y2="920" stroke="#94A3B8" stroke-dasharray="6,4" stroke-width="1.8" />
+<rect x="1428" y="75" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="1592" y="103" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">SQL Database (dbo_usp_GetCustomer.1)</text>
+<rect x="1428" y="920" width="328" height="45" rx="8" fill="#1E293B" stroke="#0F172A" filter="url(#shadow)" />
+<text x="1592" y="948" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">SQL Database (dbo_usp_GetCustomer.1)</text>
+<path d="M 214 160 L 259 160 L 259 184 L 214 184" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="266" y="164" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="270" y="176" class="edge-label" font-weight="600" fill="#1D4ED8">1. executes next</text>
+<path d="M 214 220 L 259 220 L 259 244 L 214 244" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="266" y="224" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="270" y="236" class="edge-label" font-weight="600" fill="#1D4ED8">2. executes next</text>
+<rect x="667" y="272" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="214" y1="280" x2="673" y2="280" stroke="#2563EB" stroke-width="2" marker-end="url(#seq-arrow)"  />
+<rect x="389" y="260" width="110" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="444" y="273" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">3. executes next</text>
+<rect x="1126" y="332" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="673" y1="340" x2="1132" y2="340" stroke="#2563EB" stroke-width="2" marker-end="url(#seq-arrow)"  />
+<rect x="848" y="320" width="110" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="903" y="333" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">4. executes next</text>
+<path d="M 1132 400 L 1177 400 L 1177 424 L 1132 424" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="1184" y="404" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="1188" y="416" class="edge-label" font-weight="600" fill="#1D4ED8">5. executes next</text>
+<path d="M 1132 460 L 1177 460 L 1177 484 L 1132 484" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="1184" y="464" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="1188" y="476" class="edge-label" font-weight="600" fill="#1D4ED8">6. executes next</text>
+<path d="M 1132 520 L 1177 520 L 1177 544 L 1132 544" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="1184" y="524" width="106" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="1188" y="536" class="edge-label" font-weight="600" fill="#1D4ED8">7. executes next</text>
+<rect x="208" y="572" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="1132" y1="580" x2="214" y2="580" stroke="#2563EB" stroke-width="2" marker-end="url(#seq-arrow)"  />
+<rect x="564" y="560" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="673" y="573" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">8. references (fk_orders_customer)</text>
+<rect x="208" y="632" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="1132" y1="640" x2="214" y2="640" stroke="#2563EB" stroke-width="2" marker-end="url(#seq-arrow)"  />
+<rect x="564" y="620" width="218" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="673" y="633" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">9. references (fk_orders_merchant)</text>
+<path d="M 1132 700 L 1177 700 L 1177 724 L 1132 724" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="1184" y="704" width="208" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="1188" y="716" class="edge-label" font-weight="600" fill="#1D4ED8">10. references (fk_payments_order)</text>
+<path d="M 1592 760 L 1637 760 L 1637 784 L 1592 784" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#seq-arrow)" />
+<rect x="1644" y="764" width="70" height="16" rx="3" fill="#EFF6FF" opacity="0.95" />
+<text x="1648" y="776" class="edge-label" font-weight="600" fill="#1D4ED8">11. queries</text>
+<rect x="1586" y="812" width="12" height="26" rx="2" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1" />
+<line x1="673" y1="820" x2="1592" y2="820" stroke="#DC2626" stroke-width="2" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="1071" y="800" width="122" height="18" rx="4" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+<text x="1132" y="813" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#1E293B" text-anchor="middle">12. calls &lt;sqlFile&gt;</text>
 </svg>

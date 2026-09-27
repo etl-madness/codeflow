@@ -189,258 +189,294 @@ type xmlConstraints struct {
 	References string `xml:"references,attr"`
 }
 
-// ParseXMLChangeLog unmarshals a Liquibase XML changelog.
+// ParseXMLChangeLog unmarshals a Liquibase XML changelog preserving document element order.
 func ParseXMLChangeLog(filePath string, content []byte) (*ChangeLog, error) {
-	var root xmlDatabaseChangeLog
-	decoder := xml.NewDecoder(bytes.NewReader(content))
-	if err := decoder.Decode(&root); err != nil {
-		return nil, err
-	}
-
 	cl := &ChangeLog{
 		FilePath: filePath,
 	}
 
-	for _, inc := range root.Includes {
-		rel := strings.EqualFold(inc.RelativeToChangeLogFile, "true") || inc.RelativeToChangeLogFile == "1"
-		cl.Includes = append(cl.Includes, IncludeFile{
-			File:                   inc.File,
-			RelativeToChangeLogFile: rel,
-			IsAll:                  false,
-		})
-	}
-	for _, incAll := range root.IncludeAll {
-		rel := strings.EqualFold(incAll.RelativeToChangeLogFile, "true") || incAll.RelativeToChangeLogFile == "1"
-		cl.Includes = append(cl.Includes, IncludeFile{
-			Path:                   incAll.Path,
-			RelativeToChangeLogFile: rel,
-			IsAll:                  true,
-		})
-	}
-
-	// Approximate line numbers by scanning for changeSet tags in content
 	lineNumbers := findChangeSetLineNumbers(content)
 
-	for idx, cs := range root.ChangeSets {
-		line := idx + 1
-		if l, ok := lineNumbers[cs.ID]; ok {
-			line = l
-		}
-
-		changeSet := ChangeSet{
-			ID:          cs.ID,
-			Author:      cs.Author,
-			FilePath:    filePath,
-			LineNumber:  line,
-			Contexts:    cs.Context,
-			Labels:      cs.Labels,
-			RunOnChange: parseBool(cs.RunOnChange),
-			RunAlways:   parseBool(cs.RunAlways),
-			FailOnError: parseBoolDefaultTrue(cs.FailOnError),
-			Comment:     strings.TrimSpace(cs.Comment),
-		}
-
-		for _, ct := range cs.CreateTables {
-			c := Change{
-				Type:      "createTable",
-				TableName: ct.TableName,
-				Remarks:   ct.Remarks,
+	decoder := xml.NewDecoder(bytes.NewReader(content))
+	for {
+		t, err := decoder.Token()
+		if err != nil {
+			if err == io.EOF {
+				break
 			}
-			for _, col := range ct.Columns {
-				c.Columns = append(c.Columns, mapColumnDef(col))
+			return nil, err
+		}
+
+		se, ok := t.(xml.StartElement)
+		if !ok {
+			continue
+		}
+
+		switch se.Name.Local {
+		case "include":
+			var inc xmlInclude
+			if err := decoder.DecodeElement(&inc, &se); err == nil {
+				rel := strings.EqualFold(inc.RelativeToChangeLogFile, "true") || inc.RelativeToChangeLogFile == "1"
+				incFile := IncludeFile{
+					File:                   inc.File,
+					RelativeToChangeLogFile: rel,
+					IsAll:                  false,
+				}
+				cl.Includes = append(cl.Includes, incFile)
+				cl.Entries = append(cl.Entries, ChangeLogEntry{
+					Type:    EntryInclude,
+					Include: &incFile,
+				})
 			}
-			changeSet.Changes = append(changeSet.Changes, c)
-		}
 
-		for _, dt := range cs.DropTables {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "dropTable",
-				TableName: dt.TableName,
-			})
-		}
-
-		for _, ac := range cs.AddColumns {
-			c := Change{
-				Type:      "addColumn",
-				TableName: ac.TableName,
+		case "includeAll":
+			var incAll xmlIncludeAll
+			if err := decoder.DecodeElement(&incAll, &se); err == nil {
+				rel := strings.EqualFold(incAll.RelativeToChangeLogFile, "true") || incAll.RelativeToChangeLogFile == "1"
+				incFile := IncludeFile{
+					Path:                   incAll.Path,
+					RelativeToChangeLogFile: rel,
+					IsAll:                  true,
+				}
+				cl.Includes = append(cl.Includes, incFile)
+				cl.Entries = append(cl.Entries, ChangeLogEntry{
+					Type:    EntryIncludeAll,
+					Include: &incFile,
+				})
 			}
-			for _, col := range ac.Columns {
-				c.Columns = append(c.Columns, mapColumnDef(col))
-			}
-			changeSet.Changes = append(changeSet.Changes, c)
-		}
 
-		for _, dc := range cs.DropColumns {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "dropColumn",
-				TableName: dc.TableName,
-				Columns:   []ColumnDef{{Name: dc.ColumnName}},
-			})
-		}
-
-		for _, md := range cs.ModifyDataTypes {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "modifyDataType",
-				TableName: md.TableName,
-				Columns:   []ColumnDef{{Name: md.ColumnName, Type: md.NewDataType}},
-			})
-		}
-
-		for _, rc := range cs.RenameColumns {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "renameColumn",
-				TableName: rc.TableName,
-				OldName:   rc.OldColumnName,
-				NewName:   rc.NewColumnName,
-			})
-		}
-
-		for _, rt := range cs.RenameTables {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "renameTable",
-				TableName: rt.OldTableName,
-				OldName:   rt.OldTableName,
-				NewName:   rt.NewTableName,
-			})
-		}
-
-		for _, pk := range cs.AddPrimaryKeys {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "addPrimaryKey",
-				TableName: pk.TableName,
-				PKConstraint: &PKConstraintDef{
-					ConstraintName: pk.ConstraintName,
-					TableName:      pk.TableName,
-					ColumnNames:    pk.ColumnNames,
-				},
-			})
-		}
-
-		for _, dpk := range cs.DropPrimaryKeys {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "dropPrimaryKey",
-				TableName: dpk.TableName,
-				PKConstraint: &PKConstraintDef{
-					ConstraintName: dpk.ConstraintName,
-					TableName:      dpk.TableName,
-				},
-			})
-		}
-
-		for _, fk := range cs.AddForeignKeys {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "addForeignKeyConstraint",
-				TableName: fk.BaseTableName,
-				FKConstraint: &FKConstraintDef{
-					ConstraintName:    fk.ConstraintName,
-					BaseTableName:     fk.BaseTableName,
-					BaseColumnNames:   fk.BaseColumnNames,
-					ReferencedTable:   fk.ReferencedTable,
-					ReferencedColumns: fk.ReferencedColumns,
-				},
-			})
-		}
-
-		for _, dfk := range cs.DropForeignKeys {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "dropForeignKeyConstraint",
-				TableName: dfk.BaseTableName,
-				FKConstraint: &FKConstraintDef{
-					ConstraintName: dfk.ConstraintName,
-					BaseTableName:  dfk.BaseTableName,
-				},
-			})
-		}
-
-		for _, ci := range cs.CreateIndexes {
-			c := Change{
-				Type:      "createIndex",
-				TableName: ci.TableName,
-				IndexName: ci.IndexName,
-			}
-			for _, col := range ci.Columns {
-				c.Columns = append(c.Columns, ColumnDef{Name: col.Name})
-			}
-			changeSet.Changes = append(changeSet.Changes, c)
-		}
-
-		for _, di := range cs.DropIndexes {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "dropIndex",
-				TableName: di.TableName,
-				IndexName: di.IndexName,
-			})
-		}
-
-		for _, auc := range cs.AddUniqueConstraints {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:      "addUniqueConstraint",
-				TableName: auc.TableName,
-				Columns:   []ColumnDef{{Name: auc.ColumnNames, Unique: true}},
-			})
-		}
-
-		for _, cv := range cs.CreateViews {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:     "createView",
-				ViewName: cv.ViewName,
-				RawSQL:   strings.TrimSpace(cv.Body),
-			})
-		}
-
-		for _, dv := range cs.DropViews {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:     "dropView",
-				ViewName: dv.ViewName,
-			})
-		}
-
-		for _, cp := range cs.CreateProcedures {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:          "createProcedure",
-				ProcedureName: cp.ProcedureName,
-				RawSQL:        strings.TrimSpace(cp.Body),
-			})
-		}
-
-		for _, dp := range cs.DropProcedures {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:          "dropProcedure",
-				ProcedureName: dp.ProcedureName,
-			})
-		}
-
-		for _, s := range cs.SQLs {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:   "sql",
-				RawSQL: strings.TrimSpace(s.Text),
-			})
-		}
-
-		for _, sf := range cs.SQLFiles {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type:   "sqlFile",
-				RawSQL: sf.Path,
-			})
-		}
-
-		for _, tag := range cs.TagDatabases {
-			changeSet.Changes = append(changeSet.Changes, Change{
-				Type: "tagDatabase",
-				Tag:  tag.Tag,
-			})
-		}
-
-		for _, rb := range cs.Rollbacks {
-			if t := strings.TrimSpace(rb.Text); t != "" {
-				changeSet.Rollbacks = append(changeSet.Rollbacks, t)
+		case "changeSet":
+			var cs xmlChangeSet
+			if err := decoder.DecodeElement(&cs, &se); err == nil {
+				line := len(cl.ChangeSets) + 1
+				if l, ok := lineNumbers[cs.ID]; ok {
+					line = l
+				}
+				changeSet := convertXMLChangeSet(cs, filePath, line)
+				cl.ChangeSets = append(cl.ChangeSets, changeSet)
+				cl.Entries = append(cl.Entries, ChangeLogEntry{
+					Type:      EntryChangeSet,
+					ChangeSet: &changeSet,
+				})
 			}
 		}
-
-		cl.ChangeSets = append(cl.ChangeSets, changeSet)
 	}
 
 	return cl, nil
+}
+
+func convertXMLChangeSet(cs xmlChangeSet, filePath string, line int) ChangeSet {
+	changeSet := ChangeSet{
+		ID:          cs.ID,
+		Author:      cs.Author,
+		FilePath:    filePath,
+		LineNumber:  line,
+		Contexts:    cs.Context,
+		Labels:      cs.Labels,
+		RunOnChange: parseBool(cs.RunOnChange),
+		RunAlways:   parseBool(cs.RunAlways),
+		FailOnError: parseBoolDefaultTrue(cs.FailOnError),
+		Comment:     strings.TrimSpace(cs.Comment),
+	}
+
+	for _, ct := range cs.CreateTables {
+		c := Change{
+			Type:      "createTable",
+			TableName: ct.TableName,
+			Remarks:   ct.Remarks,
+		}
+		for _, col := range ct.Columns {
+			c.Columns = append(c.Columns, mapColumnDef(col))
+		}
+		changeSet.Changes = append(changeSet.Changes, c)
+	}
+
+	for _, dt := range cs.DropTables {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "dropTable",
+			TableName: dt.TableName,
+		})
+	}
+
+	for _, ac := range cs.AddColumns {
+		c := Change{
+			Type:      "addColumn",
+			TableName: ac.TableName,
+		}
+		for _, col := range ac.Columns {
+			c.Columns = append(c.Columns, mapColumnDef(col))
+		}
+		changeSet.Changes = append(changeSet.Changes, c)
+	}
+
+	for _, dc := range cs.DropColumns {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "dropColumn",
+			TableName: dc.TableName,
+			Columns:   []ColumnDef{{Name: dc.ColumnName}},
+		})
+	}
+
+	for _, md := range cs.ModifyDataTypes {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "modifyDataType",
+			TableName: md.TableName,
+			Columns:   []ColumnDef{{Name: md.ColumnName, Type: md.NewDataType}},
+		})
+	}
+
+	for _, rc := range cs.RenameColumns {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "renameColumn",
+			TableName: rc.TableName,
+			OldName:   rc.OldColumnName,
+			NewName:   rc.NewColumnName,
+		})
+	}
+
+	for _, rt := range cs.RenameTables {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "renameTable",
+			TableName: rt.OldTableName,
+			OldName:   rt.OldTableName,
+			NewName:   rt.NewTableName,
+		})
+	}
+
+	for _, pk := range cs.AddPrimaryKeys {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "addPrimaryKey",
+			TableName: pk.TableName,
+			PKConstraint: &PKConstraintDef{
+				ConstraintName: pk.ConstraintName,
+				TableName:      pk.TableName,
+				ColumnNames:    pk.ColumnNames,
+			},
+		})
+	}
+
+	for _, dpk := range cs.DropPrimaryKeys {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "dropPrimaryKey",
+			TableName: dpk.TableName,
+			PKConstraint: &PKConstraintDef{
+				ConstraintName: dpk.ConstraintName,
+				TableName:      dpk.TableName,
+			},
+		})
+	}
+
+	for _, fk := range cs.AddForeignKeys {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "addForeignKeyConstraint",
+			TableName: fk.BaseTableName,
+			FKConstraint: &FKConstraintDef{
+				ConstraintName:    fk.ConstraintName,
+				BaseTableName:     fk.BaseTableName,
+				BaseColumnNames:   fk.BaseColumnNames,
+				ReferencedTable:   fk.ReferencedTable,
+				ReferencedColumns: fk.ReferencedColumns,
+			},
+		})
+	}
+
+	for _, dfk := range cs.DropForeignKeys {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "dropForeignKeyConstraint",
+			TableName: dfk.BaseTableName,
+			FKConstraint: &FKConstraintDef{
+				ConstraintName: dfk.ConstraintName,
+				BaseTableName:  dfk.BaseTableName,
+			},
+		})
+	}
+
+	for _, ci := range cs.CreateIndexes {
+		c := Change{
+			Type:      "createIndex",
+			TableName: ci.TableName,
+			IndexName: ci.IndexName,
+		}
+		for _, col := range ci.Columns {
+			c.Columns = append(c.Columns, ColumnDef{Name: col.Name})
+		}
+		changeSet.Changes = append(changeSet.Changes, c)
+	}
+
+	for _, di := range cs.DropIndexes {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "dropIndex",
+			TableName: di.TableName,
+			IndexName: di.IndexName,
+		})
+	}
+
+	for _, auc := range cs.AddUniqueConstraints {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:      "addUniqueConstraint",
+			TableName: auc.TableName,
+			Columns:   []ColumnDef{{Name: auc.ColumnNames, Unique: true}},
+		})
+	}
+
+	for _, cv := range cs.CreateViews {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:     "createView",
+			ViewName: cv.ViewName,
+			RawSQL:   strings.TrimSpace(cv.Body),
+		})
+	}
+
+	for _, dv := range cs.DropViews {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:     "dropView",
+			ViewName: dv.ViewName,
+		})
+	}
+
+	for _, cp := range cs.CreateProcedures {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:          "createProcedure",
+			ProcedureName: cp.ProcedureName,
+			RawSQL:        strings.TrimSpace(cp.Body),
+		})
+	}
+
+	for _, dp := range cs.DropProcedures {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:          "dropProcedure",
+			ProcedureName: dp.ProcedureName,
+		})
+	}
+
+	for _, s := range cs.SQLs {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:   "sql",
+			RawSQL: strings.TrimSpace(s.Text),
+		})
+	}
+
+	for _, sf := range cs.SQLFiles {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type:   "sqlFile",
+			RawSQL: sf.Path,
+		})
+	}
+
+	for _, tag := range cs.TagDatabases {
+		changeSet.Changes = append(changeSet.Changes, Change{
+			Type: "tagDatabase",
+			Tag:  tag.Tag,
+		})
+	}
+
+	for _, rb := range cs.Rollbacks {
+		if t := strings.TrimSpace(rb.Text); t != "" {
+			changeSet.Rollbacks = append(changeSet.Rollbacks, t)
+		}
+	}
+
+	return changeSet
 }
 
 func mapColumnDef(col xmlColumn) ColumnDef {

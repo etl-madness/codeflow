@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 764 843" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1572 843" width="100%" height="100%">
 <defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
     <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
@@ -27,9 +27,9 @@
 </style>
 <rect width="100%" height="100%" fill="#F9FAFB" />
 <text x="40" y="28" class="title">liquibase Workflow (Flowchart TD)</text>
-<rect x="40" y="60" width="312" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
-<rect x="40" y="60" width="312" height="45" rx="8" fill="#E5E7EB" />
-<text x="196" y="87" class="lane-title" text-anchor="middle">Liquibase (01_core_schema)</text>
+<rect x="40" y="60" width="328" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="328" height="45" rx="8" fill="#E5E7EB" />
+<text x="204" y="87" class="lane-title" text-anchor="middle">Liquibase (core_changeset.1)</text>
 <rect x="55" y="125" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
 <rect x="65" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
 <text x="70" y="144" class="node-badge" fill="#059669">TableOperation</text>
@@ -58,64 +58,100 @@
 <text x="70" y="612" class="node-badge" fill="#059669">DatabaseTable</text>
 <text x="65" y="635" class="node-title">merchants</text>
 <text x="65" y="651" class="node-desc">Merchant store entities</text>
-<rect x="412" y="60" width="312" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
-<rect x="412" y="60" width="312" height="45" rx="8" fill="#E5E7EB" />
-<text x="568" y="87" class="lane-title" text-anchor="middle">Liquibase (02_orders_and_payments)</text>
-<rect x="427" y="125" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
-<text x="442" y="144" class="node-badge" fill="#059669">TableOperation</text>
-<text x="437" y="167" class="node-title">architect:orders-v1</text>
-<text x="437" y="183" class="node-desc">Create orders table with foreign</text>
-<text x="437" y="199" class="node-desc">keys to customers and merchants</text>
-<rect x="427" y="246" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="254" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
-<text x="442" y="265" class="node-badge" fill="#059669">TableOperation</text>
-<text x="437" y="288" class="node-title">architect:payments-v1</text>
-<text x="437" y="304" class="node-desc">Create payments table with foreign</text>
-<text x="437" y="320" class="node-desc">key to orders</text>
-<rect x="427" y="367" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="375" width="42" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
-<text x="442" y="386" class="node-badge" fill="#7C3AED">View</text>
-<text x="437" y="409" class="node-title">architect:views-and-procs</text>
-<text x="437" y="425" class="node-desc">Create analytics view for merchant</text>
-<text x="437" y="441" class="node-desc">billing</text>
-<rect x="427" y="488" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="496" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
-<text x="442" y="507" class="node-badge" fill="#059669">DatabaseQuery</text>
-<text x="437" y="530" class="node-title">architect:milestone-v1.1</text>
-<text x="437" y="546" class="node-desc">Tag database release milestone</text>
-<rect x="427" y="593" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="601" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
-<text x="442" y="612" class="node-badge" fill="#059669">DatabaseTable</text>
-<text x="437" y="635" class="node-title">orders</text>
-<text x="437" y="651" class="node-desc">Database Table orders</text>
-<rect x="427" y="698" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
-<rect x="437" y="706" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
-<text x="442" y="717" class="node-badge" fill="#059669">DatabaseTable</text>
-<text x="437" y="740" class="node-title">payments</text>
-<text x="437" y="756" class="node-desc">Database Table payments</text>
+<rect x="428" y="60" width="328" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="428" y="60" width="328" height="45" rx="8" fill="#E5E7EB" />
+<text x="592" y="87" class="lane-title" text-anchor="middle">Liquibase (customer_changeset.1)</text>
+<rect x="443" y="125" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="453" y="133" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="458" y="144" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="453" y="167" class="node-title">me:dbbo_usp_GetCustomer.1</text>
+<text x="453" y="183" class="node-desc">Execute &lt;sqlFile&gt;:</text>
+<text x="453" y="199" class="node-desc">dbo_usp_GetCustomer.1.sql</text>
+<rect x="816" y="60" width="328" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="816" y="60" width="328" height="45" rx="8" fill="#E5E7EB" />
+<text x="980" y="87" class="lane-title" text-anchor="middle">Liquibase (sql_changeset.1)</text>
+<rect x="831" y="125" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="846" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="841" y="167" class="node-title">architect:orders-v1</text>
+<text x="841" y="183" class="node-desc">Create orders table with foreign</text>
+<text x="841" y="199" class="node-desc">keys to customers and merchants</text>
+<rect x="831" y="246" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="254" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="846" y="265" class="node-badge" fill="#059669">TableOperation</text>
+<text x="841" y="288" class="node-title">architect:payments-v1</text>
+<text x="841" y="304" class="node-desc">Create payments table with foreign</text>
+<text x="841" y="320" class="node-desc">key to orders</text>
+<rect x="831" y="367" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="375" width="98" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="846" y="386" class="node-badge" fill="#4B5563">DatabaseView</text>
+<text x="841" y="409" class="node-title">architect:views-and-procs</text>
+<text x="841" y="425" class="node-desc">Create analytics view for merchant</text>
+<text x="841" y="441" class="node-desc">billing</text>
+<rect x="831" y="488" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="496" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="846" y="507" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="841" y="530" class="node-title">architect:milestone-v1.1</text>
+<text x="841" y="546" class="node-desc">Tag database release milestone</text>
+<rect x="831" y="593" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="601" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="846" y="612" class="node-badge" fill="#059669">DatabaseTable</text>
+<text x="841" y="635" class="node-title">orders</text>
+<text x="841" y="651" class="node-desc">Database Table orders</text>
+<rect x="831" y="698" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="841" y="706" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="846" y="717" class="node-badge" fill="#059669">DatabaseTable</text>
+<text x="841" y="740" class="node-title">payments</text>
+<text x="841" y="756" class="node-desc">Database Table payments</text>
+<rect x="1204" y="60" width="328" height="763" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="1204" y="60" width="328" height="45" rx="8" fill="#E5E7EB" />
+<text x="1368" y="87" class="lane-title" text-anchor="middle">SQL Database (dbo_usp_GetCustomer.1)</text>
+<rect x="1219" y="125" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1229" y="133" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="1234" y="144" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="1229" y="167" class="node-title">Proc: usp_GetCustomer</text>
+<text x="1229" y="183" class="node-desc">Stored Procedure Proc:</text>
+<text x="1229" y="199" class="node-desc">usp_GetCustomer</text>
+<rect x="1219" y="246" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1229" y="254" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1234" y="265" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="1229" y="288" class="node-title">Query Customer</text>
+<text x="1229" y="304" class="node-desc">Reads table Customer within stored</text>
+<text x="1229" y="320" class="node-desc">procedure usp_GetCustomer</text>
 <path d="M 185 195 L 185 230" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
 <rect x="141" y="202" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
 <text x="185" y="214" class="edge-label" text-anchor="middle">executes next</text>
 <path d="M 185 300 L 185 335" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
 <rect x="141" y="308" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
 <text x="185" y="320" class="edge-label" text-anchor="middle">executes next</text>
-<path d="M 557 211 L 557 246" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
-<rect x="513" y="218" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="557" y="230" class="edge-label" text-anchor="middle">executes next</text>
-<path d="M 557 332 L 557 367" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
-<rect x="513" y="340" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="557" y="352" class="edge-label" text-anchor="middle">executes next</text>
-<path d="M 557 453 L 557 488" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
-<rect x="513" y="460" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="557" y="472" class="edge-label" text-anchor="middle">executes next</text>
-<path d="M 557 768 L 557 593" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
-<rect x="462" y="670" width="190" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="557" y="682" class="edge-label" text-anchor="middle">references (fk_payments_order)</text>
-<path d="M 427 628 C 371 628, 371 515, 315 515" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
-<rect x="273" y="562" width="196" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="371" y="574" class="edge-label" text-anchor="middle">references (fk_orders_customer)</text>
-<path d="M 427 628 C 371 628, 371 628, 315 628" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
-<rect x="273" y="618" width="196" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
-<text x="371" y="630" class="edge-label" text-anchor="middle">references (fk_orders_merchant)</text>
+<path d="M 315 386 C 379 386, 379 168, 443 168" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="335" y="267" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="379" y="279" class="edge-label" text-anchor="middle">executes next</text>
+<path d="M 703 168 C 767 168, 767 168, 831 168" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="723" y="158" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="767" y="170" class="edge-label" text-anchor="middle">executes next</text>
+<path d="M 961 211 L 961 246" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="917" y="218" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="961" y="230" class="edge-label" text-anchor="middle">executes next</text>
+<path d="M 961 332 L 961 367" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="917" y="340" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="961" y="352" class="edge-label" text-anchor="middle">executes next</text>
+<path d="M 961 453 L 961 488" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="917" y="460" width="88" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="961" y="472" class="edge-label" text-anchor="middle">executes next</text>
+<path d="M 831 628 C 573 628, 573 515, 315 515" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="475" y="562" width="196" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="573" y="574" class="edge-label" text-anchor="middle">references (fk_orders_customer)</text>
+<path d="M 831 628 C 573 628, 573 628, 315 628" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="475" y="618" width="196" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="573" y="630" class="edge-label" text-anchor="middle">references (fk_orders_merchant)</text>
+<path d="M 961 768 L 961 593" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="866" y="670" width="190" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="961" y="682" class="edge-label" text-anchor="middle">references (fk_payments_order)</text>
+<path d="M 1349 211 L 1349 246" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="1323" y="218" width="52" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="1349" y="230" class="edge-label" text-anchor="middle">queries</text>
+<path d="M 703 168 C 961 168, 961 168, 1219 168" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="911" y="158" width="100" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="961" y="170" class="edge-label" text-anchor="middle">calls &lt;sqlFile&gt;</text>
 </svg>

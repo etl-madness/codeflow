@@ -1,10 +1,44 @@
 package liquibase
 
+// ChangeLogEntryType defines whether an entry is a changeSet or an include directive.
+type ChangeLogEntryType string
+
+const (
+	EntryChangeSet  ChangeLogEntryType = "changeSet"
+	EntryInclude    ChangeLogEntryType = "include"
+	EntryIncludeAll ChangeLogEntryType = "includeAll"
+)
+
+// ChangeLogEntry preserves document-order sequence of elements in a changelog.
+type ChangeLogEntry struct {
+	Type      ChangeLogEntryType
+	ChangeSet *ChangeSet
+	Include   *IncludeFile
+}
+
+// SQLFileRef represents a reference to an external SQL file from a changeSet.
+type SQLFileRef struct {
+	ChangeSetID  string
+	SourceFile   string
+	RawPath      string
+	ResolvedPath string
+}
+
+// OrderedExecution represents an execution plan of changesets in sequence.
+type OrderedExecution struct {
+	PrimaryFile  string
+	ChangeSets   []ChangeSet
+	FileOrder    []string
+	HandledFiles map[string]bool
+	SQLFiles     []SQLFileRef
+}
+
 // ChangeLog represents a parsed Liquibase changelog file.
 type ChangeLog struct {
 	FilePath   string
 	ChangeSets []ChangeSet
 	Includes   []IncludeFile
+	Entries    []ChangeLogEntry
 }
 
 // IncludeFile represents an <include> or <includeAll> directive.

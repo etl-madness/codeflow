@@ -3,25 +3,35 @@
   "name": "liquibase Workflow",
   "swimlanes": [
     {
-      "id": "lane_liquibase_01_core_schema",
-      "name": "Liquibase (01_core_schema)",
-      "description": "Liquibase migration changelog 01_core_schema.xml"
+      "id": "lane_liquibase_core_changeset_1",
+      "name": "Liquibase (core_changeset.1)",
+      "description": "Liquibase migration changelog core_changeset.1.xml"
     },
     {
-      "id": "lane_liquibase_02_orders_and_payments",
-      "name": "Liquibase (02_orders_and_payments)",
-      "description": "Liquibase migration changelog 02_orders_and_payments.sql"
+      "id": "lane_liquibase_customer_changeset_1",
+      "name": "Liquibase (customer_changeset.1)",
+      "description": "Liquibase migration changelog customer_changeset.1.xml"
+    },
+    {
+      "id": "lane_liquibase_sql_changeset_1",
+      "name": "Liquibase (sql_changeset.1)",
+      "description": "Liquibase migration changelog sql_changeset.1.sql"
+    },
+    {
+      "id": "sql:dbo_usp_GetCustomer.1",
+      "name": "SQL Database (dbo_usp_GetCustomer.1)",
+      "description": "SQL script in dbo_usp_GetCustomer.1.sql"
     }
   ],
   "steps": [
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:1:8",
-      "swimlane_id": "lane_liquibase_01_core_schema",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
       "name": "db_admin:1",
       "description": "Create customers table",
       "type": "TableOperation",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
       "line_number": 8,
       "metadata": {
         "author": "db_admin",
@@ -36,13 +46,13 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:2:30",
-      "swimlane_id": "lane_liquibase_01_core_schema",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
       "name": "db_admin:2",
       "description": "Create merchants table",
       "type": "TableOperation",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
       "line_number": 30,
       "metadata": {
         "author": "db_admin",
@@ -57,13 +67,13 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:3:49",
-      "swimlane_id": "lane_liquibase_01_core_schema",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
       "name": "db_admin:3",
       "description": "Create index idx_customers_email on customers; Tag database milestone: v1.0-baseline",
       "type": "Milestone",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
       "line_number": 49,
       "metadata": {
         "author": "db_admin",
@@ -77,13 +87,117 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:customers",
-      "swimlane_id": "lane_liquibase_01_core_schema",
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "swimlane_id": "lane_liquibase_customer_changeset_1",
+      "name": "me:dbbo_usp_GetCustomer.1",
+      "description": "Execute \u003csqlFile\u003e: dbo_usp_GetCustomer.1.sql",
+      "type": "StoredProcedure",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\customer_changeset.1.xml",
+      "line_number": 10,
+      "metadata": {
+        "author": "me",
+        "changeset_id": "dbbo_usp_GetCustomer.1",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false,
+        "sql_file": "../ddl/dbo_usp_GetCustomer.1.sql",
+        "sql_file_base": "dbo_usp_GetCustomer.1.sql",
+        "sql_files": [
+          "../ddl/dbo_usp_GetCustomer.1.sql"
+        ]
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:orders-v1",
+      "description": "Create orders table with foreign keys to customers and merchants",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 3,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "orders-v1",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.1",
+        "rollback": "DROP TABLE orders;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "orders"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:payments-v1",
+      "description": "Create payments table with foreign key to orders",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 17,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "payments-v1",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.1",
+        "rollback": "DROP TABLE payments;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "payments"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:views-and-procs",
+      "description": "Create analytics view for merchant billing",
+      "type": "DatabaseView",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 31,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "views-and-procs",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:milestone-v1.1",
+      "description": "Tag database release milestone",
+      "type": "DatabaseQuery",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 43,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "milestone-v1.1",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:customers",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
       "name": "customers",
       "description": "Customer profile and authentication records",
       "type": "DatabaseTable",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
       "line_number": 0,
       "metadata": {
         "columns": [
@@ -119,13 +233,13 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:merchants",
-      "swimlane_id": "lane_liquibase_01_core_schema",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
       "name": "merchants",
       "description": "Merchant store entities",
       "type": "DatabaseTable",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
       "line_number": 0,
       "metadata": {
         "columns": [
@@ -156,93 +270,13 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:orders-v1:3",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
-      "name": "architect:orders-v1",
-      "description": "Create orders table with foreign keys to customers and merchants",
-      "type": "TableOperation",
-      "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
-      "line_number": 3,
-      "metadata": {
-        "author": "architect",
-        "changeset_id": "orders-v1",
-        "contexts": "dev,prod",
-        "is_liquibase": true,
-        "labels": "v1.1",
-        "rollback": "DROP TABLE orders;",
-        "run_always": false,
-        "run_on_change": false,
-        "table": "orders"
-      }
-    },
-    {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:payments-v1:17",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
-      "name": "architect:payments-v1",
-      "description": "Create payments table with foreign key to orders",
-      "type": "TableOperation",
-      "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
-      "line_number": 17,
-      "metadata": {
-        "author": "architect",
-        "changeset_id": "payments-v1",
-        "contexts": "dev,prod",
-        "is_liquibase": true,
-        "labels": "v1.1",
-        "rollback": "DROP TABLE payments;",
-        "run_always": false,
-        "run_on_change": false,
-        "table": "payments"
-      }
-    },
-    {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:views-and-procs:31",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
-      "name": "architect:views-and-procs",
-      "description": "Create analytics view for merchant billing",
-      "type": "View",
-      "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
-      "line_number": 31,
-      "metadata": {
-        "author": "architect",
-        "changeset_id": "views-and-procs",
-        "contexts": "",
-        "is_liquibase": true,
-        "labels": "",
-        "run_always": false,
-        "run_on_change": false
-      }
-    },
-    {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:milestone-v1.1:43",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
-      "name": "architect:milestone-v1.1",
-      "description": "Tag database release milestone",
-      "type": "DatabaseQuery",
-      "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
-      "line_number": 43,
-      "metadata": {
-        "author": "architect",
-        "changeset_id": "milestone-v1.1",
-        "contexts": "",
-        "is_liquibase": true,
-        "labels": "",
-        "run_always": false,
-        "run_on_change": false
-      }
-    },
-    {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
       "name": "orders",
       "description": "Database Table orders",
       "type": "DatabaseTable",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
       "line_number": 0,
       "metadata": {
         "columns": [
@@ -298,13 +332,13 @@
       }
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:payments",
-      "swimlane_id": "lane_liquibase_02_orders_and_payments",
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
       "name": "payments",
       "description": "Database Table payments",
       "type": "DatabaseTable",
       "language": "liquibase",
-      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
       "line_number": 0,
       "metadata": {
         "columns": [
@@ -356,63 +390,116 @@
         "is_liquibase": true,
         "table": "payments"
       }
+    },
+    {
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "swimlane_id": "sql:dbo_usp_GetCustomer.1",
+      "name": "Proc: usp_GetCustomer",
+      "description": "Stored Procedure Proc: usp_GetCustomer",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql",
+      "line_number": 1,
+      "metadata": {
+        "full_procedure": "dbo.usp_GetCustomer",
+        "procedure": "usp_GetCustomer",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "swimlane_id": "sql:dbo_usp_GetCustomer.1",
+      "name": "Query Customer",
+      "description": "Reads table Customer within stored procedure usp_GetCustomer",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql",
+      "line_number": 1
     }
   ],
   "links": [
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:1:8-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:2:30:exec",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:1:8",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:2:30",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:2:30:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
       "label": "executes next",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:2:30-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:3:49:exec",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:2:30",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:3:49",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:3:49:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
       "label": "executes next",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:orders-v1:3-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:payments-v1:17:exec",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:orders-v1:3",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:payments-v1:17",
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49-\u003eexamples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
+      "target_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
       "label": "executes next",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:payments-v1:17-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:views-and-procs:31:exec",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:payments-v1:17",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:views-and-procs:31",
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
       "label": "executes next",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:views-and-procs:31-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:milestone-v1.1:43:exec",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:views-and-procs:31",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:milestone-v1.1:43",
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
       "label": "executes next",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:payments-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders:fk",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:payments",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders",
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:table:customers:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:customers",
+      "label": "references (fk_orders_customer)",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants",
+      "label": "references (fk_orders_merchant)",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
       "label": "references (fk_payments_order)",
       "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:customers:fk",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:customers",
-      "label": "references (fk_orders_customer)",
-      "is_cross_service": true
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1-\u003eexamples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "source_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "target_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "label": "queries",
+      "is_cross_service": false
     },
     {
-      "id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders-\u003eC:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:merchants:fk",
-      "source_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\02_orders_and_payments.sql:table:orders",
-      "target_step_id": "C:\\Users\\U00001\\source\\repos\\etl-madness\\CodeFlow\\examples\\liquibase\\01_core_schema.xml:table:merchants",
-      "label": "references (fk_orders_merchant)",
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10-\u003eexamples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:sqlfile",
+      "source_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "target_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "label": "calls \u003csqlFile\u003e",
       "is_cross_service": true
     }
   ]

@@ -1,7 +1,12 @@
 %%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
 sequenceDiagram
     autonumber
-    participant P1 as Liquibase (01_core_schema)
-    participant P2 as Liquibase (02_orders_and_payments)
-    P2-->>P1: references (fk_orders_customer)
-    P2-->>P1: references (fk_orders_merchant)
+    participant P1 as Liquibase (core_changeset.1)
+    participant P2 as Liquibase (customer_changeset.1)
+    participant P3 as Liquibase (sql_changeset.1)
+    participant P4 as SQL Database (dbo_usp_GetCustomer.1)
+    P1->>P2: executes next
+    P2->>P3: executes next
+    P3->>P1: references (fk_orders_customer)
+    P3->>P1: references (fk_orders_merchant)
+    P2-->>P4: calls <sqlFile>

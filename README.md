@@ -8,7 +8,8 @@
                 - Path walker            - Go AST & Structs       - Graph linking      - Gemini / OpenAI  - Mermaid (.mmd)
                 - Gitignore & Bypass     - C#/Py Tree-sitter      - Cross-package maps - Biz Translation  - Standalone SVG
                 - Ext router             - T-SQL & XML Parsers    - Route & DB calls                      - Visio (.xlsx)
-                - Test filters           - SSIS .dtsx Packages                                            - JSON Schema
+                - Test filters           - SSIS .dtsx Packages    - <sqlFile> Invokes                     - JSON Schema
+                                         - Liquibase XML & SQL
 ```
 
 ---
@@ -121,6 +122,11 @@ Flags:
   -o, --output string             Base path or filename for output files (without extension) (default "output")
       --output-dir string         Directory to save output files (created if it does not exist)
       --output-name string        Alias for --name
+      --primary-changelog string  Path to primary order changelog (e.g. changesets.xml) to dictate execution order
+      --root-changelog string     Alias for --primary-changelog
+      --liquibase-root string     Alias for --primary-changelog
+      --changelog-order string    Alias for --primary-changelog
+      --changesets string         Alias for --primary-changelog
   -r, --recursive                 Traverse directories recursively (default true)
   -s, --source string             Root directory or single source file to scan (default ".")
 ```
@@ -275,10 +281,12 @@ Export an interactive, self-contained multi-sheet Excel workbook that requires *
 
 ### 9. Analyze Liquibase Database Migrations & Schemas
 
-Visualize database migration changelogs, cumulative schema states, and foreign key relationships across Liquibase XML and Formatted SQL changelogs:
+Visualize database migration changelogs, cumulative schema states, foreign key relationships, and external script invocations across Liquibase XML, Formatted SQL, and master changelog files:
 
 ```bash
+# Analyze master changelog with primary execution order and external SQL scripts:
 .\bin\codeflow.exe analyze --source ./examples/liquibase \
+  --primary-changelog ./examples/liquibase/changesets.xml \
   --recursive \
   --format mermaid,excel,json,svg \
   -n liquibase \
@@ -287,10 +295,14 @@ Visualize database migration changelogs, cumulative schema states, and foreign k
   --no-truncate
 ```
 
-- **Cumulative ER Diagrams:** Generates full Mermaid ER (`liquibase_er.mmd`) and SVG ER (`liquibase_er.svg`) diagrams showing the final schema state, data types, and primary keys.
+- **Primary Order Changelog (`--primary-changelog`):** Point to a root changelog (e.g. `changesets.xml`, `master.xml`, `db.changelog-master.xml`) to enforce execution order across included XML and Formatted SQL files via `<include>` and `<includeAll>`.
+- **External `<sqlFile>` Invocations & Correlation:** Automatically extracts `<sqlFile path="..." relativeToChangelogFile="true"/>` directives, loads the target SQL scripts, and connects changeSets directly to external stored procedures or views with `calls <sqlFile>` links.
+- **Dialect-Aware Stored Procedures:** Parses modern T-SQL / SQL Server syntax (e.g. `CREATE OR ALTER PROCEDURE dbo.usp_GetCustomer`) and respects `BEGIN ... END` blocks, preserving inner table queries and lineage (`Proc: usp_GetCustomer --> queries --> Query Customer`).
+- **Continuous Cross-File Execution Links:** Steps connect sequentially across changelog boundaries with `executes next` transitions.
+- **Cumulative ER Diagrams:** Generates full Mermaid ER (`liquibase_er.mmd`) and SVG ER (`liquibase_er.svg`) diagrams showing the cumulative database schema, data types, primary keys (`PK`), and foreign keys.
 - **Cross-File Foreign Keys:** Automatically correlates foreign key constraints across files (e.g. `orders` in SQL referencing `customers` in XML).
 - **Execution Flowcharts & Lifelines:** Sequential changelog execution paths with author badges, rollbacks, and milestone tags.
-- See full live example in [docs/liquibase/README.md](docs/liquibase/README.md).
+- See full live example and generated diagrams in [docs/liquibase/README.md](docs/liquibase/README.md).
 
 ---
 
@@ -395,7 +407,8 @@ The exported JSON file represents the full AST dependency graph:
 | **C#** | `.cs` | Tree-sitter C# | ASP.NET Controllers, HTTP verbs (`[HttpGet]`, `[HttpPost]`), async tasks, Entity Framework queries |
 | **Razor / Blazor** | `.razor` | Regex + Tree-sitter C# | `@page` routes, `@inject` dependencies, `@code` component logic |
 | **Python** | `.py` | Tree-sitter Python | FastAPI & Flask endpoints, call chains, DB sessions & queries |
-| **SQL** | `.sql` | `sqlparser` + dialect regex | Tables, Views, Stored Procedures, T-SQL temporary tables (`#table`, `##table`), bracketed schemas, DDL & DML operations |
+| **SQL** | `.sql` | `sqlparser` + dialect regex | Tables, Views, Stored Procedures (`CREATE OR ALTER`), T-SQL temporary tables (`#table`, `##table`), bracketed schemas, DDL & DML operations |
+| **Liquibase Migrations** | `.xml`, `.sql` | XML Decoder + SQL Formatter | ChangeSets, cumulative schema evolution, column types/modifications, `<sqlFile>` external script calls, foreign keys, rollbacks, milestones |
 | **Flow XML & Pipelines** | `.xml` | `encoding/xml` | Pipeline tasks (`<flow>`, `<parallel>`, `<if>`, `<assert>`, `<script>`, `<sql>`), transitions, BPMN processes |
 | **SSIS Packages** | `.dtsx` | `encoding/xml` | Data Flow Tasks, Execute SQL Tasks, Precedence Constraints, Connection Managers, Variables |
 

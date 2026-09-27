@@ -141,7 +141,11 @@ func (e *Exporter) GenerateFlowchart(pm *model.ProcessModel, direction string) s
 			continue
 		}
 
-		laneSafeID := sanitizeID("lane_" + lane.ID)
+		laneSafeID := lane.ID
+		if !strings.HasPrefix(laneSafeID, "lane_") {
+			laneSafeID = "lane_" + laneSafeID
+		}
+		laneSafeID = sanitizeID(laneSafeID)
 		sb.WriteString(fmt.Sprintf("    subgraph %s [\"%s\"]\n", laneSafeID, escapeLabel(lane.Name)))
 
 		for _, step := range steps {

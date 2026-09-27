@@ -435,6 +435,45 @@ CREATE TABLE audit_logs (
 	}
 }
 
+func TestAnalyzeCommandLiquibasePrimaryOrder(t *testing.T) {
+	outDir := t.TempDir()
+
+	opts := &AnalyzeOptions{
+		SourceDir:        "../../examples/liquibase",
+		PrimaryChangelog: "../../examples/liquibase/changesets.xml",
+		Recursive:        true,
+		Formats:          "mermaid,json",
+		OutputName:       "primary_order_test",
+		OutputDir:        outDir,
+		DiagramType:      "all",
+		NoTruncate:       true,
+	}
+
+	if err := RunAnalyze(opts); err != nil {
+		t.Fatalf("RunAnalyze failed with primary changelog: %v", err)
+	}
+
+	mmdPath := filepath.Join(outDir, "primary_order_test.mmd")
+	cnt, err := os.ReadFile(mmdPath)
+	if err != nil {
+		t.Fatalf("failed to read primary_order_test.mmd: %v", err)
+	}
+	content := string(cnt)
+
+	// Verify changelog swimlanes exist
+	if !strings.Contains(content, "subgraph lane_liquibase_core_changeset") {
+		t.Errorf("expected subgraph lane_liquibase_core_changeset in output")
+	}
+	if !strings.Contains(content, "subgraph lane_liquibase_sql_changeset") {
+		t.Errorf("expected subgraph lane_liquibase_sql_changeset in output")
+	}
+
+	// Verify sequential execution link
+	if !strings.Contains(content, "executes next") {
+		t.Errorf("expected 'executes next' link in output diagram")
+	}
+}
+
 
 
 

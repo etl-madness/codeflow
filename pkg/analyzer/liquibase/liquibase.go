@@ -52,5 +52,10 @@ func (a *Analyzer) AnalyzeFile(path string, content []byte) (*analyzer.FileAnaly
 		return nil, fmt.Errorf("unsupported Liquibase format for file: %s", path)
 	}
 
+	// If this changelog contains <include> or <includeAll> directives, resolve in primary execution order
+	if len(cl.Includes) > 0 {
+		return a.AnalyzeWithPrimaryOrder(path)
+	}
+
 	return MapChangeLogToProcessModel(cl), nil
 }

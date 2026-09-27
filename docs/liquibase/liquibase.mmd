@@ -8,31 +8,46 @@ flowchart TD
     classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
     classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
     classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
-    subgraph lane_lane_liquibase_01_core_schema ["Liquibase (01_core_schema)"]
+    subgraph lane_liquibase_core_changeset_1 ["Liquibase (core_changeset.1)"]
         s1[("<b>db_admin:1</b><br/><small>Table Operation</small><br/><sub>Create customers table</sub>")]:::dbNode
         s2[("<b>db_admin:2</b><br/><small>Table Operation</small><br/><sub>Create merchants table</sub>")]:::dbNode
         s3["<b>db_admin:3</b><br/><small>Milestone</small><br/><sub>Create index idx_customers_email on customers; Tag database milestone: v1.0-baseline</sub>"]:::defaultNode
-        s4[("<b>customers</b><br/><small>Database Table</small><br/><sub>Customer profile and authentication records</sub>")]:::dbNode
-        s5[("<b>merchants</b><br/><small>Database Table</small><br/><sub>Merchant store entities</sub>")]:::dbNode
+        s9[("<b>customers</b><br/><small>Database Table</small><br/><sub>Customer profile and authentication records</sub>")]:::dbNode
+        s10[("<b>merchants</b><br/><small>Database Table</small><br/><sub>Merchant store entities</sub>")]:::dbNode
     end
 
-    subgraph lane_lane_liquibase_02_orders_and_payments ["Liquibase (02_orders_and_payments)"]
-        s6[("<b>architect:orders-v1</b><br/><small>Table Operation</small><br/><sub>Create orders table with foreign keys to customers and merchants</sub>")]:::dbNode
-        s7[("<b>architect:payments-v1</b><br/><small>Table Operation</small><br/><sub>Create payments table with foreign key to orders</sub>")]:::dbNode
-        s8[["<b>architect:views-and-procs</b><br/><small>Database View</small><br/><sub>Create analytics view for merchant billing</sub>"]):::procNode
-        s9[("<b>architect:milestone-v1.1</b><br/><small>SQL Query</small><br/><sub>Tag database release milestone</sub>")]:::dbNode
-        s10[("<b>orders</b><br/><small>Database Table</small><br/><sub>Database Table orders</sub>")]:::dbNode
-        s11[("<b>payments</b><br/><small>Database Table</small><br/><sub>Database Table payments</sub>")]:::dbNode
+    subgraph lane_liquibase_customer_changeset_1 ["Liquibase (customer_changeset.1)"]
+        s4["<b>me:dbbo_usp_GetCustomer.1</b><br/><small>Stored Procedure</small><br/><sub>Execute <sqlFile>: dbo_usp_GetCustomer.1.sql</sub>"]:::procNode
+    end
+
+    subgraph lane_liquibase_sql_changeset_1 ["Liquibase (sql_changeset.1)"]
+        s5[("<b>architect:orders-v1</b><br/><small>Table Operation</small><br/><sub>Create orders table with foreign keys to customers and merchants</sub>")]:::dbNode
+        s6[("<b>architect:payments-v1</b><br/><small>Table Operation</small><br/><sub>Create payments table with foreign key to orders</sub>")]:::dbNode
+        s7["<b>architect:views-and-procs</b><br/><small>DatabaseView</small><br/><sub>Create analytics view for merchant billing</sub>"]:::defaultNode
+        s8[("<b>architect:milestone-v1.1</b><br/><small>SQL Query</small><br/><sub>Tag database release milestone</sub>")]:::dbNode
+        s11[("<b>orders</b><br/><small>Database Table</small><br/><sub>Database Table orders</sub>")]:::dbNode
+        s12[("<b>payments</b><br/><small>Database Table</small><br/><sub>Database Table payments</sub>")]:::dbNode
+    end
+
+    subgraph lane_sql_dbo_usp_GetCustomer_1 ["SQL Database (dbo_usp_GetCustomer.1)"]
+        s13["<b>Proc: usp_GetCustomer</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure Proc: usp_GetCustomer</sub>"]:::procNode
+        s14[("<b>Query Customer</b><br/><small>SQL Query</small><br/><sub>Reads table Customer within stored procedure usp_GetCustomer</sub>")]:::dbNode
     end
 
     s1 -->|"executes next"| s2
     s2 -->|"executes next"| s3
+    s3 -->|"executes next"| s4
+    s4 -->|"executes next"| s5
+    s5 -->|"executes next"| s6
     s6 -->|"executes next"| s7
     s7 -->|"executes next"| s8
-    s8 -->|"executes next"| s9
-    s11 -->|"references (fk_payments_order)"| s10
-    s10 -.->|"references (fk_orders_customer)"| s4
-    s10 -.->|"references (fk_orders_merchant)"| s5
+    s11 -->|"references (fk_orders_customer)"| s9
+    s11 -->|"references (fk_orders_merchant)"| s10
+    s12 -->|"references (fk_payments_order)"| s11
+    s13 -->|"queries"| s14
+    s4 -.->|"calls <sqlFile>"| s13
 
-    style lane_lane_liquibase_01_core_schema fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
-    style lane_lane_liquibase_02_orders_and_payments fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_core_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_customer_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_sql_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_dbo_usp_GetCustomer_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;

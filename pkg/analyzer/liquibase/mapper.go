@@ -10,15 +10,27 @@ import (
 )
 
 type tableState struct {
-	Name       string
-	Columns    []ColumnDef
-	Remarks    string
-	IsDropped  bool
+	Name        string
+	Columns     []ColumnDef
+	Remarks     string
+	IsDropped   bool
 	ForeignKeys []*FKConstraintDef
+	SourceFile  string
+	SwimlaneID  string
 }
 
 // MapChangeLogToProcessModel converts a parsed ChangeLog into a FileAnalysisResult.
 func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
+	exec := &OrderedExecution{
+		PrimaryFile: cl.FilePath,
+		ChangeSets:  cl.ChangeSets,
+		FileOrder:   []string{cl.FilePath},
+	}
+	return MapOrderedExecutionToProcessModel(exec)
+}
+
+// MapOrderedExecutionToProcessModel converts an OrderedExecution into a FileAnalysisResult.
+func MapOrderedExecutionToProcessModel(exec *OrderedExecution) *analyzer.FileAnalysisResult {
 	result := &analyzer.FileAnalysisResult{
 		Steps:     make([]model.Step, 0),
 		Links:     make([]model.Link, 0),
@@ -26,21 +38,46 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 		ASTNodes:  make([]*model.ASTNode, 0),
 	}
 
-	baseName := filepath.Base(cl.FilePath)
-	cleanName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
-	swimlaneID := fmt.Sprintf("lane_liquibase_%s", sanitizeIdent(cleanName))
+	seenSwimlanes := make(map[string]bool)
+	swimlaneByFile := make(map[string]string)
 
-	result.Swimlanes = append(result.Swimlanes, model.Swimlane{
-		ID:          swimlaneID,
-		Name:        fmt.Sprintf("Liquibase (%s)", cleanName),
-		Description: fmt.Sprintf("Liquibase migration changelog %s", baseName),
-	})
+	for _, fPath := range exec.FileOrder {
+		baseName := filepath.Base(fPath)
+		cleanName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
+		swimlaneID := fmt.Sprintf("lane_liquibase_%s", sanitizeIdent(cleanName))
+
+		if !seenSwimlanes[swimlaneID] {
+			seenSwimlanes[swimlaneID] = true
+			result.Swimlanes = append(result.Swimlanes, model.Swimlane{
+				ID:          swimlaneID,
+				Name:        fmt.Sprintf("Liquibase (%s)", cleanName),
+				Description: fmt.Sprintf("Liquibase migration changelog %s", baseName),
+			})
+		}
+		swimlaneByFile[fPath] = swimlaneID
+	}
 
 	tables := make(map[string]*tableState)
 	var prevStepID string
 
-	for _, cs := range cl.ChangeSets {
-		stepID := fmt.Sprintf("%s:%s:%d", cl.FilePath, cs.ID, cs.LineNumber)
+	for _, cs := range exec.ChangeSets {
+		swimlaneID := swimlaneByFile[cs.FilePath]
+		if swimlaneID == "" {
+			baseName := filepath.Base(cs.FilePath)
+			cleanName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
+			swimlaneID = fmt.Sprintf("lane_liquibase_%s", sanitizeIdent(cleanName))
+			swimlaneByFile[cs.FilePath] = swimlaneID
+			if !seenSwimlanes[swimlaneID] {
+				seenSwimlanes[swimlaneID] = true
+				result.Swimlanes = append(result.Swimlanes, model.Swimlane{
+					ID:          swimlaneID,
+					Name:        fmt.Sprintf("Liquibase (%s)", cleanName),
+					Description: fmt.Sprintf("Liquibase migration changelog %s", baseName),
+				})
+			}
+		}
+
+		stepID := fmt.Sprintf("%s:%s:%d", cs.FilePath, cs.ID, cs.LineNumber)
 		displayName := fmt.Sprintf("%s:%s", cs.Author, cs.ID)
 
 		stepType := "TableOperation"
@@ -57,9 +94,11 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			case "createTable":
 				stepType = "TableOperation"
 				tables[ch.TableName] = &tableState{
-					Name:    ch.TableName,
-					Columns: ch.Columns,
-					Remarks: ch.Remarks,
+					Name:       ch.TableName,
+					Columns:    ch.Columns,
+					Remarks:    ch.Remarks,
+					SourceFile: cs.FilePath,
+					SwimlaneID: swimlaneID,
 				}
 				changeSummaries = append(changeSummaries, fmt.Sprintf("Create table %s with %d columns", ch.TableName, len(ch.Columns)))
 
@@ -80,30 +119,29 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			case "dropColumn":
 				stepType = "TableOperation"
 				if t, exists := tables[ch.TableName]; exists && len(ch.Columns) > 0 {
-					dropName := ch.Columns[0].Name
 					var remaining []ColumnDef
-					for _, col := range t.Columns {
-						if !strings.EqualFold(col.Name, dropName) {
-							remaining = append(remaining, col)
+					dropName := ch.Columns[0].Name
+					for _, c := range t.Columns {
+						if !strings.EqualFold(c.Name, dropName) {
+							remaining = append(remaining, c)
 						}
 					}
 					t.Columns = remaining
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Drop column %s from %s", dropName, ch.TableName))
 				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Drop column from %s", ch.TableName))
 
 			case "modifyDataType":
 				stepType = "TableOperation"
 				if t, exists := tables[ch.TableName]; exists && len(ch.Columns) > 0 {
-					colName := ch.Columns[0].Name
-					newType := ch.Columns[0].Type
+					modCol := ch.Columns[0]
 					for i := range t.Columns {
-						if strings.EqualFold(t.Columns[i].Name, colName) {
-							t.Columns[i].Type = newType
+						if strings.EqualFold(t.Columns[i].Name, modCol.Name) {
+							t.Columns[i].Type = modCol.Type
 							break
 						}
 					}
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Modify column %s type to %s on %s", colName, newType, ch.TableName))
 				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Modify column data type on %s", ch.TableName))
 
 			case "renameColumn":
 				stepType = "TableOperation"
@@ -114,60 +152,90 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 							break
 						}
 					}
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Rename column %s to %s on %s", ch.OldName, ch.NewName, ch.TableName))
 				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Rename column %s to %s on %s", ch.OldName, ch.NewName, ch.TableName))
 
 			case "renameTable":
 				stepType = "TableOperation"
 				if t, exists := tables[ch.OldName]; exists {
+					delete(tables, ch.OldName)
 					t.Name = ch.NewName
 					tables[ch.NewName] = t
-					delete(tables, ch.OldName)
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Rename table %s to %s", ch.OldName, ch.NewName))
 				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Rename table %s to %s", ch.OldName, ch.NewName))
 
 			case "addPrimaryKey":
 				stepType = "TableOperation"
-				if ch.PKConstraint != nil && ch.PKConstraint.TableName != "" {
-					if t, exists := tables[ch.PKConstraint.TableName]; exists {
-						cols := strings.Split(ch.PKConstraint.ColumnNames, ",")
-						for _, colName := range cols {
-							cleanCol := strings.TrimSpace(colName)
-							for i := range t.Columns {
-								if strings.EqualFold(t.Columns[i].Name, cleanCol) {
-									t.Columns[i].PrimaryKey = true
-								}
+				if t, exists := tables[ch.TableName]; exists && ch.PKConstraint != nil {
+					pkCols := strings.Split(ch.PKConstraint.ColumnNames, ",")
+					for _, pkCol := range pkCols {
+						pkColTrim := strings.TrimSpace(pkCol)
+						for i := range t.Columns {
+							if strings.EqualFold(t.Columns[i].Name, pkColTrim) {
+								t.Columns[i].PrimaryKey = true
 							}
 						}
 					}
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Add primary key on %s (%s)", ch.PKConstraint.TableName, ch.PKConstraint.ColumnNames))
 				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Add primary key to %s", ch.TableName))
+
+			case "dropPrimaryKey":
+				stepType = "TableOperation"
+				if t, exists := tables[ch.TableName]; exists {
+					for i := range t.Columns {
+						t.Columns[i].PrimaryKey = false
+					}
+				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Drop primary key from %s", ch.TableName))
 
 			case "addForeignKeyConstraint":
 				stepType = "TableOperation"
-				if ch.FKConstraint != nil {
-					baseTbl := ch.FKConstraint.BaseTableName
-					if t, exists := tables[baseTbl]; exists {
-						t.ForeignKeys = append(t.ForeignKeys, ch.FKConstraint)
-					}
-					changeSummaries = append(changeSummaries, fmt.Sprintf("Add foreign key %s (%s -> %s)", ch.FKConstraint.ConstraintName, baseTbl, ch.FKConstraint.ReferencedTable))
+				if t, exists := tables[ch.TableName]; exists && ch.FKConstraint != nil {
+					t.ForeignKeys = append(t.ForeignKeys, ch.FKConstraint)
 				}
+				cName := ""
+				if ch.FKConstraint != nil {
+					cName = ch.FKConstraint.ConstraintName
+				}
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Add foreign key %s on %s", cName, ch.TableName))
 
 			case "createView":
-				stepType = "View"
+				stepType = "DatabaseView"
 				changeSummaries = append(changeSummaries, fmt.Sprintf("Create view %s", ch.ViewName))
+
+			case "dropView":
+				stepType = "DatabaseView"
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Drop view %s", ch.ViewName))
 
 			case "createProcedure":
 				stepType = "StoredProcedure"
 				changeSummaries = append(changeSummaries, fmt.Sprintf("Create procedure %s", ch.ProcedureName))
 
+			case "dropProcedure":
+				stepType = "StoredProcedure"
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Drop procedure %s", ch.ProcedureName))
+
 			case "createIndex":
-				stepType = "TableOperation"
 				changeSummaries = append(changeSummaries, fmt.Sprintf("Create index %s on %s", ch.IndexName, ch.TableName))
+
+			case "dropIndex":
+				changeSummaries = append(changeSummaries, fmt.Sprintf("Drop index %s", ch.IndexName))
 
 			case "sql", "sqlFile":
 				stepType = "DatabaseQuery"
-				changeSummaries = append(changeSummaries, "Execute custom SQL")
+				if ch.Type == "sqlFile" {
+					base := filepath.Base(ch.RawSQL)
+					if strings.Contains(strings.ToLower(base), "usp_") || strings.Contains(strings.ToLower(base), "proc") {
+						stepType = "StoredProcedure"
+					}
+					changeSummaries = append(changeSummaries, fmt.Sprintf("Execute <sqlFile>: %s", base))
+				} else {
+					raw := ch.RawSQL
+					if len(raw) > 60 {
+						raw = raw[:57] + "..."
+					}
+					changeSummaries = append(changeSummaries, fmt.Sprintf("Execute SQL: %s", raw))
+				}
 
 			case "tagDatabase":
 				stepType = "Milestone"
@@ -200,6 +268,18 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			stepMeta["rollback"] = strings.Join(cs.Rollbacks, "; ")
 		}
 
+		var sqlFiles []string
+		for _, ch := range cs.Changes {
+			if ch.Type == "sqlFile" && ch.RawSQL != "" {
+				sqlFiles = append(sqlFiles, ch.RawSQL)
+			}
+		}
+		if len(sqlFiles) > 0 {
+			stepMeta["sql_files"] = sqlFiles
+			stepMeta["sql_file"] = sqlFiles[0]
+			stepMeta["sql_file_base"] = filepath.Base(sqlFiles[0])
+		}
+
 		result.Steps = append(result.Steps, model.Step{
 			ID:          stepID,
 			SwimlaneID:  swimlaneID,
@@ -207,12 +287,12 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			Description: desc,
 			Type:        stepType,
 			Language:    "liquibase",
-			SourceFile:  cl.FilePath,
+			SourceFile:  cs.FilePath,
 			LineNumber:  cs.LineNumber,
 			Metadata:    stepMeta,
 		})
 
-		// Sequential execution link
+		// Continuous sequential execution link
 		if prevStepID != "" {
 			result.Links = append(result.Links, model.Link{
 				ID:           fmt.Sprintf("%s->%s:exec", prevStepID, stepID),
@@ -230,7 +310,12 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			continue
 		}
 
-		tblStepID := fmt.Sprintf("%s:table:%s", cl.FilePath, tbl.Name)
+		srcFile := tbl.SourceFile
+		if srcFile == "" {
+			srcFile = exec.PrimaryFile
+		}
+
+		tblStepID := fmt.Sprintf("%s:table:%s", srcFile, tbl.Name)
 		var colsList []map[string]string
 
 		for _, col := range tbl.Columns {
@@ -261,14 +346,19 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			})
 		}
 
+		laneID := tbl.SwimlaneID
+		if laneID == "" && len(result.Swimlanes) > 0 {
+			laneID = result.Swimlanes[0].ID
+		}
+
 		result.Steps = append(result.Steps, model.Step{
 			ID:          tblStepID,
-			SwimlaneID:  swimlaneID,
+			SwimlaneID:  laneID,
 			Name:        tbl.Name,
 			Description: desc,
 			Type:        "DatabaseTable",
 			Language:    "liquibase",
-			SourceFile:  cl.FilePath,
+			SourceFile:  srcFile,
 			Metadata: map[string]any{
 				"table":        tbl.Name,
 				"columns":      colsList,
@@ -277,10 +367,14 @@ func MapChangeLogToProcessModel(cl *ChangeLog) *analyzer.FileAnalysisResult {
 			},
 		})
 
-		// Emit intra-file foreign key relationships between tables
+		// Emit foreign key relationships between tables
 		for _, fk := range tbl.ForeignKeys {
-			if _, exists := tables[fk.ReferencedTable]; exists {
-				refTableID := fmt.Sprintf("%s:table:%s", cl.FilePath, fk.ReferencedTable)
+			if refTbl, exists := tables[fk.ReferencedTable]; exists {
+				refFile := refTbl.SourceFile
+				if refFile == "" {
+					refFile = exec.PrimaryFile
+				}
+				refTableID := fmt.Sprintf("%s:table:%s", refFile, fk.ReferencedTable)
 				label := "references"
 				if fk.ConstraintName != "" {
 					label = fmt.Sprintf("references (%s)", fk.ConstraintName)

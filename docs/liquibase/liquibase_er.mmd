@@ -34,6 +34,6 @@ erDiagram
         DATETIME processed_at
     }
 
-    payments ||--o{ orders : "references (fk_payments_order)"
     orders ||--o{ customers : "references (fk_orders_customer)"
     orders ||--o{ merchants : "references (fk_orders_merchant)"
+    payments ||--o{ orders : "references (fk_payments_order)"

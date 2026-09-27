@@ -1,10 +1,39 @@
 # Liquibase Changelog Architecture & ER Diagrams
 
-This directory contains the visual diagrams, process flows, Entity-Relationship (ER) models, and Visio-compatible Excel workbooks generated from Liquibase database migration changelogs.
+This directory contains visual diagrams, process flows, Entity-Relationship (ER) models, and Visio-compatible Excel workbooks generated from Liquibase database migration changelogs.
 
 Source examples located in: [`examples/liquibase/`](../../examples/liquibase/)
-- **XML Changelog**: `examples/liquibase/01_core_schema.xml`
-- **Formatted SQL Changelog**: `examples/liquibase/02_orders_and_payments.sql`
+- **Primary Master Changelog**: `examples/liquibase/changesets.xml`
+- **Core Schema XML Changelog**: `examples/liquibase/changeset/core_changeset.1.xml`
+- **Stored Procedure XML Changelog**: `examples/liquibase/changeset/customer_changeset.1.xml`
+- **Commerce Transactions Formatted SQL**: `examples/liquibase/changeset/sql_changeset.1.sql`
+- **Stored Procedure DDL**: `examples/liquibase/ddl/dbo_usp_GetCustomer.1.sql`
+
+---
+
+## Primary Execution Order
+
+When analyzing database migrations with Liquibase, master/root changelogs (such as `changesets.xml`, `master.xml`, `db.changelog-master.xml`) specify the precise execution order of child changelogs using `<include>` and `<includeAll>`.
+
+You can specify a primary order changelog using the `--primary-changelog` flag (or pass it directly via `--source`):
+
+```bash
+.\bin\codeflow.exe analyze \
+  --source ./examples/liquibase \
+  --primary-changelog ./examples/liquibase/changesets.xml \
+  --recursive \
+  --format mermaid,excel,json,svg \
+  -n liquibase \
+  --diagram-type all \
+  --output-dir ./docs/liquibase \
+  --no-truncate
+```
+
+### Key Execution Capabilities
+1. **Deterministic Execution Sequence**: Changsets execute sequentially across changelog files (`core_changeset` &rarr; `customer_changeset` &rarr; `sql_changeset`).
+2. **Continuous Execution Chain**: The execution chain (`executes next`) flows continuously across changelog boundaries without interruption.
+3. **Cumulative Schema Tracking**: Table structures, column additions, and constraints evolve across files so foreign keys reference tables defined in earlier changelogs.
+4. **Multi-Format Inclusions**: Seamlessly traverses XML changelogs, Formatted SQL files (`--liquibase formatted sql`), and `<sqlFile>` references.
 
 ---
 
@@ -52,16 +81,16 @@ erDiagram
         DATETIME processed_at
     }
 
-    payments ||--o{ orders : "references (fk_payments_order)"
     orders ||--o{ customers : "references (fk_orders_customer)"
     orders ||--o{ merchants : "references (fk_orders_merchant)"
+    payments ||--o{ orders : "references (fk_payments_order)"
 ```
 
 ---
 
 ## 2. Top-Down Flowchart (Flowchart TD)
 
-Shows changeSets grouped by changelog file swimlanes, sequential execution order, milestones, and cross-file foreign key dependencies.
+Shows changeSets grouped by changelog file swimlanes, unbroken sequential execution order across files, and cross-file foreign key dependencies.
 
 ### Standalone Vector Image
 - **SVG**: [liquibase.svg](liquibase.svg)
@@ -77,67 +106,72 @@ flowchart TD
     classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
     classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
     classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
-    subgraph lane_lane_liquibase_01_core_schema ["Liquibase (01_core_schema)"]
+    subgraph lane_liquibase_core_changeset_1 ["Liquibase (core_changeset.1)"]
         s1[("<b>db_admin:1</b><br/><small>Table Operation</small><br/><sub>Create customers table</sub>")]:::dbNode
         s2[("<b>db_admin:2</b><br/><small>Table Operation</small><br/><sub>Create merchants table</sub>")]:::dbNode
         s3["<b>db_admin:3</b><br/><small>Milestone</small><br/><sub>Create index idx_customers_email on customers; Tag database milestone: v1.0-baseline</sub>"]:::defaultNode
-        s4[("<b>customers</b><br/><small>Database Table</small><br/><sub>Customer profile and authentication records</sub>")]:::dbNode
-        s5[("<b>merchants</b><br/><small>Database Table</small><br/><sub>Merchant store entities</sub>")]:::dbNode
+        s9[("<b>customers</b><br/><small>Database Table</small><br/><sub>Customer profile and authentication records</sub>")]:::dbNode
+        s10[("<b>merchants</b><br/><small>Database Table</small><br/><sub>Merchant store entities</sub>")]:::dbNode
     end
 
-    subgraph lane_lane_liquibase_02_orders_and_payments ["Liquibase (02_orders_and_payments)"]
-        s6[("<b>architect:orders-v1</b><br/><small>Table Operation</small><br/><sub>Create orders table with foreign keys to customers and merchants</sub>")]:::dbNode
-        s7[("<b>architect:payments-v1</b><br/><small>Table Operation</small><br/><sub>Create payments table with foreign key to orders</sub>")]:::dbNode
-        s8[["<b>architect:views-and-procs</b><br/><small>Database View</small><br/><sub>Create analytics view for merchant billing</sub>"]):::procNode
-        s9[("<b>architect:milestone-v1.1</b><br/><small>SQL Query</small><br/><sub>Tag database release milestone</sub>")]:::dbNode
-        s10[("<b>orders</b><br/><small>Database Table</small><br/><sub>Database Table orders</sub>")]:::dbNode
-        s11[("<b>payments</b><br/><small>Database Table</small><br/><sub>Database Table payments</sub>")]:::dbNode
+    subgraph lane_liquibase_customer_changeset_1 ["Liquibase (customer_changeset.1)"]
+        s4["<b>me:dbbo_usp_GetCustomer.1</b><br/><small>Stored Procedure</small><br/><sub>Execute &lt;sqlFile&gt;: dbo_usp_GetCustomer.1.sql</sub>"]:::procNode
+    end
+
+    subgraph lane_liquibase_sql_changeset_1 ["Liquibase (sql_changeset.1)"]
+        s5[("<b>architect:orders-v1</b><br/><small>Table Operation</small><br/><sub>Create orders table with foreign keys to customers and merchants</sub>")]:::dbNode
+        s6[("<b>architect:payments-v1</b><br/><small>Table Operation</small><br/><sub>Create payments table with foreign key to orders</sub>")]:::dbNode
+        s7["<b>architect:views-and-procs</b><br/><small>DatabaseView</small><br/><sub>Create analytics view for merchant billing</sub>"]:::defaultNode
+        s8[("<b>architect:milestone-v1.1</b><br/><small>SQL Query</small><br/><sub>Tag database release milestone</sub>")]:::dbNode
+        s11[("<b>orders</b><br/><small>Database Table</small><br/><sub>Database Table orders</sub>")]:::dbNode
+        s12[("<b>payments</b><br/><small>Database Table</small><br/><sub>Database Table payments</sub>")]:::dbNode
+    end
+
+    subgraph lane_sql_dbo_usp_GetCustomer_1 ["SQL Database (dbo_usp_GetCustomer.1)"]
+        s13["<b>Proc: usp_GetCustomer</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure Proc: usp_GetCustomer</sub>"]:::procNode
+        s14[("<b>Query Customer</b><br/><small>SQL Query</small><br/><sub>Reads table Customer within stored procedure usp_GetCustomer</sub>")]:::dbNode
     end
 
     s1 -->|"executes next"| s2
     s2 -->|"executes next"| s3
+    s3 -->|"executes next"| s4
+    s4 -->|"executes next"| s5
+    s5 -->|"executes next"| s6
     s6 -->|"executes next"| s7
     s7 -->|"executes next"| s8
-    s8 -->|"executes next"| s9
-    s11 -->|"references (fk_payments_order)"| s10
-    s10 -.->|"references (fk_orders_customer)"| s4
-    s10 -.->|"references (fk_orders_merchant)"| s5
+    s11 -->|"references (fk_orders_customer)"| s9
+    s11 -->|"references (fk_orders_merchant)"| s10
+    s12 -->|"references (fk_payments_order)"| s11
+    s13 -->|"queries"| s14
+    s4 -.->|"calls <sqlFile>"| s13
 
-    style lane_lane_liquibase_01_core_schema fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
-    style lane_lane_liquibase_02_orders_and_payments fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_core_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_customer_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_liquibase_sql_changeset_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_dbo_usp_GetCustomer_1 fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
 ```
 
 ---
 
 ## 3. Left-to-Right Flowchart (Flowchart LR)
 
+Optimized for horizontal readability across complex multi-step pipelines.
+
+- **Mermaid**: [liquibase_lr.mmd](liquibase_lr.mmd)
 - **SVG**: [liquibase_lr.svg](liquibase_lr.svg)
-- **Mermaid Source**: [liquibase_lr.mmd](liquibase_lr.mmd)
 
 ---
 
-## 4. Universal Migration Journey
+## 4. Lifecycle Journey & State Diagrams
 
-- **SVG**: [liquibase_journey.svg](liquibase_journey.svg)
-- **Mermaid Source**: [liquibase_journey.mmd](liquibase_journey.mmd)
-
----
-
-## 5. Lifeline Sequence Diagram
-
-- **SVG**: [liquibase_sequence.svg](liquibase_sequence.svg)
-- **Mermaid Source**: [liquibase_sequence.mmd](liquibase_sequence.mmd)
+- **User/Pipeline Journey**: [liquibase_journey.mmd](liquibase_journey.mmd) | [SVG](liquibase_journey.svg)
+- **Execution Sequence**: [liquibase_sequence.mmd](liquibase_sequence.mmd) | [SVG](liquibase_sequence.svg)
+- **Database State Transition**: [liquibase_state.mmd](liquibase_state.mmd) | [SVG](liquibase_state.svg)
 
 ---
 
-## 6. Migration State Diagram
+## 5. Structured Data and Visio Workbooks
 
-- **SVG**: [liquibase_state.svg](liquibase_state.svg)
-- **Mermaid Source**: [liquibase_state.mmd](liquibase_state.mmd)
-
----
-
-## 7. Data Exports
-
-- **Microsoft Visio / Excel Workbook**: [liquibase.xlsx](liquibase.xlsx)
+- **Visio-Compatible Excel Workbook**: [liquibase.xlsx](liquibase.xlsx)
+  - Contains step IDs, swimlanes, changeSet authors, labels, contexts, rollback scripts, and incoming/outgoing connectors ready for Visio Data Visualizer import.
 - **Canonical ProcessModel JSON**: [liquibase.json](liquibase.json)
