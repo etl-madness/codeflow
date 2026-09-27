@@ -1,0 +1,133 @@
+{
+  "id": "process-gcloud_billing.xml",
+  "name": "gcloud_billing.xml Workflow",
+  "swimlanes": [
+    {
+      "id": "pipeline:gcloud_billing:preflight",
+      "name": "Pipeline Preflight (gcloud_billing)",
+      "description": "Preflight validation and checks"
+    },
+    {
+      "id": "pipeline:gcloud_billing:flow",
+      "name": "Pipeline Flow (gcloud_billing)",
+      "description": "ETL pipeline for extracting GCP billing data from BigQuery and loading it into SQL Server"
+    },
+    {
+      "id": "db:database1",
+      "name": "Database (database1)",
+      "description": "Primary SQL Server database"
+    }
+  ],
+  "steps": [
+    {
+      "id": "preflight_check",
+      "swimlane_id": "pipeline:gcloud_billing:preflight",
+      "name": "preflight_check",
+      "description": "Preflight check for GCP billing data",
+      "type": "DatabaseQuery",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 27
+    },
+    {
+      "id": "preflight_check_2",
+      "swimlane_id": "pipeline:gcloud_billing:preflight",
+      "name": "preflight_check_2",
+      "description": "Another preflight check for GCP billing data",
+      "type": "DatabaseQuery",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 34
+    },
+    {
+      "id": "database_check",
+      "swimlane_id": "pipeline:gcloud_billing:preflight",
+      "name": "database_check",
+      "description": "Check database connectivity",
+      "type": "Assertion",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 41
+    },
+    {
+      "id": "user_check",
+      "swimlane_id": "pipeline:gcloud_billing:preflight",
+      "name": "user_check",
+      "description": "Check connected user is dbo",
+      "type": "Assertion",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 44
+    },
+    {
+      "id": "ExtractData",
+      "swimlane_id": "pipeline:gcloud_billing:flow",
+      "name": "ExtractData",
+      "description": "Extract GCP billing data from BigQuery",
+      "type": "Script",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 53
+    },
+    {
+      "id": "LoadData",
+      "swimlane_id": "pipeline:gcloud_billing:flow",
+      "name": "LoadData",
+      "description": "Load Google Cloud billing JSON data into SQL Server table using OPENJSON",
+      "type": "DatabaseQuery",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 59
+    },
+    {
+      "id": "tbl_database1_dbo_GcpBillingExport",
+      "swimlane_id": "db:database1",
+      "name": "dbo.GcpBillingExport",
+      "description": "Table dbo.GcpBillingExport in database1",
+      "type": "DatabaseTable",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\gcloud_billing.xml",
+      "line_number": 59
+    }
+  ],
+  "links": [
+    {
+      "id": "preflight_check-\u003epreflight_check_2",
+      "source_step_id": "preflight_check",
+      "target_step_id": "preflight_check_2",
+      "is_cross_service": false
+    },
+    {
+      "id": "preflight_check_2-\u003edatabase_check",
+      "source_step_id": "preflight_check_2",
+      "target_step_id": "database_check",
+      "is_cross_service": false
+    },
+    {
+      "id": "database_check-\u003euser_check",
+      "source_step_id": "database_check",
+      "target_step_id": "user_check",
+      "is_cross_service": false
+    },
+    {
+      "id": "user_check-\u003eExtractData",
+      "source_step_id": "user_check",
+      "target_step_id": "ExtractData",
+      "is_cross_service": false
+    },
+    {
+      "id": "LoadData-\u003etbl_database1_dbo_GcpBillingExport",
+      "source_step_id": "LoadData",
+      "target_step_id": "tbl_database1_dbo_GcpBillingExport",
+      "label": "INSERT INTO",
+      "is_cross_service": true
+    },
+    {
+      "id": "ExtractData-\u003eLoadData",
+      "source_step_id": "ExtractData",
+      "target_step_id": "LoadData",
+      "label": "GCLOUD_BILLING_JSON",
+      "is_cross_service": false
+    }
+  ]
+}

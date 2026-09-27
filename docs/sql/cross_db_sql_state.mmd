@@ -1,0 +1,34 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "stateBkg": "#FFFFFF", "stateBorder": "#3B82F6", "stateLabelColor": "#0F172A", "labelColor": "#0F172A", "transitionColor": "#64748B", "transitionLabelColor": "#334155"}}}%%
+stateDiagram-v2
+    [*] --> Start
+    state "SQL Database (Prep_tables)" as State_1
+    State_1: entry / CREATE TABLE AutoSysJobToPackage
+    State_1: do / CREATE TABLE AutoSysJilJobs
+    State_1: do / CREATE TABLE AutoSysRuntimeJobs
+    State_1: do / CREATE TABLE AutoSysPackageToObject
+    State_1: ... +21 more steps
+    state "SQL Database (cross_db_reference_tables)" as State_2
+    State_2: entry / CREATE TABLE cross_db_databases
+    State_2: do / CREATE TABLE cross_db_objects
+    State_2: do / CREATE TABLE cross_db_reference
+    State_2: do / Proc: get_crossdatabase_dependencies
+    State_2: ... +14 more steps
+    state "SQL Database (insert_runtime_executions)" as State_3
+    State_3: entry / INSERT INTO AutoSysRuntimeJobs
+    State_3: do / INSERT INTO AutoSysRuntimeJobs
+    State_3: do / INSERT INTO AutoSysRuntimeJobs
+    State_3: do / INSERT INTO AutoSysRuntimeJobs
+    State_3: ... +10 more steps
+    state "SQL Database (insert_runtime_jobs)" as State_4
+    State_4: entry / INSERT INTO @Jobs
+    State_4: exit / INSERT INTO AutoSysRuntimeJobs
+    state "SQL Database (sp_ssis_addlogentry)" as State_5
+    State_5: entry / CREATE TABLE sysssislog
+    State_5: do / Proc: sp_ssis_addlogentry
+    State_5: exit / INSERT INTO sysssislog
+    Start --> State_1
+    State_1 --> State_2: [next]
+    State_2 --> State_3: [next]
+    State_3 --> State_4: [next]
+    State_4 --> State_5: [next]
+    State_5 --> [*]

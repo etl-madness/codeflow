@@ -1,0 +1,13 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "primaryColor": "#FFFFFF", "primaryBorderColor": "#3B82F6", "primaryTextColor": "#0F172A", "lineColor": "#64748B", "textColor": "#0F172A"}}}%%
+erDiagram
+    ScriptA {
+        string id PK
+    }
+
+    GroupA_Alt_Step1 {
+        string id PK
+    }
+
+    ScriptA ||--o{ Database__primary_db : "FROM"
+    ScriptA ||--o{ Pipeline__if_than_else : "queries"
+    Pipeline__if_than_else ||--o{ GroupA_Alt_Step1 : "queries"

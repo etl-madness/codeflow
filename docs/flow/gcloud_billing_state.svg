@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1430 320" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="50" y="28" class="title">gcloud_billing.xml Workflow (State Diagram)</text>
+<circle cx="75" cy="150" r="14" fill="#1F2937" filter="url(#shadow)" />
+<text x="75" y="178" class="node-badge" fill="#64748B" text-anchor="middle">[*] Start</text>
+<line x1="89" y1="150" x2="140" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="140" y="80" width="320" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="140" y="80" width="320" height="34" rx="16" fill="#F1F5F9" />
+<rect x="140" y="104" width="320" height="10" fill="#F1F5F9" />
+<line x1="140" y1="114" x2="460" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="300" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Pipeline Preflight (gcloud_billing)</text>
+<text x="156" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> preflight_check</text>
+<text x="156" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> preflight_check_2</text>
+<text x="156" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> database_check</text>
+<text x="156" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">exit /</tspan> user_check</text>
+<line x1="460" y1="150" x2="530" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="468" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="495" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="530" y="80" width="320" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="530" y="80" width="320" height="34" rx="16" fill="#F1F5F9" />
+<rect x="530" y="104" width="320" height="10" fill="#F1F5F9" />
+<line x1="530" y1="114" x2="850" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="690" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Pipeline Flow (gcloud_billing)</text>
+<text x="546" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> ExtractData</text>
+<text x="546" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">exit /</tspan> LoadData</text>
+<line x1="850" y1="150" x2="920" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="858" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="885" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="920" y="80" width="320" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="920" y="80" width="320" height="34" rx="16" fill="#F1F5F9" />
+<rect x="920" y="104" width="320" height="10" fill="#F1F5F9" />
+<line x1="920" y1="114" x2="1240" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="1080" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Database (database1)</text>
+<text x="936" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> dbo.GcpBillingExport</text>
+<line x1="1240" y1="150" x2="1272" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<circle cx="1290" cy="150" r="16" fill="none" stroke="#1F2937" stroke-width="2.5" />
+<circle cx="1290" cy="150" r="10" fill="#1F2937" />
+<text x="1290" y="180" class="node-badge" fill="#64748B" text-anchor="middle">[*] End</text>
+</svg>

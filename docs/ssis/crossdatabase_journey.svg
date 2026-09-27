@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 897 365" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">7045kHz_cross_db_collection.dtsx Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="376" height="205" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="376" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="376" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">SSIS Package (7045kHz_cross_db_collection)</text>
+<text x="401" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="55" y="155" width="346" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#1  [StoredProcedure]</text>
+<text x="67" y="193" class="node-title" font-size="12">Crossdatabase_Dependencies_Collection</text>
+<text x="67" y="209" class="node-desc">SQL: EXEC [dbo].[get_crossdatabase_dependencies]</text>
+<line x1="424" y1="102" x2="473" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="432" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="448" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="481" y="65" width="376" height="205" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="481" y="65" width="376" height="75" rx="12" fill="#EEF2FF" />
+<rect x="481" y="128" width="376" height="12" fill="#EEF2FF" />
+<rect x="496" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="507" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="496" y="117" class="lane-title" font-size="14">Database (TRAIN)</text>
+<text x="842" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="496" y="155" width="346" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="496" y="155" width="4" height="85" rx="2" fill="#8B5CF6" />
+<text x="508" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#1  [StoredProcedure]</text>
+<text x="508" y="193" class="node-title" font-size="12">dbo.get_crossdatabase_dependencies</text>
+<text x="508" y="209" class="node-desc">Stored Procedure</text>
+<text x="508" y="224" class="node-desc">dbo.get_crossdatabase_dependencies on TRAIN</text>
+<line x1="228" y1="285" x2="669" y2="285" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="228" cy="285" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="228" y="307" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: SSIS Package (7045kHz_cross_db_collection)</text>
+<circle cx="669" cy="285" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="669" y="307" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: Database (TRAIN)</text>
+</svg>

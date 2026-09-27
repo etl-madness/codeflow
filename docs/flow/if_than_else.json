@@ -1,0 +1,119 @@
+{
+  "id": "process-if_than_else.xml",
+  "name": "if_than_else.xml Workflow",
+  "swimlanes": [
+    {
+      "id": "pipeline:if_than_else:flow",
+      "name": "Pipeline (if_than_else)",
+      "description": "Example pipeline demonstrating if-then-else branching and conditional group execution"
+    },
+    {
+      "id": "db:primary_db",
+      "name": "Database (primary_db)",
+      "description": "Primary database connection"
+    }
+  ],
+  "steps": [
+    {
+      "id": "ScriptA",
+      "swimlane_id": "pipeline:if_than_else:flow",
+      "name": "ScriptA",
+      "description": "Query system databases to check if count is greater than zero",
+      "type": "DatabaseQuery",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 25
+    },
+    {
+      "id": "tbl_primary_db_sys_databases",
+      "swimlane_id": "db:primary_db",
+      "name": "sys.databases",
+      "description": "Table sys.databases in primary_db",
+      "type": "DatabaseTable",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 25
+    },
+    {
+      "id": "if_than_else_if_2",
+      "swimlane_id": "pipeline:if_than_else:flow",
+      "name": "IF_2",
+      "description": "Check if ScriptAResult == true",
+      "type": "Condition",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 32
+    },
+    {
+      "id": "GroupA",
+      "swimlane_id": "pipeline:if_than_else:flow",
+      "name": "GroupA",
+      "description": "Step group",
+      "type": "Group",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 34
+    },
+    {
+      "id": "GroupB",
+      "swimlane_id": "pipeline:if_than_else:flow",
+      "name": "GroupB",
+      "description": "Step group",
+      "type": "Group",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 49
+    },
+    {
+      "id": "GroupA_Alt_Step1",
+      "swimlane_id": "pipeline:if_than_else:flow",
+      "name": "GroupA_Alt_Step1",
+      "description": "Execute direct Group A alternative step status query",
+      "type": "DatabaseQuery",
+      "language": "flowxml",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\etl-madness\\go-flow\\examples\\if_than_else.xml",
+      "line_number": 61
+    }
+  ],
+  "links": [
+    {
+      "id": "ScriptA-\u003etbl_primary_db_sys_databases",
+      "source_step_id": "ScriptA",
+      "target_step_id": "tbl_primary_db_sys_databases",
+      "label": "FROM",
+      "is_cross_service": true
+    },
+    {
+      "id": "ScriptA-\u003eif_than_else_if_2",
+      "source_step_id": "ScriptA",
+      "target_step_id": "if_than_else_if_2",
+      "is_cross_service": false
+    },
+    {
+      "id": "if_than_else_if_2-\u003eGroupA:then",
+      "source_step_id": "if_than_else_if_2",
+      "target_step_id": "GroupA",
+      "label": "true",
+      "is_cross_service": false
+    },
+    {
+      "id": "if_than_else_if_2-\u003eGroupB:else",
+      "source_step_id": "if_than_else_if_2",
+      "target_step_id": "GroupB",
+      "label": "false",
+      "is_cross_service": false
+    },
+    {
+      "id": "GroupA-\u003eGroupA_Alt_Step1",
+      "source_step_id": "GroupA",
+      "target_step_id": "GroupA_Alt_Step1",
+      "is_cross_service": false
+    },
+    {
+      "id": "GroupB-\u003eGroupA_Alt_Step1",
+      "source_step_id": "GroupB",
+      "target_step_id": "GroupA_Alt_Step1",
+      "is_cross_service": false
+    }
+  ]
+}

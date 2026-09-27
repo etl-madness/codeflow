@@ -1,0 +1,1851 @@
+{
+  "id": "process-SQL",
+  "name": "SQL Workflow",
+  "swimlanes": [
+    {
+      "id": "sql:Prep_tables",
+      "name": "SQL Database (Prep_tables)",
+      "description": "SQL script in Prep_tables.sql"
+    },
+    {
+      "id": "sql:cross_db_reference_tables",
+      "name": "SQL Database (cross_db_reference_tables)",
+      "description": "SQL script in cross_db_reference_tables.sql"
+    },
+    {
+      "id": "sql:insert_runtime_executions",
+      "name": "SQL Database (insert_runtime_executions)",
+      "description": "SQL script in insert_runtime_executions.sql"
+    },
+    {
+      "id": "sql:insert_runtime_jobs",
+      "name": "SQL Database (insert_runtime_jobs)",
+      "description": "SQL script in insert_runtime_jobs.sql"
+    },
+    {
+      "id": "sql:sp_ssis_addlogentry",
+      "name": "SQL Database (sp_ssis_addlogentry)",
+      "description": "SQL script in sp_ssis_addlogentry.sql"
+    }
+  ],
+  "steps": [
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:2",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE AutoSysJobToPackage",
+      "description": "Table schema definition AutoSysJobToPackage",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 2,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "JobName",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "PackageName",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "ImportedAt",
+            "type": "datetime2(7)"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "AutoSysJobToPackage"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:5",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE AutoSysJilJobs",
+      "description": "Table schema definition AutoSysJilJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 9,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "JobName",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "JobType",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "Command",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Machine",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "Owner",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "Permission",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "DateConditions",
+            "type": "varchar(50)"
+          },
+          {
+            "key": "",
+            "name": "DaysOfWeek",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "StartMins",
+            "type": "varchar(50)"
+          },
+          {
+            "key": "",
+            "name": "StartTimes",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "Timezone",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "StdOutFile",
+            "type": "varchar(500)"
+          },
+          {
+            "key": "",
+            "name": "StdErrFile",
+            "type": "varchar(500)"
+          },
+          {
+            "key": "",
+            "name": "AlarmIfFail",
+            "type": "varchar(50)"
+          },
+          {
+            "key": "",
+            "name": "Application",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "RawText",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ImportedAt",
+            "type": "datetime2(7)"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "AutoSysJilJobs"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:8",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE AutoSysRuntimeJobs",
+      "description": "Table schema definition AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 31,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "JobRunId",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "JobName",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "JobStatus",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "RunTimeInMinutes",
+            "type": "decimal(8, 2)"
+          },
+          {
+            "key": "",
+            "name": "InsertedAt",
+            "type": "datetime2(7)"
+          },
+          {
+            "key": "",
+            "name": "JobRunId",
+            "type": "ASC"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "AutoSysRuntimeJobs"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:11",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE AutoSysPackageToObject",
+      "description": "Table schema definition AutoSysPackageToObject",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 44,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "PackageName",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "database_server",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ImportedAt",
+            "type": "datetime2(7)"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "AutoSysPackageToObject"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:13",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Proc: Overlap_Jobs_Gantt",
+      "description": "Stored Procedure Overlap_Jobs_Gantt",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 55,
+      "metadata": {
+        "procedure": "Overlap_Jobs_Gantt",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:14",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM AutoSysJilJobs",
+      "description": "Query table AutoSysJilJobs",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 62
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:15",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM #Timeline",
+      "description": "Query table #Timeline",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 199
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:19",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM AutoSysJilJobs",
+      "description": "Query table AutoSysJilJobs",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 258
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:20",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM #Timeline",
+      "description": "Query table #Timeline",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 395
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Proc: GetNumberOfPackagesTablesAreIn",
+      "description": "Stored Procedure GetNumberOfPackagesTablesAreIn",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 446,
+      "metadata": {
+        "procedure": "GetNumberOfPackagesTablesAreIn",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23:inner_select:AutoSysPackageToObject",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Query AutoSysPackageToObject",
+      "description": "Reads table AutoSysPackageToObject within stored procedure GetNumberOfPackagesTablesAreIn",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 446
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Proc: GetCurrentConflictingJobs",
+      "description": "Stored Procedure GetCurrentConflictingJobs",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 486,
+      "metadata": {
+        "procedure": "GetCurrentConflictingJobs",
+        "schema": "DBO"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27:inner_select:AutoSysJobToPackage",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Query AutoSysJobToPackage",
+      "description": "Reads table AutoSysJobToPackage within stored procedure GetCurrentConflictingJobs",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 486
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:28",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM AutoSysJilJobs",
+      "description": "Query table AutoSysJilJobs",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 500
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Proc: GetCurrentConflictingJobsByJilImportDate",
+      "description": "Stored Procedure GetCurrentConflictingJobsByJilImportDate",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 713,
+      "metadata": {
+        "procedure": "GetCurrentConflictingJobsByJilImportDate",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32:inner_select:AutoSysJobToPackage",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "Query AutoSysJobToPackage",
+      "description": "Reads table AutoSysJobToPackage within stored procedure GetCurrentConflictingJobsByJilImportDate",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 713
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:33",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "SELECT FROM AutoSysJilJobs",
+      "description": "Query table AutoSysJilJobs",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 726
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:37",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE DTSX_Attributes",
+      "description": "Table schema definition DTSX_Attributes",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 939,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "Id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "CreationName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Filename",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Package",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeDtsId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentUniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "UniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "ParentRefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "RefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "XPath",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ElementXPath",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "AttributeName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "AttributeType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "AttributeValue",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "DTSX_Attributes"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:38",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE DTSX_Elements",
+      "description": "Table schema definition DTSX_Elements",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 959,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "Id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "CreationName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Filename",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Package",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeDtsId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentUniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "UniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "ParentRefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "RefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "XPath",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "DtsId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Name",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "NodeType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Value",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "XmlType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "DTSX_Elements"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:39",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE DTSX_Mapper",
+      "description": "Table schema definition DTSX_Mapper",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 980,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "Id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Package",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "RefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "SqlStatement",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ConnectionString",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ConnectionName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ConnectionDtsId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ConnectionType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ConnectionRefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Name",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ComponentType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "DTSX_Mapper"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:40",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE DTSX_Variables",
+      "description": "Table schema definition DTSX_Variables",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 995,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "Id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "CreationName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Filename",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "Package",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeDtsId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentNodeType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ParentUniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "UniqueId",
+            "type": "nvarchar(250)"
+          },
+          {
+            "key": "",
+            "name": "ParentRefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "RefId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "XPath",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "EvaluateAsExpression",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "IncludeInDebugDump",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableDataType",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableDtsxId",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableExpression",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableName",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableNameSpace",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "VariableValue",
+            "type": "nvarchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "DTSX_Variables"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:41",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "View: DTSX_SQL_View",
+      "description": "SQL View DTSX_SQL_View",
+      "type": "View",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 1019,
+      "metadata": {
+        "view": "DTSX_SQL_View"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:42",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE BusinessRules",
+      "description": "Table schema definition BusinessRules",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 1046,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "CREATE",
+            "type": "TABLE"
+          },
+          {
+            "key": "PK",
+            "name": "Id",
+            "type": "INT"
+          },
+          {
+            "key": "",
+            "name": "Name",
+            "type": "NVARCHAR(255)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "NVARCHAR(MAX)"
+          },
+          {
+            "key": "",
+            "name": "RuleType",
+            "type": "NVARCHAR(50)"
+          },
+          {
+            "key": "",
+            "name": "Code",
+            "type": "NVARCHAR(MAX)"
+          },
+          {
+            "key": "",
+            "name": "Version",
+            "type": "INT"
+          },
+          {
+            "key": "",
+            "name": "IsActive",
+            "type": "BIT"
+          },
+          {
+            "key": "",
+            "name": "CreatedAt",
+            "type": "DATETIME2"
+          },
+          {
+            "key": "",
+            "name": "UpdatedAt",
+            "type": "DATETIME2"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "BusinessRules"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:44",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE BusinessRuleHistory",
+      "description": "Table schema definition BusinessRuleHistory",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 1061,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "CREATE",
+            "type": "TABLE"
+          },
+          {
+            "key": "PK",
+            "name": "HistoryId",
+            "type": "INT"
+          },
+          {
+            "key": "",
+            "name": "RuleId",
+            "type": "INT"
+          },
+          {
+            "key": "",
+            "name": "Name",
+            "type": "NVARCHAR(255)"
+          },
+          {
+            "key": "",
+            "name": "Description",
+            "type": "NVARCHAR(MAX)"
+          },
+          {
+            "key": "",
+            "name": "RuleType",
+            "type": "NVARCHAR(50)"
+          },
+          {
+            "key": "",
+            "name": "Code",
+            "type": "NVARCHAR(MAX)"
+          },
+          {
+            "key": "",
+            "name": "Version",
+            "type": "INT"
+          },
+          {
+            "key": "",
+            "name": "ArchivedAt",
+            "type": "DATETIME2"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "BusinessRuleHistory"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:46",
+      "swimlane_id": "sql:Prep_tables",
+      "name": "CREATE TABLE NamingCompliance",
+      "description": "Table schema definition NamingCompliance",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql",
+      "line_number": 1076,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "JobName",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "Message",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "DetectedAt",
+            "type": "datetime2(7)"
+          },
+          {
+            "key": "",
+            "name": "ImportedAt",
+            "type": "datetime2(7)"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "NamingCompliance"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:1",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE cross_db_databases",
+      "description": "Table schema definition cross_db_databases",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 1,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "database_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "database_name",
+            "type": "sysname"
+          },
+          {
+            "key": "",
+            "name": "state",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "IsActive",
+            "type": "nvarchar(3)"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "cross_db_databases"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:2",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE cross_db_objects",
+      "description": "Table schema definition cross_db_objects",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 7,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "object_servername",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_servicename",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "object_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "cross_db_objects"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:3",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE cross_db_reference",
+      "description": "Table schema definition cross_db_reference",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 18,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "referencing_servername",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_servicename",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "referencing_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_server",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "referenced_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_entity_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_schema_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_database_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "is_ambiguous",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "cross_db_reference"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:4",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "Proc: get_crossdatabase_dependencies",
+      "description": "Stored Procedure get_crossdatabase_dependencies",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 40,
+      "metadata": {
+        "procedure": "get_crossdatabase_dependencies",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:5",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE #databases",
+      "description": "Table schema definition #databases",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 43,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "database_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "database_name",
+            "type": "sysname"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "#databases"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:6",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO #databases",
+      "description": "Insert records into table #databases",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 47
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:8",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE #dependencies",
+      "description": "Table schema definition #dependencies",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 61,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "referencing_servername",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_servicename",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "referencing_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referencing_object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_server",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "referenced_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "referenced_object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_entity_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_schema_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "ambiguous_database_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "is_ambiguous",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "#dependencies"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:9",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "CREATE TABLE #objects",
+      "description": "Table schema definition #objects",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 83,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "object_servername",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_servicename",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_database",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "object_schema",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_name",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_type",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "object_desc",
+            "type": "varchar(max)"
+          },
+          {
+            "key": "",
+            "name": "LoadDate",
+            "type": "datetime"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "#objects"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:11",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "SELECT FROM #databases",
+      "description": "Query table #databases",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 95
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:12",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "SELECT FROM #databases",
+      "description": "Query table #databases",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 99
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:13",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO #dependencies",
+      "description": "Insert records into table #dependencies",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 100
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:16",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO #objects",
+      "description": "Insert records into table #objects",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 151
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:18",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "DELETE FROM #databases",
+      "description": "Delete records from table #databases",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 162
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:21",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO cross_db_reference",
+      "description": "Insert records into table cross_db_reference",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 165
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:22",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO cross_db_objects",
+      "description": "Insert records into table cross_db_objects",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 166
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:24",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "INSERT INTO cross_db_databases",
+      "description": "Insert records into table cross_db_databases",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 168
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:25",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "View: cross_db_view",
+      "description": "SQL View cross_db_view",
+      "type": "View",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 179,
+      "metadata": {
+        "view": "cross_db_view"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql:stmt:26",
+      "swimlane_id": "sql:cross_db_reference_tables",
+      "name": "EXEC get_crossdatabase_dependencies",
+      "description": "Executes stored procedure get_crossdatabase_dependencies",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\cross_db_reference_tables.sql",
+      "line_number": 233,
+      "metadata": {
+        "procedure": "get_crossdatabase_dependencies"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:3",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 4
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:4",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 7
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:5",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 9
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:6",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 12
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:7",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 14
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:8",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 17
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:9",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 19
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:10",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 22
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:11",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 24
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:12",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 27
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:13",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 29
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:14",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 32
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:15",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 34
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql:stmt:16",
+      "swimlane_id": "sql:insert_runtime_executions",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_executions.sql",
+      "line_number": 37
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_jobs.sql:stmt:2",
+      "swimlane_id": "sql:insert_runtime_jobs",
+      "name": "INSERT INTO @Jobs",
+      "description": "Insert records into table @Jobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_jobs.sql",
+      "line_number": 6,
+      "metadata": {
+        "operation": "INSERT",
+        "table": "@Jobs"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_jobs.sql:stmt:3",
+      "swimlane_id": "sql:insert_runtime_jobs",
+      "name": "INSERT INTO AutoSysRuntimeJobs",
+      "description": "Insert records into table AutoSysRuntimeJobs",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\insert_runtime_jobs.sql",
+      "line_number": 14
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql:stmt:1",
+      "swimlane_id": "sql:sp_ssis_addlogentry",
+      "name": "CREATE TABLE sysssislog",
+      "description": "Table schema definition sysssislog",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql",
+      "line_number": 1,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "id",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "event",
+            "type": "sysname"
+          },
+          {
+            "key": "",
+            "name": "computer",
+            "type": "nvarchar(128)"
+          },
+          {
+            "key": "",
+            "name": "operator",
+            "type": "nvarchar(128)"
+          },
+          {
+            "key": "",
+            "name": "source",
+            "type": "nvarchar(1024)"
+          },
+          {
+            "key": "",
+            "name": "sourceid",
+            "type": "uniqueidentifier"
+          },
+          {
+            "key": "",
+            "name": "executionid",
+            "type": "uniqueidentifier"
+          },
+          {
+            "key": "",
+            "name": "starttime",
+            "type": "datetime"
+          },
+          {
+            "key": "",
+            "name": "endtime",
+            "type": "datetime"
+          },
+          {
+            "key": "",
+            "name": "datacode",
+            "type": "int"
+          },
+          {
+            "key": "",
+            "name": "databytes",
+            "type": "image"
+          },
+          {
+            "key": "",
+            "name": "message",
+            "type": "nvarchar(2048)"
+          },
+          {
+            "key": "",
+            "name": "id",
+            "type": "ASC"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "sysssislog"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql:stmt:2",
+      "swimlane_id": "sql:sp_ssis_addlogentry",
+      "name": "Proc: sp_ssis_addlogentry",
+      "description": "Stored Procedure sp_ssis_addlogentry",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql",
+      "line_number": 27,
+      "metadata": {
+        "procedure": "sp_ssis_addlogentry",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql:stmt:3",
+      "swimlane_id": "sql:sp_ssis_addlogentry",
+      "name": "INSERT INTO sysssislog",
+      "description": "Insert records into table sysssislog",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\sp_ssis_addlogentry.sql",
+      "line_number": 42
+    }
+  ],
+  "links": [
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23-\u003eC:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23:inner_select:AutoSysPackageToObject",
+      "source_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23",
+      "target_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:23:inner_select:AutoSysPackageToObject",
+      "label": "queries",
+      "is_cross_service": false
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27-\u003eC:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27:inner_select:AutoSysJobToPackage",
+      "source_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27",
+      "target_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:27:inner_select:AutoSysJobToPackage",
+      "label": "queries",
+      "is_cross_service": false
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32-\u003eC:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32:inner_select:AutoSysJobToPackage",
+      "source_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32",
+      "target_step_id": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SQL\\Prep_tables.sql:stmt:32:inner_select:AutoSysJobToPackage",
+      "label": "queries",
+      "is_cross_service": false
+    }
+  ]
+}

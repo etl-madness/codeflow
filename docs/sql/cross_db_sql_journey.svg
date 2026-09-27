@@ -1,0 +1,402 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2434 2450" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">SQL Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="419" height="2290" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="419" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="419" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">SQL Database (Prep_tables)</text>
+<text x="444" y="93" class="node-desc" font-size="11">25 milestones in stage</text>
+<rect x="55" y="155" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="67" y="193" class="node-title" font-size="12">CREATE TABLE AutoSysJobToPackage</text>
+<text x="67" y="209" class="node-desc">Table schema definition AutoSysJobToPackage</text>
+<rect x="55" y="240" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="67" y="278" class="node-title" font-size="12">CREATE TABLE AutoSysJilJobs</text>
+<text x="67" y="294" class="node-desc">Table schema definition AutoSysJilJobs</text>
+<rect x="55" y="325" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [TableOperation]</text>
+<text x="67" y="363" class="node-title" font-size="12">CREATE TABLE AutoSysRuntimeJobs</text>
+<text x="67" y="379" class="node-desc">Table schema definition AutoSysRuntimeJobs</text>
+<rect x="55" y="410" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="410" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [TableOperation]</text>
+<text x="67" y="448" class="node-title" font-size="12">CREATE TABLE AutoSysPackageToObject</text>
+<text x="67" y="464" class="node-desc">Table schema definition AutoSysPackageToObject</text>
+<rect x="55" y="495" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="495" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="67" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#5  [StoredProcedure]</text>
+<text x="67" y="533" class="node-title" font-size="12">Proc: Overlap_Jobs_Gantt</text>
+<text x="67" y="549" class="node-desc">Stored Procedure Overlap_Jobs_Gantt</text>
+<rect x="55" y="580" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="580" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="598" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [DatabaseQuery]</text>
+<text x="67" y="618" class="node-title" font-size="12">SELECT FROM AutoSysJilJobs</text>
+<text x="67" y="634" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="665" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="665" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="683" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#7  [DatabaseQuery]</text>
+<text x="67" y="703" class="node-title" font-size="12">SELECT FROM #Timeline</text>
+<text x="67" y="719" class="node-desc">Query table #Timeline</text>
+<rect x="55" y="750" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="750" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="768" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#8  [DatabaseQuery]</text>
+<text x="67" y="788" class="node-title" font-size="12">SELECT FROM AutoSysJilJobs</text>
+<text x="67" y="804" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="835" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="835" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="853" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#9  [DatabaseQuery]</text>
+<text x="67" y="873" class="node-title" font-size="12">SELECT FROM #Timeline</text>
+<text x="67" y="889" class="node-desc">Query table #Timeline</text>
+<rect x="55" y="920" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="920" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="67" y="938" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#10  [StoredProcedure]</text>
+<text x="67" y="958" class="node-title" font-size="12">Proc: GetNumberOfPackagesTablesAreIn</text>
+<text x="67" y="974" class="node-desc">Stored Procedure GetNumberOfPackagesTablesAreIn</text>
+<rect x="55" y="1005" width="389" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1005" width="4" height="85" rx="2" fill="#10B981" />
+<text x="67" y="1023" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#11  [DatabaseQuery]</text>
+<text x="67" y="1043" class="node-title" font-size="12">Query AutoSysPackageToObject</text>
+<text x="67" y="1059" class="node-desc">Reads table AutoSysPackageToObject within stored</text>
+<text x="67" y="1074" class="node-desc">procedure GetNumberOfPackagesTablesAreIn</text>
+<rect x="55" y="1105" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1105" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="67" y="1123" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#12  [StoredProcedure]</text>
+<text x="67" y="1143" class="node-title" font-size="12">Proc: GetCurrentConflictingJobs</text>
+<text x="67" y="1159" class="node-desc">Stored Procedure GetCurrentConflictingJobs</text>
+<rect x="55" y="1190" width="389" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1190" width="4" height="85" rx="2" fill="#10B981" />
+<text x="67" y="1208" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#13  [DatabaseQuery]</text>
+<text x="67" y="1228" class="node-title" font-size="12">Query AutoSysJobToPackage</text>
+<text x="67" y="1244" class="node-desc">Reads table AutoSysJobToPackage within stored procedure</text>
+<text x="67" y="1259" class="node-desc">GetCurrentConflictingJobs</text>
+<rect x="55" y="1290" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1290" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1308" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#14  [DatabaseQuery]</text>
+<text x="67" y="1328" class="node-title" font-size="12">SELECT FROM AutoSysJilJobs</text>
+<text x="67" y="1344" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="1375" width="389" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1375" width="4" height="85" rx="2" fill="#8B5CF6" />
+<text x="67" y="1393" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#15  [StoredProcedure]</text>
+<text x="67" y="1413" class="node-title" font-size="12">Proc: GetCurrentConflictingJobsByJilImportDate</text>
+<text x="67" y="1429" class="node-desc">Stored Procedure</text>
+<text x="67" y="1444" class="node-desc">GetCurrentConflictingJobsByJilImportDate</text>
+<rect x="55" y="1475" width="389" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1475" width="4" height="85" rx="2" fill="#10B981" />
+<text x="67" y="1493" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#16  [DatabaseQuery]</text>
+<text x="67" y="1513" class="node-title" font-size="12">Query AutoSysJobToPackage</text>
+<text x="67" y="1529" class="node-desc">Reads table AutoSysJobToPackage within stored procedure</text>
+<text x="67" y="1544" class="node-desc">GetCurrentConflictingJobsByJilImportDate</text>
+<rect x="55" y="1575" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1575" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1593" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#17  [DatabaseQuery]</text>
+<text x="67" y="1613" class="node-title" font-size="12">SELECT FROM AutoSysJilJobs</text>
+<text x="67" y="1629" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="1660" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1660" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1678" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#18  [TableOperation]</text>
+<text x="67" y="1698" class="node-title" font-size="12">CREATE TABLE DTSX_Attributes</text>
+<text x="67" y="1714" class="node-desc">Table schema definition DTSX_Attributes</text>
+<rect x="55" y="1745" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1745" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1763" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#19  [TableOperation]</text>
+<text x="67" y="1783" class="node-title" font-size="12">CREATE TABLE DTSX_Elements</text>
+<text x="67" y="1799" class="node-desc">Table schema definition DTSX_Elements</text>
+<rect x="55" y="1830" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1830" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1848" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#20  [TableOperation]</text>
+<text x="67" y="1868" class="node-title" font-size="12">CREATE TABLE DTSX_Mapper</text>
+<text x="67" y="1884" class="node-desc">Table schema definition DTSX_Mapper</text>
+<rect x="55" y="1915" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="1915" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="1933" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#21  [TableOperation]</text>
+<text x="67" y="1953" class="node-title" font-size="12">CREATE TABLE DTSX_Variables</text>
+<text x="67" y="1969" class="node-desc">Table schema definition DTSX_Variables</text>
+<rect x="55" y="2000" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="2000" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="67" y="2018" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#22  [View]</text>
+<text x="67" y="2038" class="node-title" font-size="12">View: DTSX_SQL_View</text>
+<text x="67" y="2054" class="node-desc">SQL View DTSX_SQL_View</text>
+<rect x="55" y="2085" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="2085" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="2103" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#23  [TableOperation]</text>
+<text x="67" y="2123" class="node-title" font-size="12">CREATE TABLE BusinessRules</text>
+<text x="67" y="2139" class="node-desc">Table schema definition BusinessRules</text>
+<rect x="55" y="2170" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="2170" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="2188" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#24  [TableOperation]</text>
+<text x="67" y="2208" class="node-title" font-size="12">CREATE TABLE BusinessRuleHistory</text>
+<text x="67" y="2224" class="node-desc">Table schema definition BusinessRuleHistory</text>
+<rect x="55" y="2255" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="2255" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="2273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#25  [TableOperation]</text>
+<text x="67" y="2293" class="node-title" font-size="12">CREATE TABLE NamingCompliance</text>
+<text x="67" y="2309" class="node-desc">Table schema definition NamingCompliance</text>
+<line x1="467" y1="102" x2="516" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="474" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="491" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="524" y="65" width="419" height="2290" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="524" y="65" width="419" height="75" rx="12" fill="#EEF2FF" />
+<rect x="524" y="128" width="419" height="12" fill="#EEF2FF" />
+<rect x="539" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="550" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="539" y="117" class="lane-title" font-size="14">SQL Database (cross_db_reference_tables)</text>
+<text x="928" y="93" class="node-desc" font-size="11">18 milestones in stage</text>
+<rect x="539" y="155" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="551" y="193" class="node-title" font-size="12">CREATE TABLE cross_db_databases</text>
+<text x="551" y="209" class="node-desc">Table schema definition cross_db_databases</text>
+<rect x="539" y="240" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="551" y="278" class="node-title" font-size="12">CREATE TABLE cross_db_objects</text>
+<text x="551" y="294" class="node-desc">Table schema definition cross_db_objects</text>
+<rect x="539" y="325" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [TableOperation]</text>
+<text x="551" y="363" class="node-title" font-size="12">CREATE TABLE cross_db_reference</text>
+<text x="551" y="379" class="node-desc">Table schema definition cross_db_reference</text>
+<rect x="539" y="410" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="410" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="551" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#4  [StoredProcedure]</text>
+<text x="551" y="448" class="node-title" font-size="12">Proc: get_crossdatabase_dependencies</text>
+<text x="551" y="464" class="node-desc">Stored Procedure get_crossdatabase_dependencies</text>
+<rect x="539" y="495" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="495" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [TableOperation]</text>
+<text x="551" y="533" class="node-title" font-size="12">CREATE TABLE #databases</text>
+<text x="551" y="549" class="node-desc">Table schema definition #databases</text>
+<rect x="539" y="580" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="580" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="598" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [TableOperation]</text>
+<text x="551" y="618" class="node-title" font-size="12">INSERT INTO #databases</text>
+<text x="551" y="634" class="node-desc">Insert records into table #databases</text>
+<rect x="539" y="665" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="665" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="683" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#7  [TableOperation]</text>
+<text x="551" y="703" class="node-title" font-size="12">CREATE TABLE #dependencies</text>
+<text x="551" y="719" class="node-desc">Table schema definition #dependencies</text>
+<rect x="539" y="750" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="750" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="768" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#8  [TableOperation]</text>
+<text x="551" y="788" class="node-title" font-size="12">CREATE TABLE #objects</text>
+<text x="551" y="804" class="node-desc">Table schema definition #objects</text>
+<rect x="539" y="835" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="835" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="853" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#9  [DatabaseQuery]</text>
+<text x="551" y="873" class="node-title" font-size="12">SELECT FROM #databases</text>
+<text x="551" y="889" class="node-desc">Query table #databases</text>
+<rect x="539" y="920" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="920" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="938" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#10  [DatabaseQuery]</text>
+<text x="551" y="958" class="node-title" font-size="12">SELECT FROM #databases</text>
+<text x="551" y="974" class="node-desc">Query table #databases</text>
+<rect x="539" y="1005" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1005" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1023" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#11  [TableOperation]</text>
+<text x="551" y="1043" class="node-title" font-size="12">INSERT INTO #dependencies</text>
+<text x="551" y="1059" class="node-desc">Insert records into table #dependencies</text>
+<rect x="539" y="1090" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1090" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1108" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#12  [TableOperation]</text>
+<text x="551" y="1128" class="node-title" font-size="12">INSERT INTO #objects</text>
+<text x="551" y="1144" class="node-desc">Insert records into table #objects</text>
+<rect x="539" y="1175" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1175" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1193" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#13  [TableOperation]</text>
+<text x="551" y="1213" class="node-title" font-size="12">DELETE FROM #databases</text>
+<text x="551" y="1229" class="node-desc">Delete records from table #databases</text>
+<rect x="539" y="1260" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1260" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1278" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#14  [TableOperation]</text>
+<text x="551" y="1298" class="node-title" font-size="12">INSERT INTO cross_db_reference</text>
+<text x="551" y="1314" class="node-desc">Insert records into table cross_db_reference</text>
+<rect x="539" y="1345" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1345" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1363" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#15  [TableOperation]</text>
+<text x="551" y="1383" class="node-title" font-size="12">INSERT INTO cross_db_objects</text>
+<text x="551" y="1399" class="node-desc">Insert records into table cross_db_objects</text>
+<rect x="539" y="1430" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1430" width="4" height="70" rx="2" fill="#10B981" />
+<text x="551" y="1448" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#16  [TableOperation]</text>
+<text x="551" y="1468" class="node-title" font-size="12">INSERT INTO cross_db_databases</text>
+<text x="551" y="1484" class="node-desc">Insert records into table cross_db_databases</text>
+<rect x="539" y="1515" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1515" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="551" y="1533" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#17  [View]</text>
+<text x="551" y="1553" class="node-title" font-size="12">View: cross_db_view</text>
+<text x="551" y="1569" class="node-desc">SQL View cross_db_view</text>
+<rect x="539" y="1600" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="539" y="1600" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="551" y="1618" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#18  [StoredProcedure]</text>
+<text x="551" y="1638" class="node-title" font-size="12">EXEC get_crossdatabase_dependencies</text>
+<text x="551" y="1654" class="node-desc">Executes stored procedure get_crossdatabase_dependencies</text>
+<line x1="951" y1="102" x2="1000" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="958" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="975" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1008" y="65" width="419" height="2290" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1008" y="65" width="419" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1008" y="128" width="419" height="12" fill="#EEF2FF" />
+<rect x="1023" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1034" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 3</text>
+<text x="1023" y="117" class="lane-title" font-size="14">SQL Database (insert_runtime_executions)</text>
+<text x="1411" y="93" class="node-desc" font-size="11">14 milestones in stage</text>
+<rect x="1023" y="155" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="1035" y="193" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="209" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="240" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="1035" y="278" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="294" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="325" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [TableOperation]</text>
+<text x="1035" y="363" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="379" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="410" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="410" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [TableOperation]</text>
+<text x="1035" y="448" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="464" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="495" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="495" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [TableOperation]</text>
+<text x="1035" y="533" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="549" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="580" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="580" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="598" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [TableOperation]</text>
+<text x="1035" y="618" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="634" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="665" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="665" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="683" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#7  [TableOperation]</text>
+<text x="1035" y="703" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="719" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="750" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="750" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="768" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#8  [TableOperation]</text>
+<text x="1035" y="788" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="804" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="835" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="835" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="853" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#9  [TableOperation]</text>
+<text x="1035" y="873" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="889" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="920" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="920" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="938" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#10  [TableOperation]</text>
+<text x="1035" y="958" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="974" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="1005" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="1005" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="1023" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#11  [TableOperation]</text>
+<text x="1035" y="1043" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="1059" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="1090" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="1090" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="1108" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#12  [TableOperation]</text>
+<text x="1035" y="1128" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="1144" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="1175" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="1175" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="1193" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#13  [TableOperation]</text>
+<text x="1035" y="1213" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="1229" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1023" y="1260" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1023" y="1260" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1035" y="1278" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#14  [TableOperation]</text>
+<text x="1035" y="1298" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1035" y="1314" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<line x1="1434" y1="102" x2="1483" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1442" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1459" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1491" y="65" width="419" height="2290" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1491" y="65" width="419" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1491" y="128" width="419" height="12" fill="#EEF2FF" />
+<rect x="1506" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1517" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 4</text>
+<text x="1506" y="117" class="lane-title" font-size="14">SQL Database (insert_runtime_jobs)</text>
+<text x="1895" y="93" class="node-desc" font-size="11">2 milestones in stage</text>
+<rect x="1506" y="155" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1506" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1518" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="1518" y="193" class="node-title" font-size="12">INSERT INTO @Jobs</text>
+<text x="1518" y="209" class="node-desc">Insert records into table @Jobs</text>
+<rect x="1506" y="240" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1506" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1518" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="1518" y="278" class="node-title" font-size="12">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1518" y="294" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<line x1="1918" y1="102" x2="1967" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1926" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1943" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1975" y="65" width="419" height="2290" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1975" y="65" width="419" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1975" y="128" width="419" height="12" fill="#EEF2FF" />
+<rect x="1990" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="2001" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 5</text>
+<text x="1990" y="117" class="lane-title" font-size="14">SQL Database (sp_ssis_addlogentry)</text>
+<text x="2379" y="93" class="node-desc" font-size="11">3 milestones in stage</text>
+<rect x="1990" y="155" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1990" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2002" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="2002" y="193" class="node-title" font-size="12">CREATE TABLE sysssislog</text>
+<text x="2002" y="209" class="node-desc">Table schema definition sysssislog</text>
+<rect x="1990" y="240" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1990" y="240" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="2002" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#2  [StoredProcedure]</text>
+<text x="2002" y="278" class="node-title" font-size="12">Proc: sp_ssis_addlogentry</text>
+<text x="2002" y="294" class="node-desc">Stored Procedure sp_ssis_addlogentry</text>
+<rect x="1990" y="325" width="389" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1990" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2002" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [TableOperation]</text>
+<text x="2002" y="363" class="node-title" font-size="12">INSERT INTO sysssislog</text>
+<text x="2002" y="379" class="node-desc">Insert records into table sysssislog</text>
+<line x1="249" y1="2370" x2="2185" y2="2370" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="249" cy="2370" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="249" y="2392" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: SQL Database (Prep_tables)</text>
+<circle cx="733" cy="2370" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="733" y="2392" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: SQL Database (cross_db_reference_tables)</text>
+<circle cx="1217" cy="2370" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1217" y="2392" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 3: SQL Database (insert_runtime_executions)</text>
+<circle cx="1701" cy="2370" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1701" y="2392" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 4: SQL Database (insert_runtime_jobs)</text>
+<circle cx="2185" cy="2370" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="2185" y="2392" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 5: SQL Database (sp_ssis_addlogentry)</text>
+</svg>

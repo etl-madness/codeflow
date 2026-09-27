@@ -1,0 +1,47 @@
+{
+  "id": "process-7045kHz_cross_db_collection.dtsx",
+  "name": "7045kHz_cross_db_collection.dtsx Workflow",
+  "swimlanes": [
+    {
+      "id": "ssis:7045kHz_cross_db_collection",
+      "name": "SSIS Package (7045kHz_cross_db_collection)",
+      "description": "SSIS ETL Package 7045kHz_cross_db_collection.dtsx"
+    },
+    {
+      "id": "db:train",
+      "name": "Database (TRAIN)",
+      "description": "Database TRAIN referenced by SSIS package"
+    }
+  ],
+  "steps": [
+    {
+      "id": "Package\\Crossdatabase_Dependencies_Collection",
+      "swimlane_id": "ssis:7045kHz_cross_db_collection",
+      "name": "Crossdatabase_Dependencies_Collection",
+      "description": "SQL: EXEC [dbo].[get_crossdatabase_dependencies]",
+      "type": "StoredProcedure",
+      "language": "ssis",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SSIS_Example_Executions\\SSIS\\7045kHz_cross_db_collection.dtsx",
+      "line_number": 196
+    },
+    {
+      "id": "proc_TRAIN_dbo_get_crossdatabase_dependencies",
+      "swimlane_id": "db:train",
+      "name": "dbo.get_crossdatabase_dependencies",
+      "description": "Stored Procedure dbo.get_crossdatabase_dependencies on TRAIN",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\ETL_Analytics\\SSIS_Example_Executions\\SSIS\\7045kHz_cross_db_collection.dtsx",
+      "line_number": 196
+    }
+  ],
+  "links": [
+    {
+      "id": "Package\\Crossdatabase_Dependencies_Collection-\u003eproc_TRAIN_dbo_get_crossdatabase_dependencies:exec",
+      "source_step_id": "Package\\Crossdatabase_Dependencies_Collection",
+      "target_step_id": "proc_TRAIN_dbo_get_crossdatabase_dependencies",
+      "label": "EXEC",
+      "is_cross_service": true
+    }
+  ]
+}

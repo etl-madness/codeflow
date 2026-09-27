@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 722" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F9FAFB" />
+<text x="40" y="28" class="title">if_than_else.xml Workflow (Flowchart TD)</text>
+<rect x="40" y="60" width="290" height="642" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="290" height="45" rx="8" fill="#E5E7EB" />
+<text x="185" y="87" class="lane-title" text-anchor="middle">Pipeline (if_than_else)</text>
+<rect x="55" y="125" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="144" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="167" class="node-title">ScriptA</text>
+<text x="65" y="183" class="node-desc">Query system databases to check if</text>
+<text x="65" y="199" class="node-desc">count is greater than zero</text>
+<rect x="55" y="246" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="254" width="77" height="15" rx="3" fill="#DB2777" opacity="0.15" />
+<text x="70" y="265" class="node-badge" fill="#DB2777">Condition</text>
+<text x="65" y="288" class="node-title">IF_2</text>
+<text x="65" y="304" class="node-desc">Check if ScriptAResult == true</text>
+<rect x="55" y="351" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="359" width="49" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="370" class="node-badge" fill="#4B5563">Group</text>
+<text x="65" y="393" class="node-title">GroupA</text>
+<text x="65" y="409" class="node-desc">Step group</text>
+<rect x="55" y="456" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="464" width="49" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="475" class="node-badge" fill="#4B5563">Group</text>
+<text x="65" y="498" class="node-title">GroupB</text>
+<text x="65" y="514" class="node-desc">Step group</text>
+<rect x="55" y="561" width="260" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="569" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="580" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="603" class="node-title">GroupA_Alt_Step1</text>
+<text x="65" y="619" class="node-desc">Execute direct Group A alternative</text>
+<text x="65" y="635" class="node-desc">step status query</text>
+<rect x="390" y="60" width="290" height="642" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="390" y="60" width="290" height="45" rx="8" fill="#E5E7EB" />
+<text x="535" y="87" class="lane-title" text-anchor="middle">Database (primary_db)</text>
+<rect x="405" y="125" width="260" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="415" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="420" y="144" class="node-badge" fill="#059669">DatabaseTable</text>
+<text x="415" y="167" class="node-title">sys.databases</text>
+<text x="415" y="183" class="node-desc">Table sys.databases in primary_db</text>
+<path d="M 315 168 C 360 168, 360 160, 405 160" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="343" y="154" width="34" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="360" y="166" class="edge-label" text-anchor="middle">FROM</text>
+<path d="M 185 211 L 185 246" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 185 316 L 185 351" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="168" y="324" width="34" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="185" y="336" class="edge-label" text-anchor="middle">true</text>
+<path d="M 185 316 L 185 456" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="165" y="376" width="40" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="185" y="388" class="edge-label" text-anchor="middle">false</text>
+<path d="M 185 421 L 185 561" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 185 526 L 185 561" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+</svg>

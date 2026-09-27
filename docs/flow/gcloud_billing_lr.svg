@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1980 481" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F9FAFB" />
+<text x="40" y="28" class="title">gcloud_billing.xml Workflow (Flowchart LR)</text>
+<rect x="40" y="60" width="1900" height="105" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="310" height="105" rx="8" fill="#E5E7EB" />
+<text x="195" y="118" class="lane-title" text-anchor="middle">Pipeline Preflight (gcloud_billing)</text>
+<rect x="375" y="80" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="383" y="87" width="92" height="14" rx="3" fill="#059669" opacity="0.15" />
+<text x="387" y="97" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="383" y="116" class="node-title">preflight_check</text>
+<text x="383" y="132" class="node-desc">Preflight check for GCP billing data</text>
+<rect x="765" y="80" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="773" y="87" width="92" height="14" rx="3" fill="#059669" opacity="0.15" />
+<text x="777" y="97" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="773" y="116" class="node-title">preflight_check_2</text>
+<text x="773" y="132" class="node-desc">Another preflight check for GCP billing data</text>
+<rect x="1155" y="80" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1163" y="87" width="68" height="14" rx="3" fill="#DB2777" opacity="0.15" />
+<text x="1167" y="97" class="node-badge" fill="#DB2777">Assertion</text>
+<text x="1163" y="116" class="node-title">database_check</text>
+<text x="1163" y="132" class="node-desc">Check database connectivity</text>
+<rect x="1545" y="80" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1553" y="87" width="68" height="14" rx="3" fill="#DB2777" opacity="0.15" />
+<text x="1557" y="97" class="node-badge" fill="#DB2777">Assertion</text>
+<text x="1553" y="116" class="node-title">user_check</text>
+<text x="1553" y="132" class="node-desc">Check connected user is dbo</text>
+<rect x="40" y="190" width="1900" height="121" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="190" width="310" height="121" rx="8" fill="#E5E7EB" />
+<text x="195" y="256" class="lane-title" text-anchor="middle">Pipeline Flow (gcloud_billing)</text>
+<rect x="375" y="218" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="383" y="225" width="50" height="14" rx="3" fill="#4F46E5" opacity="0.15" />
+<text x="387" y="235" class="node-badge" fill="#4F46E5">Script</text>
+<text x="383" y="254" class="node-title">ExtractData</text>
+<text x="383" y="270" class="node-desc">Extract GCP billing data from BigQuery</text>
+<rect x="765" y="210" width="340" height="81" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="773" y="217" width="92" height="14" rx="3" fill="#059669" opacity="0.15" />
+<text x="777" y="227" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="773" y="246" class="node-title">LoadData</text>
+<text x="773" y="262" class="node-desc">Load Google Cloud billing JSON data into SQL</text>
+<text x="773" y="277" class="node-desc">Server table using OPENJSON</text>
+<rect x="40" y="336" width="1900" height="105" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="336" width="310" height="105" rx="8" fill="#E5E7EB" />
+<text x="195" y="394" class="lane-title" text-anchor="middle">Database (database1)</text>
+<rect x="375" y="356" width="340" height="65" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="383" y="363" width="92" height="14" rx="3" fill="#059669" opacity="0.15" />
+<text x="387" y="373" class="node-badge" fill="#059669">DatabaseTable</text>
+<text x="383" y="392" class="node-title">dbo.GcpBillingExport</text>
+<text x="383" y="408" class="node-desc">Table dbo.GcpBillingExport in database1</text>
+<path d="M 715 112 C 740 112, 740 112, 765 112" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 1105 112 C 1130 112, 1130 112, 1155 112" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 1495 112 C 1520 112, 1520 112, 1545 112" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 1885 112 C 1915 290, 345 290, 375 250" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<path d="M 1105 250 C 1135 428, 345 428, 375 388" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="702" y="310" width="76" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="740" y="322" class="edge-label" text-anchor="middle">INSERT INTO</text>
+<path d="M 715 250 C 740 250, 740 250, 765 250" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="678" y="240" width="124" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="740" y="252" class="edge-label" text-anchor="middle">GCLOUD_BILLING_JSON</text>
+</svg>

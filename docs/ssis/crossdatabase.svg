@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 892 286" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F9FAFB" />
+<text x="40" y="28" class="title">7045kHz_cross_db_collection.dtsx Workflow (Flowchart TD)</text>
+<rect x="40" y="60" width="376" height="206" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="376" height="45" rx="8" fill="#E5E7EB" />
+<text x="228" y="87" class="lane-title" text-anchor="middle">SSIS Package (7045kHz_cross_db_collection)</text>
+<rect x="55" y="125" width="319" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="133" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="144" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="65" y="167" class="node-title">Crossdatabase_Dependencies_Collection</text>
+<text x="65" y="183" class="node-desc">SQL: EXEC</text>
+<text x="65" y="199" class="node-desc">[dbo].[get_crossdatabase_dependencies]</text>
+<rect x="476" y="60" width="376" height="206" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="476" y="60" width="376" height="45" rx="8" fill="#E5E7EB" />
+<text x="664" y="87" class="lane-title" text-anchor="middle">Database (TRAIN)</text>
+<rect x="491" y="125" width="319" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="501" y="133" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="506" y="144" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="501" y="167" class="node-title">dbo.get_crossdatabase_dependencies</text>
+<text x="501" y="183" class="node-desc">Stored Procedure</text>
+<text x="501" y="199" class="node-desc">dbo.get_crossdatabase_dependencies on TRAIN</text>
+<path d="M 374 168 C 432 168, 432 168, 491 168" fill="none" stroke="#EF4444" stroke-width="1.8" marker-end="url(#cross-arrow)" stroke-dasharray="5,4" />
+<rect x="415" y="158" width="34" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="432" y="170" class="edge-label" text-anchor="middle">EXEC</text>
+</svg>

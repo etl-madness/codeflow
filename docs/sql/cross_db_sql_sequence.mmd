@@ -1,0 +1,12 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
+sequenceDiagram
+    autonumber
+    participant P1 as SQL Database (Prep_tables)
+    participant P2 as SQL Database (cross_db_reference_tables)
+    participant P3 as SQL Database (insert_runtime_executions)
+    participant P4 as SQL Database (insert_runtime_jobs)
+    participant P5 as SQL Database (sp_ssis_addlogentry)
+    P1->>P2: invokes
+    P2->>P3: invokes
+    P3->>P4: invokes
+    P4->>P5: invokes

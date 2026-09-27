@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 605" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">gcloud_billing.xml Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="370" height="445" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">Pipeline Preflight (gcloud_billing)</text>
+<text x="395" y="93" class="node-desc" font-size="11">4 milestones in stage</text>
+<rect x="55" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseQuery]</text>
+<text x="67" y="193" class="node-title" font-size="12">preflight_check</text>
+<text x="67" y="209" class="node-desc">Preflight check for GCP billing data</text>
+<rect x="55" y="240" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseQuery]</text>
+<text x="67" y="278" class="node-title" font-size="12">preflight_check_2</text>
+<text x="67" y="294" class="node-desc">Another preflight check for GCP billing data</text>
+<rect x="55" y="325" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="325" width="4" height="70" rx="2" fill="#EC4899" />
+<text x="67" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#DB2777">#3  [Assertion]</text>
+<text x="67" y="363" class="node-title" font-size="12">database_check</text>
+<text x="67" y="379" class="node-desc">Check database connectivity</text>
+<rect x="55" y="410" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="410" width="4" height="70" rx="2" fill="#EC4899" />
+<text x="67" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#DB2777">#4  [Assertion]</text>
+<text x="67" y="448" class="node-title" font-size="12">user_check</text>
+<text x="67" y="464" class="node-desc">Check connected user is dbo</text>
+<line x1="418" y1="102" x2="467" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="426" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="442" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="475" y="65" width="370" height="445" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="475" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="475" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="490" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="501" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="490" y="117" class="lane-title" font-size="14">Pipeline Flow (gcloud_billing)</text>
+<text x="830" y="93" class="node-desc" font-size="11">2 milestones in stage</text>
+<rect x="490" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="490" y="155" width="4" height="70" rx="2" fill="#6366F1" />
+<text x="502" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5">#1  [Script]</text>
+<text x="502" y="193" class="node-title" font-size="12">ExtractData</text>
+<text x="502" y="209" class="node-desc">Extract GCP billing data from BigQuery</text>
+<rect x="490" y="240" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="490" y="240" width="4" height="85" rx="2" fill="#10B981" />
+<text x="502" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseQuery]</text>
+<text x="502" y="278" class="node-title" font-size="12">LoadData</text>
+<text x="502" y="294" class="node-desc">Load Google Cloud billing JSON data into SQL</text>
+<text x="502" y="309" class="node-desc">Server table using OPENJSON</text>
+<line x1="853" y1="102" x2="902" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="860" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="878" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="910" y="65" width="370" height="445" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="910" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="910" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="925" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="936" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 3</text>
+<text x="925" y="117" class="lane-title" font-size="14">Database (database1)</text>
+<text x="1265" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="925" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="937" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="937" y="193" class="node-title" font-size="12">dbo.GcpBillingExport</text>
+<text x="937" y="209" class="node-desc">Table dbo.GcpBillingExport in database1</text>
+<line x1="225" y1="525" x2="1095" y2="525" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="225" cy="525" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="225" y="547" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: Pipeline Preflight (gcloud_billing)</text>
+<circle cx="660" cy="525" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="660" y="547" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: Pipeline Flow (gcloud_billing)</text>
+<circle cx="1095" cy="525" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1095" y="547" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 3: Database (database1)</text>
+</svg>

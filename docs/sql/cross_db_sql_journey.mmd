@@ -1,0 +1,84 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "lineColor": "#2563EB", "clusterBkg": "#F8FAFC", "clusterBorder": "#CBD5E1", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart LR
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph stage_1 ["Stage 1: SQL Database (Prep_tables)"]
+        direction TB
+        j1[("<b>CREATE TABLE AutoSysJobToPackage</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysJobToPackage</sub>")]:::dbNode
+        j2[("<b>CREATE TABLE AutoSysJilJobs</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysJilJobs</sub>")]:::dbNode
+        j3[("<b>CREATE TABLE AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysRuntimeJobs</sub>")]:::dbNode
+        j4[("<b>CREATE TABLE AutoSysPackageToObject</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysPackageToObject</sub>")]:::dbNode
+        j5["<b>Proc: Overlap_Jobs_Gantt</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure Overlap_Jobs_Gantt</sub>"]:::procNode
+        j6[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        j7[("<b>SELECT FROM #Timeline</b><br/><small>SQL Query</small><br/><sub>Query table #Timeline</sub>")]:::dbNode
+        j8[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        j9[("<b>SELECT FROM #Timeline</b><br/><small>SQL Query</small><br/><sub>Query table #Timeline</sub>")]:::dbNode
+        j10["<b>Proc: GetNumberOfPackagesTablesAreIn</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure GetNumberOfPackagesTablesAreIn</sub>"]:::procNode
+        j11[("<b>Query AutoSysPackageToObject</b><br/><small>SQL Query</small><br/><sub>Reads table AutoSysPackageToObject within stored procedure GetNumberOfPackagesTablesAreIn</sub>")]:::dbNode
+        j12["<b>Proc: GetCurrentConflictingJobs</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure GetCurrentConflictingJobs</sub>"]:::procNode
+        stage_1_more["+ 13 more steps..."]
+    end
+
+    subgraph stage_2 ["Stage 2: SQL Database (cross_db_reference_tables)"]
+        direction TB
+        j13[("<b>CREATE TABLE cross_db_databases</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_databases</sub>")]:::dbNode
+        j14[("<b>CREATE TABLE cross_db_objects</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_objects</sub>")]:::dbNode
+        j15[("<b>CREATE TABLE cross_db_reference</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_reference</sub>")]:::dbNode
+        j16["<b>Proc: get_crossdatabase_dependencies</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure get_crossdatabase_dependencies</sub>"]:::procNode
+        j17[("<b>CREATE TABLE #databases</b><br/><small>Table Operation</small><br/><sub>Table schema definition #databases</sub>")]:::dbNode
+        j18[("<b>INSERT INTO #databases</b><br/><small>Table Operation</small><br/><sub>Insert records into table #databases</sub>")]:::dbNode
+        j19[("<b>CREATE TABLE #dependencies</b><br/><small>Table Operation</small><br/><sub>Table schema definition #dependencies</sub>")]:::dbNode
+        j20[("<b>CREATE TABLE #objects</b><br/><small>Table Operation</small><br/><sub>Table schema definition #objects</sub>")]:::dbNode
+        j21[("<b>SELECT FROM #databases</b><br/><small>SQL Query</small><br/><sub>Query table #databases</sub>")]:::dbNode
+        j22[("<b>SELECT FROM #databases</b><br/><small>SQL Query</small><br/><sub>Query table #databases</sub>")]:::dbNode
+        j23[("<b>INSERT INTO #dependencies</b><br/><small>Table Operation</small><br/><sub>Insert records into table #dependencies</sub>")]:::dbNode
+        j24[("<b>INSERT INTO #objects</b><br/><small>Table Operation</small><br/><sub>Insert records into table #objects</sub>")]:::dbNode
+        stage_2_more["+ 6 more steps..."]
+    end
+
+    subgraph stage_3 ["Stage 3: SQL Database (insert_runtime_executions)"]
+        direction TB
+        j25[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j26[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j27[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j28[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j29[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j30[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j31[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j32[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j33[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j34[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j35[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        j36[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        stage_3_more["+ 2 more steps..."]
+    end
+
+    subgraph stage_4 ["Stage 4: SQL Database (insert_runtime_jobs)"]
+        direction TB
+        j37[("<b>INSERT INTO @Jobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table @Jobs</sub>")]:::dbNode
+        j38[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+    end
+
+    subgraph stage_5 ["Stage 5: SQL Database (sp_ssis_addlogentry)"]
+        direction TB
+        j39[("<b>CREATE TABLE sysssislog</b><br/><small>Table Operation</small><br/><sub>Table schema definition sysssislog</sub>")]:::dbNode
+        j40["<b>Proc: sp_ssis_addlogentry</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure sp_ssis_addlogentry</sub>"]:::procNode
+        j41[("<b>INSERT INTO sysssislog</b><br/><small>Table Operation</small><br/><sub>Insert records into table sysssislog</sub>")]:::dbNode
+    end
+
+    stage_1 ==> stage_2
+    stage_2 ==> stage_3
+    stage_3 ==> stage_4
+    stage_4 ==> stage_5
+
+    style stage_1 fill:#F8FAFC,stroke:#3B82F6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_2 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_3 fill:#F8FAFC,stroke:#8B5CF6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_4 fill:#F8FAFC,stroke:#F59E0B,stroke-width:2px,rx:8px,ry:8px;
+    style stage_5 fill:#F8FAFC,stroke:#EC4899,stroke-width:2px,rx:8px,ry:8px;

@@ -1,0 +1,96 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "secondaryColor": "#F8FAFC", "tertiaryColor": "#F1F5F9", "lineColor": "#64748B", "textColor": "#0F172A", "mainBkg": "#FFFFFF", "nodeBorder": "#CBD5E1", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#0F172A", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart LR
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph lane_sql_Prep_tables ["SQL Database (Prep_tables)"]
+        s1[("<b>CREATE TABLE AutoSysJobToPackage</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysJobToPackage</sub>")]:::dbNode
+        s2[("<b>CREATE TABLE AutoSysJilJobs</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysJilJobs</sub>")]:::dbNode
+        s3[("<b>CREATE TABLE AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysRuntimeJobs</sub>")]:::dbNode
+        s4[("<b>CREATE TABLE AutoSysPackageToObject</b><br/><small>Table Operation</small><br/><sub>Table schema definition AutoSysPackageToObject</sub>")]:::dbNode
+        s5["<b>Proc: Overlap_Jobs_Gantt</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure Overlap_Jobs_Gantt</sub>"]:::procNode
+        s6[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        s7[("<b>SELECT FROM #Timeline</b><br/><small>SQL Query</small><br/><sub>Query table #Timeline</sub>")]:::dbNode
+        s8[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        s9[("<b>SELECT FROM #Timeline</b><br/><small>SQL Query</small><br/><sub>Query table #Timeline</sub>")]:::dbNode
+        s10["<b>Proc: GetNumberOfPackagesTablesAreIn</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure GetNumberOfPackagesTablesAreIn</sub>"]:::procNode
+        s11[("<b>Query AutoSysPackageToObject</b><br/><small>SQL Query</small><br/><sub>Reads table AutoSysPackageToObject within stored procedure GetNumberOfPackagesTablesAreIn</sub>")]:::dbNode
+        s12["<b>Proc: GetCurrentConflictingJobs</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure GetCurrentConflictingJobs</sub>"]:::procNode
+        s13[("<b>Query AutoSysJobToPackage</b><br/><small>SQL Query</small><br/><sub>Reads table AutoSysJobToPackage within stored procedure GetCurrentConflictingJobs</sub>")]:::dbNode
+        s14[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        s15["<b>Proc: GetCurrentConflictingJobsByJilImportDate</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure GetCurrentConflictingJobsByJilImportDate</sub>"]:::procNode
+        s16[("<b>Query AutoSysJobToPackage</b><br/><small>SQL Query</small><br/><sub>Reads table AutoSysJobToPackage within stored procedure GetCurrentConflictingJobsByJilImportDate</sub>")]:::dbNode
+        s17[("<b>SELECT FROM AutoSysJilJobs</b><br/><small>SQL Query</small><br/><sub>Query table AutoSysJilJobs</sub>")]:::dbNode
+        s18[("<b>CREATE TABLE DTSX_Attributes</b><br/><small>Table Operation</small><br/><sub>Table schema definition DTSX_Attributes</sub>")]:::dbNode
+        s19[("<b>CREATE TABLE DTSX_Elements</b><br/><small>Table Operation</small><br/><sub>Table schema definition DTSX_Elements</sub>")]:::dbNode
+        s20[("<b>CREATE TABLE DTSX_Mapper</b><br/><small>Table Operation</small><br/><sub>Table schema definition DTSX_Mapper</sub>")]:::dbNode
+        s21[("<b>CREATE TABLE DTSX_Variables</b><br/><small>Table Operation</small><br/><sub>Table schema definition DTSX_Variables</sub>")]:::dbNode
+        s22[["<b>View: DTSX_SQL_View</b><br/><small>Database View</small><br/><sub>SQL View DTSX_SQL_View</sub>"]):::procNode
+        s23[("<b>CREATE TABLE BusinessRules</b><br/><small>Table Operation</small><br/><sub>Table schema definition BusinessRules</sub>")]:::dbNode
+        s24[("<b>CREATE TABLE BusinessRuleHistory</b><br/><small>Table Operation</small><br/><sub>Table schema definition BusinessRuleHistory</sub>")]:::dbNode
+        s25[("<b>CREATE TABLE NamingCompliance</b><br/><small>Table Operation</small><br/><sub>Table schema definition NamingCompliance</sub>")]:::dbNode
+    end
+
+    subgraph lane_sql_cross_db_reference_tables ["SQL Database (cross_db_reference_tables)"]
+        s26[("<b>CREATE TABLE cross_db_databases</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_databases</sub>")]:::dbNode
+        s27[("<b>CREATE TABLE cross_db_objects</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_objects</sub>")]:::dbNode
+        s28[("<b>CREATE TABLE cross_db_reference</b><br/><small>Table Operation</small><br/><sub>Table schema definition cross_db_reference</sub>")]:::dbNode
+        s29["<b>Proc: get_crossdatabase_dependencies</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure get_crossdatabase_dependencies</sub>"]:::procNode
+        s30[("<b>CREATE TABLE #databases</b><br/><small>Table Operation</small><br/><sub>Table schema definition #databases</sub>")]:::dbNode
+        s31[("<b>INSERT INTO #databases</b><br/><small>Table Operation</small><br/><sub>Insert records into table #databases</sub>")]:::dbNode
+        s32[("<b>CREATE TABLE #dependencies</b><br/><small>Table Operation</small><br/><sub>Table schema definition #dependencies</sub>")]:::dbNode
+        s33[("<b>CREATE TABLE #objects</b><br/><small>Table Operation</small><br/><sub>Table schema definition #objects</sub>")]:::dbNode
+        s34[("<b>SELECT FROM #databases</b><br/><small>SQL Query</small><br/><sub>Query table #databases</sub>")]:::dbNode
+        s35[("<b>SELECT FROM #databases</b><br/><small>SQL Query</small><br/><sub>Query table #databases</sub>")]:::dbNode
+        s36[("<b>INSERT INTO #dependencies</b><br/><small>Table Operation</small><br/><sub>Insert records into table #dependencies</sub>")]:::dbNode
+        s37[("<b>INSERT INTO #objects</b><br/><small>Table Operation</small><br/><sub>Insert records into table #objects</sub>")]:::dbNode
+        s38[("<b>DELETE FROM #databases</b><br/><small>Table Operation</small><br/><sub>Delete records from table #databases</sub>")]:::dbNode
+        s39[("<b>INSERT INTO cross_db_reference</b><br/><small>Table Operation</small><br/><sub>Insert records into table cross_db_reference</sub>")]:::dbNode
+        s40[("<b>INSERT INTO cross_db_objects</b><br/><small>Table Operation</small><br/><sub>Insert records into table cross_db_objects</sub>")]:::dbNode
+        s41[("<b>INSERT INTO cross_db_databases</b><br/><small>Table Operation</small><br/><sub>Insert records into table cross_db_databases</sub>")]:::dbNode
+        s42[["<b>View: cross_db_view</b><br/><small>Database View</small><br/><sub>SQL View cross_db_view</sub>"]):::procNode
+        s43["<b>EXEC get_crossdatabase_dependencies</b><br/><small>Stored Procedure</small><br/><sub>Executes stored procedure get_crossdatabase_dependencies</sub>"]:::procNode
+    end
+
+    subgraph lane_sql_insert_runtime_executions ["SQL Database (insert_runtime_executions)"]
+        s44[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s45[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s46[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s47[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s48[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s49[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s50[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s51[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s52[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s53[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s54[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s55[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s56[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+        s57[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+    end
+
+    subgraph lane_sql_insert_runtime_jobs ["SQL Database (insert_runtime_jobs)"]
+        s58[("<b>INSERT INTO @Jobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table @Jobs</sub>")]:::dbNode
+        s59[("<b>INSERT INTO AutoSysRuntimeJobs</b><br/><small>Table Operation</small><br/><sub>Insert records into table AutoSysRuntimeJobs</sub>")]:::dbNode
+    end
+
+    subgraph lane_sql_sp_ssis_addlogentry ["SQL Database (sp_ssis_addlogentry)"]
+        s60[("<b>CREATE TABLE sysssislog</b><br/><small>Table Operation</small><br/><sub>Table schema definition sysssislog</sub>")]:::dbNode
+        s61["<b>Proc: sp_ssis_addlogentry</b><br/><small>Stored Procedure</small><br/><sub>Stored Procedure sp_ssis_addlogentry</sub>"]:::procNode
+        s62[("<b>INSERT INTO sysssislog</b><br/><small>Table Operation</small><br/><sub>Insert records into table sysssislog</sub>")]:::dbNode
+    end
+
+    s10 -->|"queries"| s11
+    s12 -->|"queries"| s13
+    s15 -->|"queries"| s16
+
+    style lane_sql_Prep_tables fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_cross_db_reference_tables fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_insert_runtime_executions fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_insert_runtime_jobs fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_sql_sp_ssis_addlogentry fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;

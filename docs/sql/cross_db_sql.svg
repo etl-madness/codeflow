@@ -1,0 +1,368 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2414 2854" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F9FAFB" />
+<text x="40" y="28" class="title">SQL Workflow (Flowchart TD)</text>
+<rect x="40" y="60" width="419" height="2774" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="419" height="45" rx="8" fill="#E5E7EB" />
+<text x="249" y="87" class="lane-title" text-anchor="middle">SQL Database (Prep_tables)</text>
+<rect x="55" y="125" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="167" class="node-title">CREATE TABLE AutoSysJobToPackage</text>
+<text x="65" y="183" class="node-desc">Table schema definition AutoSysJobToPackage</text>
+<rect x="55" y="230" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="272" class="node-title">CREATE TABLE AutoSysJilJobs</text>
+<text x="65" y="288" class="node-desc">Table schema definition AutoSysJilJobs</text>
+<rect x="55" y="335" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="343" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="354" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="377" class="node-title">CREATE TABLE AutoSysRuntimeJobs</text>
+<text x="65" y="393" class="node-desc">Table schema definition AutoSysRuntimeJobs</text>
+<rect x="55" y="440" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="448" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="459" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="482" class="node-title">CREATE TABLE AutoSysPackageToObject</text>
+<text x="65" y="498" class="node-desc">Table schema definition AutoSysPackageToObject</text>
+<rect x="55" y="545" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="553" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="564" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="65" y="587" class="node-title">Proc: Overlap_Jobs_Gantt</text>
+<text x="65" y="603" class="node-desc">Stored Procedure Overlap_Jobs_Gantt</text>
+<rect x="55" y="650" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="658" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="669" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="692" class="node-title">SELECT FROM AutoSysJilJobs</text>
+<text x="65" y="708" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="755" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="763" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="774" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="797" class="node-title">SELECT FROM #Timeline</text>
+<text x="65" y="813" class="node-desc">Query table #Timeline</text>
+<rect x="55" y="860" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="868" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="879" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="902" class="node-title">SELECT FROM AutoSysJilJobs</text>
+<text x="65" y="918" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="965" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="973" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="984" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1007" class="node-title">SELECT FROM #Timeline</text>
+<text x="65" y="1023" class="node-desc">Query table #Timeline</text>
+<rect x="55" y="1070" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1078" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="1089" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="65" y="1112" class="node-title">Proc: GetNumberOfPackagesTablesAreIn</text>
+<text x="65" y="1128" class="node-desc">Stored Procedure GetNumberOfPackagesTablesAreIn</text>
+<rect x="55" y="1175" width="389" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1183" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1194" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1217" class="node-title">Query AutoSysPackageToObject</text>
+<text x="65" y="1233" class="node-desc">Reads table AutoSysPackageToObject within stored</text>
+<text x="65" y="1249" class="node-desc">procedure GetNumberOfPackagesTablesAreIn</text>
+<rect x="55" y="1296" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1304" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="1315" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="65" y="1338" class="node-title">Proc: GetCurrentConflictingJobs</text>
+<text x="65" y="1354" class="node-desc">Stored Procedure GetCurrentConflictingJobs</text>
+<rect x="55" y="1401" width="389" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1409" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1420" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1443" class="node-title">Query AutoSysJobToPackage</text>
+<text x="65" y="1459" class="node-desc">Reads table AutoSysJobToPackage within stored procedure</text>
+<text x="65" y="1475" class="node-desc">GetCurrentConflictingJobs</text>
+<rect x="55" y="1522" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1530" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1541" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1564" class="node-title">SELECT FROM AutoSysJilJobs</text>
+<text x="65" y="1580" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="1627" width="389" height="86" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1635" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="1646" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="65" y="1669" class="node-title">Proc: GetCurrentConflictingJobsByJilImportDate</text>
+<text x="65" y="1685" class="node-desc">Stored Procedure</text>
+<text x="65" y="1701" class="node-desc">GetCurrentConflictingJobsByJilImportDate</text>
+<rect x="55" y="1748" width="389" height="86" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1756" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1767" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1790" class="node-title">Query AutoSysJobToPackage</text>
+<text x="65" y="1806" class="node-desc">Reads table AutoSysJobToPackage within stored procedure</text>
+<text x="65" y="1822" class="node-desc">GetCurrentConflictingJobsByJilImportDate</text>
+<rect x="55" y="1869" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1877" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1888" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="1911" class="node-title">SELECT FROM AutoSysJilJobs</text>
+<text x="65" y="1927" class="node-desc">Query table AutoSysJilJobs</text>
+<rect x="55" y="1974" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="1982" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="1993" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2016" class="node-title">CREATE TABLE DTSX_Attributes</text>
+<text x="65" y="2032" class="node-desc">Table schema definition DTSX_Attributes</text>
+<rect x="55" y="2079" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2087" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2098" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2121" class="node-title">CREATE TABLE DTSX_Elements</text>
+<text x="65" y="2137" class="node-desc">Table schema definition DTSX_Elements</text>
+<rect x="55" y="2184" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2192" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2203" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2226" class="node-title">CREATE TABLE DTSX_Mapper</text>
+<text x="65" y="2242" class="node-desc">Table schema definition DTSX_Mapper</text>
+<rect x="55" y="2289" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2297" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2308" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2331" class="node-title">CREATE TABLE DTSX_Variables</text>
+<text x="65" y="2347" class="node-desc">Table schema definition DTSX_Variables</text>
+<rect x="55" y="2394" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2402" width="42" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="70" y="2413" class="node-badge" fill="#7C3AED">View</text>
+<text x="65" y="2436" class="node-title">View: DTSX_SQL_View</text>
+<text x="65" y="2452" class="node-desc">SQL View DTSX_SQL_View</text>
+<rect x="55" y="2499" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2507" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2518" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2541" class="node-title">CREATE TABLE BusinessRules</text>
+<text x="65" y="2557" class="node-desc">Table schema definition BusinessRules</text>
+<rect x="55" y="2604" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2612" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2623" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2646" class="node-title">CREATE TABLE BusinessRuleHistory</text>
+<text x="65" y="2662" class="node-desc">Table schema definition BusinessRuleHistory</text>
+<rect x="55" y="2709" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="2717" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="2728" class="node-badge" fill="#059669">TableOperation</text>
+<text x="65" y="2751" class="node-title">CREATE TABLE NamingCompliance</text>
+<text x="65" y="2767" class="node-desc">Table schema definition NamingCompliance</text>
+<rect x="519" y="60" width="419" height="2774" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="519" y="60" width="419" height="45" rx="8" fill="#E5E7EB" />
+<text x="728" y="87" class="lane-title" text-anchor="middle">SQL Database (cross_db_reference_tables)</text>
+<rect x="534" y="125" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="167" class="node-title">CREATE TABLE cross_db_databases</text>
+<text x="544" y="183" class="node-desc">Table schema definition cross_db_databases</text>
+<rect x="534" y="230" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="272" class="node-title">CREATE TABLE cross_db_objects</text>
+<text x="544" y="288" class="node-desc">Table schema definition cross_db_objects</text>
+<rect x="534" y="335" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="343" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="354" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="377" class="node-title">CREATE TABLE cross_db_reference</text>
+<text x="544" y="393" class="node-desc">Table schema definition cross_db_reference</text>
+<rect x="534" y="440" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="448" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="549" y="459" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="544" y="482" class="node-title">Proc: get_crossdatabase_dependencies</text>
+<text x="544" y="498" class="node-desc">Stored Procedure get_crossdatabase_dependencies</text>
+<rect x="534" y="545" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="553" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="564" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="587" class="node-title">CREATE TABLE #databases</text>
+<text x="544" y="603" class="node-desc">Table schema definition #databases</text>
+<rect x="534" y="650" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="658" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="669" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="692" class="node-title">INSERT INTO #databases</text>
+<text x="544" y="708" class="node-desc">Insert records into table #databases</text>
+<rect x="534" y="755" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="763" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="774" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="797" class="node-title">CREATE TABLE #dependencies</text>
+<text x="544" y="813" class="node-desc">Table schema definition #dependencies</text>
+<rect x="534" y="860" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="868" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="879" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="902" class="node-title">CREATE TABLE #objects</text>
+<text x="544" y="918" class="node-desc">Table schema definition #objects</text>
+<rect x="534" y="965" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="973" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="984" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="544" y="1007" class="node-title">SELECT FROM #databases</text>
+<text x="544" y="1023" class="node-desc">Query table #databases</text>
+<rect x="534" y="1070" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1078" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1089" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="544" y="1112" class="node-title">SELECT FROM #databases</text>
+<text x="544" y="1128" class="node-desc">Query table #databases</text>
+<rect x="534" y="1175" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1183" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1194" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1217" class="node-title">INSERT INTO #dependencies</text>
+<text x="544" y="1233" class="node-desc">Insert records into table #dependencies</text>
+<rect x="534" y="1280" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1288" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1299" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1322" class="node-title">INSERT INTO #objects</text>
+<text x="544" y="1338" class="node-desc">Insert records into table #objects</text>
+<rect x="534" y="1385" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1393" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1404" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1427" class="node-title">DELETE FROM #databases</text>
+<text x="544" y="1443" class="node-desc">Delete records from table #databases</text>
+<rect x="534" y="1490" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1498" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1509" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1532" class="node-title">INSERT INTO cross_db_reference</text>
+<text x="544" y="1548" class="node-desc">Insert records into table cross_db_reference</text>
+<rect x="534" y="1595" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1603" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1614" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1637" class="node-title">INSERT INTO cross_db_objects</text>
+<text x="544" y="1653" class="node-desc">Insert records into table cross_db_objects</text>
+<rect x="534" y="1700" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1708" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="549" y="1719" class="node-badge" fill="#059669">TableOperation</text>
+<text x="544" y="1742" class="node-title">INSERT INTO cross_db_databases</text>
+<text x="544" y="1758" class="node-desc">Insert records into table cross_db_databases</text>
+<rect x="534" y="1805" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1813" width="42" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="549" y="1824" class="node-badge" fill="#7C3AED">View</text>
+<text x="544" y="1847" class="node-title">View: cross_db_view</text>
+<text x="544" y="1863" class="node-desc">SQL View cross_db_view</text>
+<rect x="534" y="1910" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="544" y="1918" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="549" y="1929" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="544" y="1952" class="node-title">EXEC get_crossdatabase_dependencies</text>
+<text x="544" y="1968" class="node-desc">Executes stored procedure get_crossdatabase_dependencies</text>
+<rect x="998" y="60" width="419" height="2774" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="998" y="60" width="419" height="45" rx="8" fill="#E5E7EB" />
+<text x="1207" y="87" class="lane-title" text-anchor="middle">SQL Database (insert_runtime_executions)</text>
+<rect x="1013" y="125" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="167" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="183" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="230" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="272" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="288" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="335" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="343" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="354" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="377" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="393" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="440" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="448" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="459" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="482" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="498" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="545" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="553" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="564" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="587" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="603" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="650" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="658" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="669" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="692" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="708" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="755" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="763" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="774" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="797" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="813" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="860" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="868" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="879" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="902" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="918" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="965" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="973" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="984" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1007" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1023" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="1070" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="1078" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="1089" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1112" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1128" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="1175" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="1183" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="1194" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1217" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1233" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="1280" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="1288" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="1299" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1322" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1338" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="1385" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="1393" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="1404" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1427" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1443" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1013" y="1490" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1023" y="1498" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1028" y="1509" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1023" y="1532" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1023" y="1548" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1476" y="60" width="419" height="2774" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="1476" y="60" width="419" height="45" rx="8" fill="#E5E7EB" />
+<text x="1686" y="87" class="lane-title" text-anchor="middle">SQL Database (insert_runtime_jobs)</text>
+<rect x="1491" y="125" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1501" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1506" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1501" y="167" class="node-title">INSERT INTO @Jobs</text>
+<text x="1501" y="183" class="node-desc">Insert records into table @Jobs</text>
+<rect x="1491" y="230" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1501" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1506" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1501" y="272" class="node-title">INSERT INTO AutoSysRuntimeJobs</text>
+<text x="1501" y="288" class="node-desc">Insert records into table AutoSysRuntimeJobs</text>
+<rect x="1955" y="60" width="419" height="2774" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="1955" y="60" width="419" height="45" rx="8" fill="#E5E7EB" />
+<text x="2165" y="87" class="lane-title" text-anchor="middle">SQL Database (sp_ssis_addlogentry)</text>
+<rect x="1970" y="125" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1980" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1985" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1980" y="167" class="node-title">CREATE TABLE sysssislog</text>
+<text x="1980" y="183" class="node-desc">Table schema definition sysssislog</text>
+<rect x="1970" y="230" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1980" y="238" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="1985" y="249" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="1980" y="272" class="node-title">Proc: sp_ssis_addlogentry</text>
+<text x="1980" y="288" class="node-desc">Stored Procedure sp_ssis_addlogentry</text>
+<rect x="1970" y="335" width="389" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1980" y="343" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1985" y="354" class="node-badge" fill="#059669">TableOperation</text>
+<text x="1980" y="377" class="node-title">INSERT INTO sysssislog</text>
+<text x="1980" y="393" class="node-desc">Insert records into table sysssislog</text>
+<path d="M 249 1140 L 249 1175" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="223" y="1148" width="52" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="249" y="1160" class="edge-label" text-anchor="middle">queries</text>
+<path d="M 249 1366 L 249 1401" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="223" y="1374" width="52" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="249" y="1386" class="edge-label" text-anchor="middle">queries</text>
+<path d="M 249 1713 L 249 1748" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="223" y="1720" width="52" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="249" y="1732" class="edge-label" text-anchor="middle">queries</text>
+</svg>

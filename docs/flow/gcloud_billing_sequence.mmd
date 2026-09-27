@@ -1,0 +1,8 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
+sequenceDiagram
+    autonumber
+    participant P1 as Pipeline Preflight (gcloud_billing)
+    participant P2 as Pipeline Flow (gcloud_billing)
+    participant P3 as Database (database1)
+    P1->>P2: ExtractData
+    P2-->>P3: INSERT INTO

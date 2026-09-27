@@ -1,0 +1,275 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "primaryColor": "#FFFFFF", "primaryBorderColor": "#3B82F6", "primaryTextColor": "#0F172A", "lineColor": "#64748B", "textColor": "#0F172A"}}}%%
+erDiagram
+    AutoSysJobToPackage {
+        varchar_255 JobName
+        varchar_255 PackageName
+        datetime2_7 ImportedAt
+    }
+
+    Query {
+        string id PK
+    }
+
+    DTSX_Attributes {
+        int Id PK
+        nvarchar_max CreationName
+        nvarchar_max Description
+        nvarchar_max Filename
+        nvarchar_max Package
+        nvarchar_max ParentNodeDtsId
+        nvarchar_max ParentNodeName
+        nvarchar_max ParentNodeType
+        nvarchar_250 ParentUniqueId
+        nvarchar_250 UniqueId
+        nvarchar_max ParentRefId
+        nvarchar_max RefId
+        nvarchar_max XPath
+        nvarchar_max ElementXPath
+        nvarchar_max AttributeName
+        nvarchar_max AttributeType
+        nvarchar_max AttributeValue
+        datetime LoadDate
+    }
+
+    DTSX_Mapper {
+        int Id PK
+        nvarchar_max Description
+        nvarchar_max Package
+        nvarchar_max RefId
+        nvarchar_max SqlStatement
+        nvarchar_max ConnectionString
+        nvarchar_max ConnectionName
+        nvarchar_max ConnectionDtsId
+        nvarchar_max ConnectionType
+        nvarchar_max ConnectionRefId
+        nvarchar_max Name
+        nvarchar_max ComponentType
+        datetime LoadDate
+    }
+
+    DTSX_Variables {
+        int Id PK
+        nvarchar_max CreationName
+        nvarchar_max Description
+        nvarchar_max Filename
+        nvarchar_max Package
+        nvarchar_max ParentNodeDtsId
+        nvarchar_max ParentNodeName
+        nvarchar_max ParentNodeType
+        nvarchar_250 ParentUniqueId
+        nvarchar_250 UniqueId
+        nvarchar_max ParentRefId
+        nvarchar_max RefId
+        nvarchar_max XPath
+        nvarchar_max EvaluateAsExpression
+        nvarchar_max IncludeInDebugDump
+        nvarchar_max VariableDataType
+        nvarchar_max VariableDtsxId
+        nvarchar_max VariableExpression
+        nvarchar_max VariableName
+        nvarchar_max VariableNameSpace
+        nvarchar_max VariableValue
+        datetime LoadDate
+    }
+
+    cross_db_reference {
+        varchar_max referencing_servername
+        varchar_max referencing_servicename
+        varchar_max referencing_database
+        int referencing_id
+        varchar_max referencing_schema
+        varchar_max referencing_object_name
+        varchar_max referencing_object_type
+        varchar_max referencing_object_desc
+        varchar_max referenced_server
+        varchar_max referenced_database
+        int referenced_id
+        varchar_max referenced_schema
+        varchar_max referenced_object_name
+        varchar_max referenced_object_type
+        varchar_max referenced_object_desc
+        varchar_max ambiguous_entity_name
+        varchar_max ambiguous_schema_name
+        varchar_max ambiguous_database_name
+        int is_ambiguous
+        datetime LoadDate
+    }
+
+    AutoSysRuntimeJobs {
+        int JobRunId
+        varchar_255 JobName
+        varchar_100 JobStatus
+        decimal_8__2 RunTimeInMinutes
+        datetime2_7 InsertedAt
+        ASC JobRunId
+    }
+
+    Timeline {
+        string id PK
+    }
+
+    BusinessRules {
+        TABLE CREATE
+        INT Id PK
+        NVARCHAR_255 Name
+        NVARCHAR_MAX Description
+        NVARCHAR_50 RuleType
+        NVARCHAR_MAX Code
+        INT Version
+        BIT IsActive
+        DATETIME2 CreatedAt
+        DATETIME2 UpdatedAt
+    }
+
+    cross_db_databases {
+        int database_id
+        sysname database_name
+        int state
+        nvarchar_3 IsActive
+    }
+
+    cross_db_objects {
+        varchar_max object_servername
+        varchar_max object_servicename
+        varchar_max object_database
+        int object_id
+        varchar_max object_schema
+        varchar_max object_name
+        varchar_max object_type
+        varchar_max object_desc
+        datetime LoadDate
+    }
+
+    databases {
+        int database_id
+        sysname database_name
+    }
+
+    dependencies {
+        varchar_max referencing_servername
+        varchar_max referencing_servicename
+        varchar_max referencing_database
+        int referencing_id
+        varchar_max referencing_schema
+        varchar_max referencing_object_name
+        varchar_max referencing_object_type
+        varchar_max referencing_object_desc
+        varchar_max referenced_server
+        varchar_max referenced_database
+        int referenced_id
+        varchar_max referenced_schema
+        varchar_max referenced_object_name
+        varchar_max referenced_object_type
+        varchar_max referenced_object_desc
+        varchar_max ambiguous_entity_name
+        varchar_max ambiguous_schema_name
+        varchar_max ambiguous_database_name
+        int is_ambiguous
+        datetime LoadDate
+    }
+
+    sysssislog {
+        int id
+        sysname event
+        nvarchar_128 computer
+        nvarchar_128 operator
+        nvarchar_1024 source
+        uniqueidentifier sourceid
+        uniqueidentifier executionid
+        datetime starttime
+        datetime endtime
+        int datacode
+        image databytes
+        nvarchar_2048 message
+        ASC id
+    }
+
+    BusinessRuleHistory {
+        TABLE CREATE
+        INT HistoryId PK
+        INT RuleId
+        NVARCHAR_255 Name
+        NVARCHAR_MAX Description
+        NVARCHAR_50 RuleType
+        NVARCHAR_MAX Code
+        INT Version
+        DATETIME2 ArchivedAt
+    }
+
+    AutoSysJilJobs {
+        varchar_255 JobName
+        varchar_100 JobType
+        varchar_max Command
+        varchar_255 Machine
+        varchar_255 Owner
+        varchar_255 Permission
+        varchar_50 DateConditions
+        varchar_100 DaysOfWeek
+        varchar_50 StartMins
+        varchar_100 StartTimes
+        varchar_100 Timezone
+        varchar_max Description
+        varchar_500 StdOutFile
+        varchar_500 StdErrFile
+        varchar_50 AlarmIfFail
+        varchar_255 Application
+        varchar_max RawText
+        datetime2_7 ImportedAt
+    }
+
+    AutoSysPackageToObject {
+        varchar_max PackageName
+        varchar_max database_server
+        varchar_max database
+        varchar_max schema
+        varchar_max object_name
+        varchar_max object_type
+        datetime2_7 ImportedAt
+    }
+
+    DTSX_Elements {
+        int Id PK
+        nvarchar_max CreationName
+        nvarchar_max Description
+        nvarchar_max Filename
+        nvarchar_max Package
+        nvarchar_max ParentNodeDtsId
+        nvarchar_max ParentNodeName
+        nvarchar_max ParentNodeType
+        nvarchar_250 ParentUniqueId
+        nvarchar_250 UniqueId
+        nvarchar_max ParentRefId
+        nvarchar_max RefId
+        nvarchar_max XPath
+        nvarchar_max DtsId
+        nvarchar_max Name
+        nvarchar_max NodeType
+        nvarchar_max Value
+        nvarchar_max XmlType
+        datetime LoadDate
+    }
+
+    objects {
+        varchar_max object_servername
+        varchar_max object_servicename
+        varchar_max object_database
+        int object_id
+        varchar_max object_schema
+        varchar_max object_name
+        varchar_max object_type
+        varchar_max object_desc
+        datetime LoadDate
+    }
+
+    Jobs {
+        string id PK
+    }
+
+    NamingCompliance {
+        varchar_255 JobName
+        varchar_max Message
+        datetime2_7 DetectedAt
+        datetime2_7 ImportedAt
+    }
+
+    SQL_Database__Prep_tables ||--o{ Query : "queries"

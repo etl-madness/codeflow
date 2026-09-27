@@ -1,0 +1,31 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "secondaryColor": "#F8FAFC", "tertiaryColor": "#F1F5F9", "lineColor": "#64748B", "textColor": "#0F172A", "mainBkg": "#FFFFFF", "nodeBorder": "#CBD5E1", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#0F172A", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart TD
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph lane_pipeline_if_than_else_flow ["Pipeline (if_than_else)"]
+        s1[("<b>ScriptA</b><br/><small>SQL Query</small><br/><sub>Query system databases to check if count is greater than zero</sub>")]:::dbNode
+        s3["<b>IF_2</b><br/><small>Condition</small><br/><sub>Check if ScriptAResult == true</sub>"]:::assertNode
+        s4["<b>GroupA</b><br/><small>Group</small><br/><sub>Step group</sub>"]:::defaultNode
+        s5["<b>GroupB</b><br/><small>Group</small><br/><sub>Step group</sub>"]:::defaultNode
+        s6[("<b>GroupA_Alt_Step1</b><br/><small>SQL Query</small><br/><sub>Execute direct Group A alternative step status query</sub>")]:::dbNode
+    end
+
+    subgraph lane_db_primary_db ["Database (primary_db)"]
+        s2[("<b>sys.databases</b><br/><small>Database Table</small><br/><sub>Table sys.databases in primary_db</sub>")]:::dbNode
+    end
+
+    s1 -.->|"FROM"| s2
+    s1 --> s3
+    s3 -->|"true"| s4
+    s3 -->|"false"| s5
+    s4 --> s6
+    s5 --> s6
+
+    style lane_pipeline_if_than_else_flow fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_db_primary_db fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;

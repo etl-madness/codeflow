@@ -1,0 +1,19 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "primaryColor": "#FFFFFF", "primaryBorderColor": "#3B82F6", "primaryTextColor": "#0F172A", "lineColor": "#64748B", "textColor": "#0F172A"}}}%%
+erDiagram
+    preflight_check {
+        string id PK
+    }
+
+    preflight_check_2 {
+        string id PK
+    }
+
+    LoadData {
+        string id PK
+    }
+
+    preflight_check ||--o{ preflight_check_2 : "queries"
+    preflight_check_2 ||--o{ Pipeline_Preflight__gcloud_billing : "queries"
+    Pipeline_Preflight__gcloud_billing ||--o{ Pipeline_Flow__gcloud_billing : "queries"
+    LoadData ||--o{ Database__database1 : "INSERT INTO"
+    Pipeline_Flow__gcloud_billing ||--o{ LoadData : "GCLOUD_BILLING_JSON"

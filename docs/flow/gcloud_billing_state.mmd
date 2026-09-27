@@ -1,0 +1,17 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "stateBkg": "#FFFFFF", "stateBorder": "#3B82F6", "stateLabelColor": "#0F172A", "labelColor": "#0F172A", "transitionColor": "#64748B", "transitionLabelColor": "#334155"}}}%%
+stateDiagram-v2
+    [*] --> Start
+    state "Pipeline Preflight (gcloud_billing)" as State_1
+    State_1: entry / preflight_check
+    State_1: do / preflight_check_2
+    State_1: do / database_check
+    State_1: exit / user_check
+    state "Pipeline Flow (gcloud_billing)" as State_2
+    State_2: entry / ExtractData
+    State_2: exit / LoadData
+    state "Database (database1)" as State_3
+    State_3: entry / dbo.GcpBillingExport
+    Start --> State_1
+    State_1 --> State_2: [next]
+    State_2 --> State_3: [next]
+    State_3 --> [*]
