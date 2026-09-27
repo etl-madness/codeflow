@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3918 1005" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F9FAFB" />
+<text x="40" y="28" class="title">TsqlTerminal Workflow (Flowchart TD)</text>
+<rect x="40" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="40" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="288" y="87" class="lane-title" text-anchor="middle">C# Class (Program)</text>
+<rect x="55" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="133" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="144" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="167" class="node-title">Main</text>
+<text x="65" y="183" class="node-desc">Method Main</text>
+<rect x="55" y="230" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="238" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="249" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="272" class="node-title">ReadSqlInput</text>
+<text x="65" y="288" class="node-desc">Method ReadSqlInput</text>
+<rect x="55" y="335" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="343" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="70" y="354" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="65" y="377" class="node-title">EF: lines.Add</text>
+<text x="65" y="393" class="node-desc">Entity Framework Operation lines.Add(nextLine)</text>
+<rect x="55" y="440" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="448" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="459" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="482" class="node-title">TryResolveSqlFileCommand</text>
+<text x="65" y="498" class="node-desc">Method TryResolveSqlFileCommand</text>
+<rect x="55" y="545" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="553" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="564" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="587" class="node-title">ExecuteSql</text>
+<text x="65" y="603" class="node-desc">Method ExecuteSql</text>
+<rect x="55" y="650" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="658" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="669" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="692" class="node-title">ExecuteSqlNewConnection</text>
+<text x="65" y="708" class="node-desc">Method ExecuteSqlNewConnection</text>
+<rect x="55" y="755" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="763" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="774" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="797" class="node-title">ExecuteSqlFile</text>
+<text x="65" y="813" class="node-desc">Method ExecuteSqlFile</text>
+<rect x="55" y="860" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="65" y="868" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="70" y="879" class="node-badge" fill="#4B5563">Function</text>
+<text x="65" y="902" class="node-title">ExecuteSqlFileNewConnection</text>
+<text x="65" y="918" class="node-desc">Method ExecuteSqlFileNewConnection</text>
+<rect x="597" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="597" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="845" y="87" class="lane-title" text-anchor="middle">C# Class (ProgramTests)</text>
+<rect x="612" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="622" y="133" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="627" y="144" class="node-badge" fill="#4B5563">Function</text>
+<text x="622" y="167" class="node-title">TryResolveSqlFileCommand_ParsesValidFileCommands</text>
+<text x="622" y="183" class="node-desc">Method TryResolveSqlFileCommand_ParsesValidFileCommands</text>
+<rect x="612" y="230" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="622" y="238" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="627" y="249" class="node-badge" fill="#4B5563">Function</text>
+<text x="622" y="272" class="node-title">TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</text>
+<text x="622" y="288" class="node-desc">Method TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</text>
+<rect x="612" y="335" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="622" y="343" width="70" height="15" rx="3" fill="#4B5563" opacity="0.15" />
+<text x="627" y="354" class="node-badge" fill="#4B5563">Function</text>
+<text x="622" y="377" class="node-title">TryResolveSqlFileCommand_UnquotesQuotedPaths</text>
+<text x="622" y="393" class="node-desc">Method TryResolveSqlFileCommand_UnquotesQuotedPaths</text>
+<rect x="1154" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="1154" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="1402" y="87" class="lane-title" text-anchor="middle">SQL Database (script)</text>
+<rect x="1169" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1179" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1184" y="144" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="1179" y="167" class="node-title">SELECT FROM sysssislog</text>
+<text x="1179" y="183" class="node-desc">Query table sysssislog</text>
+<rect x="1710" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="1710" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="1959" y="87" class="lane-title" text-anchor="middle">SQL Database (script_get_resultsets)</text>
+<rect x="1725" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1735" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1740" y="144" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="1735" y="167" class="node-title">SELECT FROM sysssislog</text>
+<text x="1735" y="183" class="node-desc">Query table sysssislog</text>
+<rect x="1725" y="230" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1735" y="238" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="1740" y="249" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="1735" y="272" class="node-title">EXEC SET</text>
+<text x="1735" y="288" class="node-desc">Executes stored procedure SET</text>
+<rect x="1725" y="335" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1735" y="343" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="1740" y="354" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="1735" y="377" class="node-title">SELECT FROM temp</text>
+<text x="1735" y="393" class="node-desc">Query table temp</text>
+<rect x="1725" y="440" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1735" y="448" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="1740" y="459" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="1735" y="482" class="node-title">EXEC wrapper</text>
+<text x="1735" y="498" class="node-desc">Executes stored procedure wrapper</text>
+<rect x="1725" y="545" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="1735" y="553" width="119" height="15" rx="3" fill="#7C3AED" opacity="0.15" />
+<text x="1740" y="564" class="node-badge" fill="#7C3AED">StoredProcedure</text>
+<text x="1735" y="587" class="node-title">EXEC in</text>
+<text x="1735" y="603" class="node-desc">Executes stored procedure in</text>
+<rect x="2267" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="2267" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="2516" y="87" class="lane-title" text-anchor="middle">SQL Database (script_session)</text>
+<rect x="2282" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="2292" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="2297" y="144" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="2292" y="167" class="node-title">SELECT FROM sysssislog</text>
+<text x="2292" y="183" class="node-desc">Query table sysssislog</text>
+<rect x="2824" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="2824" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="3072" y="87" class="lane-title" text-anchor="middle">SQL Database (script_temptable)</text>
+<rect x="2839" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="2849" y="133" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="2854" y="144" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="2849" y="167" class="node-title">SELECT FROM sysssislog</text>
+<text x="2849" y="183" class="node-desc">Query table sysssislog</text>
+<rect x="2839" y="230" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="2849" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="2854" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="2849" y="272" class="node-title">CREATE TABLE #TempTable</text>
+<text x="2849" y="288" class="node-desc">Table schema definition #TempTable</text>
+<rect x="2839" y="335" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="2849" y="343" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="2854" y="354" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="2849" y="377" class="node-title">SELECT FROM columns</text>
+<text x="2849" y="393" class="node-desc">Query table columns</text>
+<rect x="3381" y="60" width="497" height="925" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5" />
+<rect x="3381" y="60" width="497" height="45" rx="8" fill="#E5E7EB" />
+<text x="3629" y="87" class="lane-title" text-anchor="middle">SQL Database (ssis_logging_report)</text>
+<rect x="3396" y="125" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="133" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="144" class="node-badge" fill="#059669">TableOperation</text>
+<text x="3406" y="167" class="node-title">INSERT INTO @DurationMap</text>
+<text x="3406" y="183" class="node-desc">Insert records into table @DurationMap</text>
+<rect x="3396" y="230" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="238" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="249" class="node-badge" fill="#059669">TableOperation</text>
+<text x="3406" y="272" class="node-title">INSERT INTO @PackageRunsTable</text>
+<text x="3406" y="288" class="node-desc">Insert records into table @PackageRunsTable</text>
+<rect x="3396" y="335" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="343" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="354" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="3406" y="377" class="node-title">SELECT FROM @PackageRunsTable</text>
+<text x="3406" y="393" class="node-desc">Query table @PackageRunsTable</text>
+<rect x="3396" y="440" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="448" width="112" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="459" class="node-badge" fill="#059669">TableOperation</text>
+<text x="3406" y="482" class="node-title">INSERT INTO @ExecutionRunsTable</text>
+<text x="3406" y="498" class="node-desc">Insert records into table @ExecutionRunsTable</text>
+<rect x="3396" y="545" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="553" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="564" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="3406" y="587" class="node-title">SELECT FROM @PackageRunsTable</text>
+<text x="3406" y="603" class="node-desc">Query table @PackageRunsTable</text>
+<rect x="3396" y="650" width="467" height="70" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)" />
+<rect x="3406" y="658" width="105" height="15" rx="3" fill="#059669" opacity="0.15" />
+<text x="3411" y="669" class="node-badge" fill="#059669">DatabaseQuery</text>
+<text x="3406" y="692" class="node-title">SELECT FROM sysssislog</text>
+<text x="3406" y="708" class="node-desc">Query table sysssislog</text>
+<path d="M 288 300 L 288 335" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"  />
+<rect x="232" y="308" width="112" height="16" rx="3" fill="#FFFFFF" opacity="0.9" />
+<text x="288" y="320" class="edge-label" text-anchor="middle">executes EF query</text>
+</svg>

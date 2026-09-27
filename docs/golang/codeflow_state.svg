@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7074 320" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="50" y="28" class="title">CodeFlow Workflow (State Diagram)</text>
+<circle cx="75" cy="150" r="14" fill="#1F2937" filter="url(#shadow)" />
+<text x="75" y="178" class="node-badge" fill="#64748B" text-anchor="middle">[*] Start</text>
+<line x1="89" y1="150" x2="140" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="140" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="140" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="140" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="140" y1="114" x2="471" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="305" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (main)</text>
+<text x="156" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> main</text>
+<line x1="471" y1="150" x2="541" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="479" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="506" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="541" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="541" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="541" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="541" y1="114" x2="872" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="706" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (analyzer)</text>
+<text x="557" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> FileAnalysisResult</text>
+<line x1="872" y1="150" x2="942" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="880" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="907" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="942" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="942" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="942" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="942" y1="114" x2="1272" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="1107" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (csharp)</text>
+<text x="958" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="958" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="958" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.Language</text>
+<text x="958" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.CanAnalyze</text>
+<text x="958" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +8 more</text>
+<line x1="1272" y1="150" x2="1342" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="1280" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="1307" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="1342" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="1342" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="1342" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="1342" y1="114" x2="1673" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="1508" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (flowxml)</text>
+<text x="1358" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="1358" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> CustomWorkflowXML</text>
+<text x="1358" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> CustomStepXML</text>
+<text x="1358" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> CustomTransitionXML</text>
+<text x="1358" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +14 more</text>
+<line x1="1673" y1="150" x2="1743" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="1681" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="1708" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="1743" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="1743" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="1743" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="1743" y1="114" x2="2074" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="1909" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (golang)</text>
+<text x="1759" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="1759" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="1759" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.Language</text>
+<text x="1759" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.CanAnalyze</text>
+<text x="1759" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +10 more</text>
+<line x1="2074" y1="150" x2="2144" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="2082" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="2109" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="2144" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="2144" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="2144" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="2144" y1="114" x2="2475" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="2309" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (python)</text>
+<text x="2160" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="2160" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="2160" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.Language</text>
+<text x="2160" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.CanAnalyze</text>
+<text x="2160" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +4 more</text>
+<line x1="2475" y1="150" x2="2545" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="2483" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="2510" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="2545" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="2545" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="2545" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="2545" y1="114" x2="2876" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="2710" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (sql)</text>
+<text x="2561" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="2561" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="2561" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.Language</text>
+<text x="2561" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Analyzer.CanAnalyze</text>
+<text x="2561" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +6 more</text>
+<line x1="2876" y1="150" x2="2946" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="2884" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="2911" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="2946" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="2946" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="2946" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="2946" y1="114" x2="3276" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="3111" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (ssis)</text>
+<text x="2962" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Analyzer</text>
+<text x="2962" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> dtsxNode</text>
+<text x="2962" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> connInfo</text>
+<text x="2962" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="2962" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +22 more</text>
+<line x1="3276" y1="150" x2="3346" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="3284" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="3311" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="3346" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="3346" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="3346" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="3346" y1="114" x2="3677" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="3512" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (cli)</text>
+<text x="3362" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> AnalyzeOptions</text>
+<text x="3362" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> NewAnalyzeCmd</text>
+<text x="3362" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">exit /</tspan> RunAnalyze</text>
+<line x1="3677" y1="150" x2="3747" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="3685" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="3712" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="3747" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="3747" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="3747" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="3747" y1="114" x2="4078" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="3913" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (correlation)</text>
+<text x="3763" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Engine</text>
+<text x="3763" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="3763" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Engine.Correlate</text>
+<text x="3763" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Engine.correlateRoutes</text>
+<text x="3763" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +4 more</text>
+<line x1="4078" y1="150" x2="4148" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="4086" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="4113" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="4148" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="4148" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="4148" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="4148" y1="114" x2="4479" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="4313" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (discovery)</text>
+<text x="4164" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> DiscoveredFile</text>
+<text x="4164" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Scanner</text>
+<text x="4164" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> NewScanner</text>
+<text x="4164" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> NewScannerWithOptions</text>
+<text x="4164" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +4 more</text>
+<line x1="4479" y1="150" x2="4549" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="4487" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="4514" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="4549" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="4549" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="4549" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="4549" y1="114" x2="4880" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="4714" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (enrichment)</text>
+<text x="4565" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Enricher</text>
+<text x="4565" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> StepInput</text>
+<text x="4565" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> StepOutput</text>
+<text x="4565" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="4565" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +9 more</text>
+<line x1="4880" y1="150" x2="4950" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="4888" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="4915" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="4950" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="4950" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="4950" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="4950" y1="114" x2="5280" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="5115" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (excel)</text>
+<text x="4966" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Exporter</text>
+<text x="4966" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="4966" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Exporter.Export</text>
+<text x="4966" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Exporter.ExportCustomWorkbook</text>
+<text x="4966" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +5 more</text>
+<line x1="5280" y1="150" x2="5350" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="5288" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="5315" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="5350" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="5350" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="5350" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="5350" y1="114" x2="5681" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="5516" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (json)</text>
+<text x="5366" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Exporter</text>
+<text x="5366" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="5366" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">exit /</tspan> Exporter.Export</text>
+<line x1="5681" y1="150" x2="5751" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="5689" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="5716" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="5751" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="5751" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="5751" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="5751" y1="114" x2="6082" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="5917" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (mermaid)</text>
+<text x="5767" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Exporter</text>
+<text x="5767" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="5767" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Exporter.Export</text>
+<text x="5767" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Exporter.ExportFlowchart</text>
+<text x="5767" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +27 more</text>
+<line x1="6082" y1="150" x2="6152" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="6090" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="6117" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="6152" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="6152" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="6152" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="6152" y1="114" x2="6483" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="6317" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (svg)</text>
+<text x="6168" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> Exporter</text>
+<text x="6168" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> point</text>
+<text x="6168" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> nodeBox</text>
+<text x="6168" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> New</text>
+<text x="6168" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +24 more</text>
+<line x1="6483" y1="150" x2="6553" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="6491" y="128" width="54" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" />
+<text x="6518" y="140" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#4F46E5" text-anchor="middle">[next]</text>
+<rect x="6553" y="80" width="331" height="140" rx="16" fill="#FFFFFF" stroke="#64748B" stroke-width="2" filter="url(#shadow)" />
+<rect x="6553" y="80" width="331" height="34" rx="16" fill="#F1F5F9" />
+<rect x="6553" y="104" width="331" height="10" fill="#F1F5F9" />
+<line x1="6553" y1="114" x2="6884" y2="114" stroke="#CBD5E1" stroke-width="1.5" />
+<text x="6718" y="102" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#1E293B" text-anchor="middle">Go Service (model)</text>
+<text x="6569" y="132" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">entry /</tspan> ProcessModel</text>
+<text x="6569" y="150" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> ASTNode</text>
+<text x="6569" y="168" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Step</text>
+<text x="6569" y="186" font-family="-apple-system, sans-serif" font-size="10" fill="#475569"><tspan font-weight="600" fill="#2563EB">do /</tspan> Link</text>
+<text x="6569" y="204" font-family="-apple-system, sans-serif" font-size="10" fill="#94A3B8">... +7 more</text>
+<line x1="6884" y1="150" x2="6916" y2="150" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+<circle cx="6934" cy="150" r="16" fill="none" stroke="#1F2937" stroke-width="2.5" />
+<circle cx="6934" cy="150" r="10" fill="#1F2937" />
+<text x="6934" y="180" class="node-badge" fill="#64748B" text-anchor="middle">[*] End</text>
+</svg>

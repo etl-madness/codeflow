@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3948 945" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">TsqlTerminal Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">C# Class (Program)</text>
+<text x="522" y="93" class="node-desc" font-size="11">8 milestones in stage</text>
+<rect x="55" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#1  [Function]</text>
+<text x="67" y="193" class="node-title" font-size="12">Main</text>
+<text x="67" y="209" class="node-desc">Method Main</text>
+<rect x="55" y="240" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="240" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="67" y="278" class="node-title" font-size="12">ReadSqlInput</text>
+<text x="67" y="294" class="node-desc">Method ReadSqlInput</text>
+<rect x="55" y="325" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseQuery]</text>
+<text x="67" y="363" class="node-title" font-size="12">EF: lines.Add</text>
+<text x="67" y="379" class="node-desc">Entity Framework Operation lines.Add(nextLine)</text>
+<rect x="55" y="410" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="410" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="67" y="448" class="node-title" font-size="12">TryResolveSqlFileCommand</text>
+<text x="67" y="464" class="node-desc">Method TryResolveSqlFileCommand</text>
+<rect x="55" y="495" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="495" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="67" y="533" class="node-title" font-size="12">ExecuteSql</text>
+<text x="67" y="549" class="node-desc">Method ExecuteSql</text>
+<rect x="55" y="580" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="580" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="598" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="67" y="618" class="node-title" font-size="12">ExecuteSqlNewConnection</text>
+<text x="67" y="634" class="node-desc">Method ExecuteSqlNewConnection</text>
+<rect x="55" y="665" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="665" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="683" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="67" y="703" class="node-title" font-size="12">ExecuteSqlFile</text>
+<text x="67" y="719" class="node-desc">Method ExecuteSqlFile</text>
+<rect x="55" y="750" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="750" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="768" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="67" y="788" class="node-title" font-size="12">ExecuteSqlFileNewConnection</text>
+<text x="67" y="804" class="node-desc">Method ExecuteSqlFileNewConnection</text>
+<line x1="545" y1="102" x2="594" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="552" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="569" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="602" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="602" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="602" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="617" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="628" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="617" y="117" class="lane-title" font-size="14">C# Class (ProgramTests)</text>
+<text x="1084" y="93" class="node-desc" font-size="11">3 milestones in stage</text>
+<rect x="617" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="617" y="155" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="629" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#1  [Function]</text>
+<text x="629" y="193" class="node-title" font-size="12">TryResolveSqlFileCommand_ParsesValidFileCommands</text>
+<text x="629" y="209" class="node-desc">Method TryResolveSqlFileCommand_ParsesValidFileCommands</text>
+<rect x="617" y="240" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="617" y="240" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="629" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="629" y="278" class="node-title" font-size="12">TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</text>
+<text x="629" y="294" class="node-desc">Method TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</text>
+<rect x="617" y="325" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="617" y="325" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="629" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="629" y="363" class="node-title" font-size="12">TryResolveSqlFileCommand_UnquotesQuotedPaths</text>
+<text x="629" y="379" class="node-desc">Method TryResolveSqlFileCommand_UnquotesQuotedPaths</text>
+<line x1="1107" y1="102" x2="1156" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1114" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1131" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1164" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1164" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1164" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="1179" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1190" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 3</text>
+<text x="1179" y="117" class="lane-title" font-size="14">SQL Database (script)</text>
+<text x="1645" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="1179" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1179" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1191" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseQuery]</text>
+<text x="1191" y="193" class="node-title" font-size="12">SELECT FROM sysssislog</text>
+<text x="1191" y="209" class="node-desc">Query table sysssislog</text>
+<line x1="1668" y1="102" x2="1717" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1676" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1693" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1725" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1725" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1725" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="1740" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1751" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 4</text>
+<text x="1740" y="117" class="lane-title" font-size="14">SQL Database (script_get_resultsets)</text>
+<text x="2207" y="93" class="node-desc" font-size="11">5 milestones in stage</text>
+<rect x="1740" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1740" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1752" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseQuery]</text>
+<text x="1752" y="193" class="node-title" font-size="12">SELECT FROM sysssislog</text>
+<text x="1752" y="209" class="node-desc">Query table sysssislog</text>
+<rect x="1740" y="240" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1740" y="240" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="1752" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#2  [StoredProcedure]</text>
+<text x="1752" y="278" class="node-title" font-size="12">EXEC SET</text>
+<text x="1752" y="294" class="node-desc">Executes stored procedure SET</text>
+<rect x="1740" y="325" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1740" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1752" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseQuery]</text>
+<text x="1752" y="363" class="node-title" font-size="12">SELECT FROM temp</text>
+<text x="1752" y="379" class="node-desc">Query table temp</text>
+<rect x="1740" y="410" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1740" y="410" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="1752" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#4  [StoredProcedure]</text>
+<text x="1752" y="448" class="node-title" font-size="12">EXEC wrapper</text>
+<text x="1752" y="464" class="node-desc">Executes stored procedure wrapper</text>
+<rect x="1740" y="495" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1740" y="495" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="1752" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#5  [StoredProcedure]</text>
+<text x="1752" y="533" class="node-title" font-size="12">EXEC in</text>
+<text x="1752" y="549" class="node-desc">Executes stored procedure in</text>
+<line x1="2230" y1="102" x2="2279" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="2238" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="2255" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="2287" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="2287" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="2287" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="2302" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="2313" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 5</text>
+<text x="2302" y="117" class="lane-title" font-size="14">SQL Database (script_session)</text>
+<text x="2769" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="2302" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2302" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2314" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseQuery]</text>
+<text x="2314" y="193" class="node-title" font-size="12">SELECT FROM sysssislog</text>
+<text x="2314" y="209" class="node-desc">Query table sysssislog</text>
+<line x1="2792" y1="102" x2="2841" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="2800" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="2816" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="2849" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="2849" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="2849" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="2864" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="2875" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 6</text>
+<text x="2864" y="117" class="lane-title" font-size="14">SQL Database (script_temptable)</text>
+<text x="3331" y="93" class="node-desc" font-size="11">3 milestones in stage</text>
+<rect x="2864" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2864" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2876" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseQuery]</text>
+<text x="2876" y="193" class="node-title" font-size="12">SELECT FROM sysssislog</text>
+<text x="2876" y="209" class="node-desc">Query table sysssislog</text>
+<rect x="2864" y="240" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2864" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2876" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="2876" y="278" class="node-title" font-size="12">CREATE TABLE #TempTable</text>
+<text x="2876" y="294" class="node-desc">Table schema definition #TempTable</text>
+<rect x="2864" y="325" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2864" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="2876" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseQuery]</text>
+<text x="2876" y="363" class="node-title" font-size="12">SELECT FROM columns</text>
+<text x="2876" y="379" class="node-desc">Query table columns</text>
+<line x1="3354" y1="102" x2="3403" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="3361" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="3378" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="3411" y="65" width="497" height="785" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="3411" y="65" width="497" height="75" rx="12" fill="#EEF2FF" />
+<rect x="3411" y="128" width="497" height="12" fill="#EEF2FF" />
+<rect x="3426" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="3437" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 7</text>
+<text x="3426" y="117" class="lane-title" font-size="14">SQL Database (ssis_logging_report)</text>
+<text x="3893" y="93" class="node-desc" font-size="11">6 milestones in stage</text>
+<rect x="3426" y="155" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="3438" y="193" class="node-title" font-size="12">INSERT INTO @DurationMap</text>
+<text x="3438" y="209" class="node-desc">Insert records into table @DurationMap</text>
+<rect x="3426" y="240" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="3438" y="278" class="node-title" font-size="12">INSERT INTO @PackageRunsTable</text>
+<text x="3438" y="294" class="node-desc">Insert records into table @PackageRunsTable</text>
+<rect x="3426" y="325" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="325" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseQuery]</text>
+<text x="3438" y="363" class="node-title" font-size="12">SELECT FROM @PackageRunsTable</text>
+<text x="3438" y="379" class="node-desc">Query table @PackageRunsTable</text>
+<rect x="3426" y="410" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="410" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="428" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [TableOperation]</text>
+<text x="3438" y="448" class="node-title" font-size="12">INSERT INTO @ExecutionRunsTable</text>
+<text x="3438" y="464" class="node-desc">Insert records into table @ExecutionRunsTable</text>
+<rect x="3426" y="495" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="495" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="513" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [DatabaseQuery]</text>
+<text x="3438" y="533" class="node-title" font-size="12">SELECT FROM @PackageRunsTable</text>
+<text x="3438" y="549" class="node-desc">Query table @PackageRunsTable</text>
+<rect x="3426" y="580" width="467" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3426" y="580" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3438" y="598" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [DatabaseQuery]</text>
+<text x="3438" y="618" class="node-title" font-size="12">SELECT FROM sysssislog</text>
+<text x="3438" y="634" class="node-desc">Query table sysssislog</text>
+<line x1="288" y1="865" x2="3659" y2="865" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="288" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="288" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: C# Class (Program)</text>
+<circle cx="850" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="850" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: C# Class (ProgramTests)</text>
+<circle cx="1412" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1412" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 3: SQL Database (script)</text>
+<circle cx="1974" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1974" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 4: SQL Database (script_get_resultsets)</text>
+<circle cx="2536" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="2536" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 5: SQL Database (script_session)</text>
+<circle cx="3097" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="3097" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 6: SQL Database (script_temptable)</text>
+<circle cx="3659" cy="865" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="3659" y="887" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 7: SQL Database (ssis_logging_report)</text>
+</svg>

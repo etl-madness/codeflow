@@ -1,0 +1,480 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "secondaryColor": "#F8FAFC", "tertiaryColor": "#F1F5F9", "lineColor": "#64748B", "textColor": "#0F172A", "mainBkg": "#FFFFFF", "nodeBorder": "#CBD5E1", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#0F172A", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart LR
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph lane_go_main ["Go Service (main)"]
+        s1["<b>main</b><br/><small>Function</small><br/><sub>Function main</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_analyzer ["Go Service (analyzer)"]
+        s2[("<b>FileAnalysisResult</b><br/><small>Database Table</small><br/><sub>FileAnalysisResult contains the extracted model elements from analyzing a single file.</sub>")]:::dbNode
+    end
+
+    subgraph lane_go_csharp ["Go Service (csharp)"]
+        s3[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for C# and Razor/Blazor source files using tree-sitter.</sub>")]:::dbNode
+        s4["<b>New</b><br/><small>Function</small><br/><sub>New creates a new C# Analyzer.</sub>"]:::defaultNode
+        s5["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s6["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .cs and .razor extensions.</sub>"]:::defaultNode
+        s7["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses C# or Razor/Blazor files.</sub>"]:::defaultNode
+        s8["<b>Analyzer.analyzeRazor</b><br/><small>Function</small><br/><sub>Function Analyzer.analyzeRazor</sub>"]:::defaultNode
+        s9["<b>Analyzer.analyzeCSharp</b><br/><small>Function</small><br/><sub>Function Analyzer.analyzeCSharp</sub>"]:::defaultNode
+        s10["<b>Analyzer.extractFromNode</b><br/><small>Function</small><br/><sub>Function Analyzer.extractFromNode</sub>"]:::defaultNode
+        s11["<b>Analyzer.extractMethodInvocations</b><br/><small>Function</small><br/><sub>Function Analyzer.extractMethodInvocations</sub>"]:::defaultNode
+        s12["<b>extractCSharpRouteAttribute</b><br/><small>Function</small><br/><sub>Function extractCSharpRouteAttribute</sub>"]:::defaultNode
+        s13["<b>isEFOperation</b><br/><small>Function</small><br/><sub>Function isEFOperation</sub>"]:::defaultNode
+        s14["<b>cleanEFName</b><br/><small>Function</small><br/><sub>Function cleanEFName</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_flowxml ["Go Service (flowxml)"]
+        s15[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for workflow XML and SSIS packages.</sub>")]:::dbNode
+        s16[("<b>CustomWorkflowXML</b><br/><small>Database Table</small><br/><sub>Custom Workflow XML structures</sub>")]:::dbNode
+        s17[("<b>CustomStepXML</b><br/><small>Database Table</small><br/><sub>Go Struct CustomStepXML in flowxml</sub>")]:::dbNode
+        s18[("<b>CustomTransitionXML</b><br/><small>Database Table</small><br/><sub>Go Struct CustomTransitionXML in flowxml</sub>")]:::dbNode
+        s19[("<b>ProcessXML</b><br/><small>Database Table</small><br/><sub>BPMN / Generic Process XML structures</sub>")]:::dbNode
+        s20[("<b>GenericTaskXML</b><br/><small>Database Table</small><br/><sub>Go Struct GenericTaskXML in flowxml</sub>")]:::dbNode
+        s21[("<b>SequenceFlowXML</b><br/><small>Database Table</small><br/><sub>Go Struct SequenceFlowXML in flowxml</sub>")]:::dbNode
+        s22[("<b>pipelineNode</b><br/><small>Database Table</small><br/><sub>Go Struct pipelineNode in flowxml</sub>")]:::dbNode
+        s23["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Flow XML Analyzer.</sub>"]:::defaultNode
+        s24["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s25["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .xml and .dtsx extensions.</sub>"]:::defaultNode
+        s26["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile unmarshals workflow XML definitions into canonical ProcessModel elements.</sub>"]:::defaultNode
+        s27["<b>Analyzer.parseGenericOrSSISXML</b><br/><small>Function</small><br/><sub>Function Analyzer.parseGenericOrSSISXML</sub>"]:::defaultNode
+        s28["<b>Analyzer.parsePipelineXML</b><br/><small>Function</small><br/><sub>Function Analyzer.parsePipelineXML</sub>"]:::defaultNode
+        s29["<b>readPipelineVariables</b><br/><small>Function</small><br/><sub>Function readPipelineVariables</sub>"]:::defaultNode
+        s30["<b>readPipelineDatabases</b><br/><small>Function</small><br/><sub>Function readPipelineDatabases</sub>"]:::defaultNode
+        s31["<b>readPipelineChildNodes</b><br/><small>Function</small><br/><sub>Function readPipelineChildNodes</sub>"]:::defaultNode
+        s32["<b>readSinglePipelineNode</b><br/><small>Function</small><br/><sub>Function readSinglePipelineNode</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_golang ["Go Service (golang)"]
+        s33[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for Go source files.</sub>")]:::dbNode
+        s34["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Go Analyzer.</sub>"]:::defaultNode
+        s35["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s36["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true if the extension is .go.</sub>"]:::defaultNode
+        s37["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses Go source code and extracts endpoints, DB queries, gRPC registrations, and function calls.</sub>"]:::defaultNode
+        s38["<b>isGRPCHandler</b><br/><small>Function</small><br/><sub>isGRPCHandler checks if a function signature matches gRPC handler pattern.</sub>"]:::defaultNode
+        s39["<b>isHTTPHandlerFunc</b><br/><small>Function</small><br/><sub>isHTTPHandlerFunc checks if a function signature matches http.HandlerFunc.</sub>"]:::defaultNode
+        s40["<b>extractHTTPRoute</b><br/><small>Function</small><br/><sub>extractHTTPRoute detects HTTP route registration calls.</sub>"]:::defaultNode
+        s41["<b>extractGRPCRegistration</b><br/><small>Function</small><br/><sub>extractGRPCRegistration detects pb.Register...Server(...)</sub>"]:::defaultNode
+        s42["<b>extractDBQuery</b><br/><small>Function</small><br/><sub>extractDBQuery detects database calls like Query, Exec, Find, Create, etc.</sub>"]:::defaultNode
+        s43["<b>extractSimpleCallName</b><br/><small>Function</small><br/><sub>Function extractSimpleCallName</sub>"]:::defaultNode
+        s44["<b>extractQualifiedCall</b><br/><small>Function</small><br/><sub>Function extractQualifiedCall</sub>"]:::defaultNode
+        s45["<b>extractReceiverType</b><br/><small>Function</small><br/><sub>Function extractReceiverType</sub>"]:::defaultNode
+        s46["<b>exprToString</b><br/><small>Function</small><br/><sub>Function exprToString</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_python ["Go Service (python)"]
+        s47[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for Python files using tree-sitter.</sub>")]:::dbNode
+        s48["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Python Analyzer.</sub>"]:::defaultNode
+        s49["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s50["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .py extension.</sub>"]:::defaultNode
+        s51["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses Python files and extracts endpoints, functions, and call chains.</sub>"]:::defaultNode
+        s52["<b>Analyzer.extractCalls</b><br/><small>Function</small><br/><sub>Function Analyzer.extractCalls</sub>"]:::defaultNode
+        s53["<b>extractPythonRoute</b><br/><small>Function</small><br/><sub>Function extractPythonRoute</sub>"]:::defaultNode
+        s54["<b>isPythonDBCall</b><br/><small>Function</small><br/><sub>Function isPythonDBCall</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_sql ["Go Service (sql)"]
+        s55[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for SQL scripts and queries.</sub>")]:::dbNode
+        s56["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SQL Analyzer.</sub>"]:::defaultNode
+        s57["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s58["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .sql files.</sub>"]:::defaultNode
+        s59["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses SQL scripts and extracts table operations, views, stored procedures, and queries.</sub>"]:::defaultNode
+        s60["<b>Analyzer.processParsedStatement</b><br/><small>Function</small><br/><sub>Function Analyzer.processParsedStatement</sub>"]:::defaultNode
+        s61["<b>Analyzer.processFallbackStatement</b><br/><small>Function</small><br/><sub>Function Analyzer.processFallbackStatement</sub>"]:::defaultNode
+        s62["<b>extractTablesFromSelect</b><br/><small>Function</small><br/><sub>Function extractTablesFromSelect</sub>"]:::defaultNode
+        s63["<b>splitStatements</b><br/><small>Function</small><br/><sub>Function splitStatements</sub>"]:::defaultNode
+        s64["<b>extractTableColumns</b><br/><small>Function</small><br/><sub>Function extractTableColumns</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_ssis ["Go Service (ssis)"]
+        s65[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for SQL Server Integration Services (SSIS) .dtsx packages.</sub>")]:::dbNode
+        s66[("<b>dtsxNode</b><br/><small>Database Table</small><br/><sub>dtsxNode represents a node in the XML hierarchy with normalized attribute lookups.</sub>")]:::dbNode
+        s67[("<b>connInfo</b><br/><small>Database Table</small><br/><sub>connInfo stores parsed metadata about a connection manager.</sub>")]:::dbNode
+        s68["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SSIS Analyzer.</sub>"]:::defaultNode
+        s69["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        s70["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .dtsx and SSIS .xml files.</sub>"]:::defaultNode
+        s71["<b>dtsxNode.Attr</b><br/><small>Function</small><br/><sub>Function dtsxNode.Attr</sub>"]:::defaultNode
+        s72["<b>dtsxNode.FindChild</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindChild</sub>"]:::defaultNode
+        s73["<b>dtsxNode.FindChildren</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindChildren</sub>"]:::defaultNode
+        s74["<b>dtsxNode.FindDescendant</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindDescendant</sub>"]:::defaultNode
+        s75["<b>dtsxNode.FindDescendants</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindDescendants</sub>"]:::defaultNode
+        s76["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile unmarshals SSIS package XML definitions into canonical ProcessModel elements.</sub>"]:::defaultNode
+        s77["<b>parseDTSXTree</b><br/><small>Function</small><br/><sub>Function parseDTSXTree</sub>"]:::defaultNode
+        s78["<b>parseConnectionManager</b><br/><small>Function</small><br/><sub>Function parseConnectionManager</sub>"]:::defaultNode
+        s79["<b>extractParam</b><br/><small>Function</small><br/><sub>Function extractParam</sub>"]:::defaultNode
+        s80["<b>classifySSISTask</b><br/><small>Function</small><br/><sub>Function classifySSISTask</sub>"]:::defaultNode
+        s81["<b>cleanSQLIdentifier</b><br/><small>Function</small><br/><sub>Function cleanSQLIdentifier</sub>"]:::defaultNode
+        s82["<b>extractStoredProcedure</b><br/><small>Function</small><br/><sub>Function extractStoredProcedure</sub>"]:::defaultNode
+        s83["<b>extractTableAndAction</b><br/><small>Function</small><br/><sub>Function extractTableAndAction</sub>"]:::defaultNode
+        s84["<b>extractDBFromProc</b><br/><small>Function</small><br/><sub>Function extractDBFromProc</sub>"]:::defaultNode
+        s85["<b>extractDBFromTable</b><br/><small>Function</small><br/><sub>Function extractDBFromTable</sub>"]:::defaultNode
+        s86["<b>summarizeQuery</b><br/><small>Function</small><br/><sub>Function summarizeQuery</sub>"]:::defaultNode
+        s87["<b>sanitizeID</b><br/><small>Function</small><br/><sub>Function sanitizeID</sub>"]:::defaultNode
+        s88["<b>extractBaseName</b><br/><small>Function</small><br/><sub>Function extractBaseName</sub>"]:::defaultNode
+        s89["<b>formatPrecedenceCondition</b><br/><small>Function</small><br/><sub>Function formatPrecedenceCondition</sub>"]:::defaultNode
+        s90["<b>parseDataFlowComponents</b><br/><small>Function</small><br/><sub>Function parseDataFlowComponents</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_cli ["Go Service (cli)"]
+        s91[("<b>AnalyzeOptions</b><br/><small>Database Table</small><br/><sub>Go Struct AnalyzeOptions in cli</sub>")]:::dbNode
+        s92["<b>NewAnalyzeCmd</b><br/><small>Function</small><br/><sub>NewAnalyzeCmd creates the 'analyze' cobra command.</sub>"]:::defaultNode
+        s93["<b>RunAnalyze</b><br/><small>Function</small><br/><sub>RunAnalyze executes the full CodeFlow analysis pipeline.</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_correlation ["Go Service (correlation)"]
+        s94[("<b>Engine</b><br/><small>Database Table</small><br/><sub>Engine correlates steps across multi-language components and unifies them into a canonical ProcessModel.</sub>")]:::dbNode
+        s95["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Correlation Engine.</sub>"]:::defaultNode
+        s96["<b>Engine.Correlate</b><br/><small>Function</small><br/><sub>Correlate takes file analysis results and produces a correlated ProcessModel.</sub>"]:::defaultNode
+        s97["<b>Engine.correlateRoutes</b><br/><small>Function</small><br/><sub>Function Engine.correlateRoutes</sub>"]:::defaultNode
+        s98["<b>Engine.correlateDatabases</b><br/><small>Function</small><br/><sub>Function Engine.correlateDatabases</sub>"]:::defaultNode
+        s99["<b>Engine.correlateCalls</b><br/><small>Function</small><br/><sub>Function Engine.correlateCalls</sub>"]:::defaultNode
+        s100["<b>normalizeRoute</b><br/><small>Function</small><br/><sub>Function normalizeRoute</sub>"]:::defaultNode
+        s101["<b>matchWord</b><br/><small>Function</small><br/><sub>Function matchWord</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_discovery ["Go Service (discovery)"]
+        s102[("<b>DiscoveredFile</b><br/><small>Database Table</small><br/><sub>DiscoveredFile contains metadata about a recognized source file.</sub>")]:::dbNode
+        s103[("<b>Scanner</b><br/><small>Database Table</small><br/><sub>Scanner handles filesystem traversal and file filtering.</sub>")]:::dbNode
+        s104["<b>NewScanner</b><br/><small>Function</small><br/><sub>NewScanner creates a new Scanner instance for the given root directory. Optional excludes can be provided as folder names, relative paths (to cwd or to source root), absolute paths, or file glob patterns (e.g. *_test.go, test_*.py, *.spec.ts).</sub>"]:::defaultNode
+        s105["<b>NewScannerWithOptions</b><br/><small>Function</small><br/><sub>NewScannerWithOptions creates a new Scanner instance with configurable .gitignore handling.</sub>"]:::defaultNode
+        s106["<b>MapExtensionToLanguage</b><br/><small>Function</small><br/><sub>MapExtensionToLanguage maps a file extension to its recognized canonical language.</sub>"]:::defaultNode
+        s107["<b>Scanner.Scan</b><br/><small>Function</small><br/><sub>Scan performs filesystem discovery and returns matching source files.</sub>"]:::defaultNode
+        s108["<b>Scanner.isExcluded</b><br/><small>Function</small><br/><sub>Function Scanner.isExcluded</sub>"]:::defaultNode
+        s109["<b>matchPattern</b><br/><small>Function</small><br/><sub>matchPattern evaluates glob patterns including wildcards, base name matching, and double-star (**).</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_enrichment ["Go Service (enrichment)"]
+        s110[("<b>Enricher</b><br/><small>Database Table</small><br/><sub>Enricher enriches technical AST steps into business-readable descriptions using AI.</sub>")]:::dbNode
+        s111[("<b>StepInput</b><br/><small>Database Table</small><br/><sub>Go Struct StepInput in enrichment</sub>")]:::dbNode
+        s112[("<b>StepOutput</b><br/><small>Database Table</small><br/><sub>Go Struct StepOutput in enrichment</sub>")]:::dbNode
+        s113["<b>New</b><br/><small>Function</small><br/><sub>New creates a new AI Enricher with environment keys.</sub>"]:::defaultNode
+        s114["<b>Enricher.SetClient</b><br/><small>Function</small><br/><sub>SetClient allows injecting a custom HTTPClient for testing.</sub>"]:::defaultNode
+        s115["<b>Enricher.SetMockHandler</b><br/><small>Function</small><br/><sub>SetMockHandler allows mock AI responses in unit tests.</sub>"]:::defaultNode
+        s116(["<b>Enricher.Enrich</b><br/><small>API Endpoint</small><br/><sub>Enrich processes steps in ProcessModel and updates their descriptions.</sub>"]):::apiNode
+        s117(["<b>Enricher.callGemini</b><br/><small>API Endpoint</small><br/><sub>gRPC Service Handler Enricher.callGemini</sub>"]):::apiNode
+        s118(["<b>Enricher.callOpenAI</b><br/><small>API Endpoint</small><br/><sub>gRPC Service Handler Enricher.callOpenAI</sub>"]):::apiNode
+        s119["<b>Enricher.fallbackRuleBasedEnrichment</b><br/><small>Function</small><br/><sub>Function Enricher.fallbackRuleBasedEnrichment</sub>"]:::defaultNode
+        s120["<b>translateToBusinessTerms</b><br/><small>Function</small><br/><sub>Function translateToBusinessTerms</sub>"]:::defaultNode
+        s121["<b>splitCamelCase</b><br/><small>Function</small><br/><sub>Function splitCamelCase</sub>"]:::defaultNode
+        s122["<b>extractJSONFromResponse</b><br/><small>Function</small><br/><sub>Function extractJSONFromResponse</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_excel ["Go Service (excel)"]
+        s123[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into Visio Data Visualizer compatible workbooks.</sub>")]:::dbNode
+        s124["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Excel Exporter.</sub>"]:::defaultNode
+        s125["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export creates a standard single-sheet Visio Data Visualizer compatible Excel file at outputPath.</sub>"]:::defaultNode
+        s126["<b>Exporter.ExportCustomWorkbook</b><br/><small>Function</small><br/><sub>ExportCustomWorkbook creates an interactive, multi-sheet Excel Data Visualizer custom workbook. This workbook provides an in-Excel visual process navigator and complete dependency traceability that functions without requiring the retired Microsoft Visio Data Visualizer add-in.</sub>"]:::defaultNode
+        s127["<b>Exporter.buildDashboardSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildDashboardSheet</sub>"]:::defaultNode
+        s128["<b>Exporter.buildVisualMapSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildVisualMapSheet</sub>"]:::defaultNode
+        s129["<b>Exporter.buildSchemaSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildSchemaSheet</sub>"]:::defaultNode
+        s130["<b>Exporter.buildTraceabilitySheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildTraceabilitySheet</sub>"]:::defaultNode
+        s131["<b>Exporter.buildServicesSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildServicesSheet</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_json ["Go Service (json)"]
+        s132[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter exports ProcessModel to JSON.</sub>")]:::dbNode
+        s133["<b>New</b><br/><small>Function</small><br/><sub>New creates a new JSON Exporter.</sub>"]:::defaultNode
+        s134["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export serializes the ProcessModel to the specified file path in JSON format.</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_mermaid ["Go Service (mermaid)"]
+        s135[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into Mermaid diagrams.</sub>")]:::dbNode
+        s136["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Mermaid Exporter.</sub>"]:::defaultNode
+        s137["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export writes the default top-down flowchart (.mmd) to outputPath.</sub>"]:::defaultNode
+        s138["<b>Exporter.ExportFlowchart</b><br/><small>Function</small><br/><sub>ExportFlowchart writes a flowchart (TD or LR) diagram to outputPath.</sub>"]:::defaultNode
+        s139["<b>Exporter.ExportJourney</b><br/><small>Function</small><br/><sub>ExportJourney writes a universal journey flowchart (flowchart LR) to outputPath.</sub>"]:::defaultNode
+        s140["<b>Exporter.ExportSequence</b><br/><small>Function</small><br/><sub>ExportSequence writes a sequence diagram (sequenceDiagram) to outputPath.</sub>"]:::defaultNode
+        s141["<b>Exporter.ExportERDiagram</b><br/><small>Function</small><br/><sub>ExportERDiagram writes an Entity-Relationship diagram (erDiagram) to outputPath.</sub>"]:::defaultNode
+        s142["<b>Exporter.ExportStateDiagram</b><br/><small>Function</small><br/><sub>ExportStateDiagram writes a state diagram (stateDiagram-v2) to outputPath.</sub>"]:::defaultNode
+        s143["<b>Exporter.ExportMarkdown</b><br/><small>Function</small><br/><sub>ExportMarkdown writes the specified diagram wrapped inside a standard markdown code block.</sub>"]:::defaultNode
+        s144["<b>Exporter.Generate</b><br/><small>Function</small><br/><sub>Generate returns the default flowchart TD representation.</sub>"]:::defaultNode
+        s145["<b>Exporter.GenerateFlowchart</b><br/><small>Function</small><br/><sub>GenerateFlowchart returns a Mermaid flowchart (TD or LR) styled to match modern vector graphics. It maps node IDs to compact short IDs to stay within Mermaid's character limit.</sub>"]:::defaultNode
+        s146["<b>Exporter.GenerateJourney</b><br/><small>Function</small><br/><sub>GenerateJourney outputs a Universal Journey Flowchart using the standard 'flowchart LR' header. This is 100% compatible with all Markdown previewers and GitHub/IDE renderers.</sub>"]:::defaultNode
+        s147["<b>Exporter.GenerateSequenceDiagram</b><br/><small>Function</small><br/><sub>GenerateSequenceDiagram outputs a Mermaid sequenceDiagram showing interactions across swimlanes.</sub>"]:::defaultNode
+        s148["<b>Exporter.GenerateStateDiagram</b><br/><small>Function</small><br/><sub>GenerateStateDiagram outputs a Mermaid stateDiagram-v2 showing process state progression.</sub>"]:::defaultNode
+        s149["<b>Exporter.GenerateERDiagram</b><br/><small>Function</small><br/><sub>GenerateERDiagram returns a Mermaid Entity-Relationship diagram (erDiagram).</sub>"]:::defaultNode
+        s150["<b>Exporter.GenerateRawJourney</b><br/><small>Function</small><br/><sub>GenerateRawJourney outputs native Mermaid 'journey' syntax (for engines supporting the keyword).</sub>"]:::defaultNode
+        s151["<b>getStepEntityName</b><br/><small>Function</small><br/><sub>Function getStepEntityName</sub>"]:::defaultNode
+        s152["<b>cleanEntityName</b><br/><small>Function</small><br/><sub>Function cleanEntityName</sub>"]:::defaultNode
+        s153["<b>sanitizeEntityIdentifier</b><br/><small>Function</small><br/><sub>Function sanitizeEntityIdentifier</sub>"]:::defaultNode
+        s154["<b>sanitizeAttributeType</b><br/><small>Function</small><br/><sub>Function sanitizeAttributeType</sub>"]:::defaultNode
+        s155["<b>sanitizeEntityLabel</b><br/><small>Function</small><br/><sub>Function sanitizeEntityLabel</sub>"]:::defaultNode
+        s156["<b>cleanJourneyText</b><br/><small>Function</small><br/><sub>Function cleanJourneyText</sub>"]:::defaultNode
+        s157["<b>themeInitFlowchart</b><br/><small>Function</small><br/><sub>Function themeInitFlowchart</sub>"]:::defaultNode
+        s158["<b>flowchartClassDefs</b><br/><small>Function</small><br/><sub>Function flowchartClassDefs</sub>"]:::defaultNode
+        s159["<b>Exporter.formatNode</b><br/><small>Function</small><br/><sub>Function Exporter.formatNode</sub>"]:::defaultNode
+        s160["<b>escapeNodeText</b><br/><small>Function</small><br/><sub>Function escapeNodeText</sub>"]:::defaultNode
+        s161["<b>getClassForType</b><br/><small>Function</small><br/><sub>Function getClassForType</sub>"]:::defaultNode
+        s162["<b>formatTypeBadge</b><br/><small>Function</small><br/><sub>Function formatTypeBadge</sub>"]:::defaultNode
+        s163["<b>sanitizeID</b><br/><small>Function</small><br/><sub>Function sanitizeID</sub>"]:::defaultNode
+        s164["<b>escapeLabel</b><br/><small>Function</small><br/><sub>Function escapeLabel</sub>"]:::defaultNode
+        s165["<b>writeFile</b><br/><small>Function</small><br/><sub>Function writeFile</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_svg ["Go Service (svg)"]
+        s166[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into SVG vector diagrams.</sub>")]:::dbNode
+        s167[("<b>point</b><br/><small>Database Table</small><br/><sub>Go Struct point in svg</sub>")]:::dbNode
+        s168[("<b>nodeBox</b><br/><small>Database Table</small><br/><sub>Go Struct nodeBox in svg</sub>")]:::dbNode
+        s169["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SVG Exporter.</sub>"]:::defaultNode
+        s170["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export writes the ProcessModel as a Flowchart TD SVG file to outputPath.</sub>"]:::defaultNode
+        s171["<b>Exporter.ExportFlowchart</b><br/><small>Function</small><br/><sub>ExportFlowchart writes a Flowchart (TD or LR) SVG to outputPath.</sub>"]:::defaultNode
+        s172["<b>Exporter.ExportJourney</b><br/><small>Function</small><br/><sub>ExportJourney writes a Customer/Data Journey SVG to outputPath.</sub>"]:::defaultNode
+        s173["<b>Exporter.ExportSequenceDiagram</b><br/><small>Function</small><br/><sub>ExportSequenceDiagram writes a Lifeline Sequence Diagram SVG to outputPath.</sub>"]:::defaultNode
+        s174["<b>Exporter.ExportStateDiagram</b><br/><small>Function</small><br/><sub>ExportStateDiagram writes a UML State Machine SVG to outputPath.</sub>"]:::defaultNode
+        s175["<b>Exporter.ExportERDiagram</b><br/><small>Function</small><br/><sub>ExportERDiagram writes an Entity-Relationship SVG to outputPath.</sub>"]:::defaultNode
+        s176["<b>writeSVGFile</b><br/><small>Function</small><br/><sub>Function writeSVGFile</sub>"]:::defaultNode
+        s177["<b>Exporter.Generate</b><br/><small>Function</small><br/><sub>Generate renders the default SVG (Flowchart TD).</sub>"]:::defaultNode
+        s178["<b>Exporter.GenerateFlowchart</b><br/><small>Function</small><br/><sub>GenerateFlowchart renders either a TD (top-to-bottom) or LR (left-to-right) flowchart SVG.</sub>"]:::defaultNode
+        s179["<b>Exporter.GenerateFlowchartTD</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateFlowchartTD</sub>"]:::defaultNode
+        s180["<b>Exporter.GenerateFlowchartLR</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateFlowchartLR</sub>"]:::defaultNode
+        s181["<b>Exporter.GenerateJourney</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateJourney</sub>"]:::defaultNode
+        s182["<b>Exporter.GenerateSequenceDiagram</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateSequenceDiagram</sub>"]:::defaultNode
+        s183["<b>Exporter.GenerateStateDiagram</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateStateDiagram</sub>"]:::defaultNode
+        s184["<b>Exporter.GenerateERDiagram</b><br/><small>Function</small><br/><sub>Function Exporter.GenerateERDiagram</sub>"]:::defaultNode
+        s185["<b>commonSVGDefs</b><br/><small>Function</small><br/><sub>Function commonSVGDefs</sub>"]:::defaultNode
+        s186["<b>commonSVGStyles</b><br/><small>Function</small><br/><sub>Function commonSVGStyles</sub>"]:::defaultNode
+        s187["<b>collectLanesAndSteps</b><br/><small>Function</small><br/><sub>Function collectLanesAndSteps</sub>"]:::defaultNode
+        s188["<b>drawLinks</b><br/><small>Function</small><br/><sub>Function drawLinks</sub>"]:::defaultNode
+        s189["<b>getNodeColors</b><br/><small>Function</small><br/><sub>Function getNodeColors</sub>"]:::defaultNode
+        s190["<b>Exporter.truncate</b><br/><small>Function</small><br/><sub>Function Exporter.truncate</sub>"]:::defaultNode
+        s191["<b>truncateString</b><br/><small>Function</small><br/><sub>Function truncateString</sub>"]:::defaultNode
+        s192["<b>wrapText</b><br/><small>Function</small><br/><sub>Function wrapText</sub>"]:::defaultNode
+        s193["<b>measureModelText</b><br/><small>Function</small><br/><sub>Function measureModelText</sub>"]:::defaultNode
+    end
+
+    subgraph lane_go_model ["Go Service (model)"]
+        s194[("<b>ProcessModel</b><br/><small>Database Table</small><br/><sub>ProcessModel represents the top-level canonical graph of analyzed workflows.</sub>")]:::dbNode
+        s195[("<b>ASTNode</b><br/><small>Database Table</small><br/><sub>ASTNode represents an abstract syntax tree node for code analysis.</sub>")]:::dbNode
+        s196[("<b>Step</b><br/><small>Database Table</small><br/><sub>Step represents a discreet executable action or endpoint within a workflow.</sub>")]:::dbNode
+        s197[("<b>Link</b><br/><small>Database Table</small><br/><sub>Link represents a directed connection or transition between two Steps.</sub>")]:::dbNode
+        s198[("<b>Swimlane</b><br/><small>Database Table</small><br/><sub>Swimlane categorizes steps by service, domain, module, or layer.</sub>")]:::dbNode
+        s199["<b>NewProcessModel</b><br/><small>Function</small><br/><sub>NewProcessModel initializes an empty ProcessModel.</sub>"]:::defaultNode
+        s200["<b>ProcessModel.AddSwimlane</b><br/><small>Function</small><br/><sub>AddSwimlane adds a new swimlane if not already present.</sub>"]:::defaultNode
+        s201["<b>ProcessModel.AddStep</b><br/><small>Function</small><br/><sub>AddStep appends a step to the model.</sub>"]:::defaultNode
+        s202["<b>ProcessModel.AddLink</b><br/><small>Function</small><br/><sub>AddLink appends a link between steps.</sub>"]:::defaultNode
+        s203["<b>ProcessModel.FindStep</b><br/><small>Function</small><br/><sub>FindStep finds a step by ID.</sub>"]:::defaultNode
+        s204["<b>ProcessModel.FindSwimlane</b><br/><small>Function</small><br/><sub>FindSwimlane finds a swimlane by ID.</sub>"]:::defaultNode
+    end
+
+    s7 -->|"calls"| s8
+    s7 -->|"calls"| s9
+    s8 -->|"calls"| s10
+    s9 -->|"calls"| s10
+    s10 -->|"calls"| s12
+    s10 -->|"calls"| s11
+    s11 -->|"calls"| s13
+    s11 -->|"calls"| s14
+    s26 -->|"calls"| s23
+    s26 -->|"calls"| s28
+    s26 -->|"calls"| s27
+    s28 -->|"calls"| s29
+    s28 -->|"calls"| s30
+    s28 -->|"calls"| s31
+    s31 -->|"calls"| s32
+    s32 -->|"calls"| s31
+    s37 -->|"calls"| s46
+    s37 -->|"calls"| s45
+    s37 -->|"calls"| s38
+    s37 -->|"calls"| s39
+    s37 -->|"calls"| s40
+    s37 -->|"calls"| s41
+    s37 -->|"calls"| s42
+    s37 -->|"calls"| s44
+    s37 -->|"calls"| s43
+    s51 -->|"calls"| s53
+    s51 -->|"calls"| s52
+    s52 -->|"calls"| s54
+    s59 -->|"calls"| s63
+    s59 -->|"calls"| s60
+    s59 -->|"calls"| s61
+    s60 -->|"calls"| s62
+    s60 -->|"calls"| s64
+    s61 -->|"calls"| s64
+    s76 -->|"calls"| s77
+    s76 -->|"calls"| s71
+    s76 -->|"calls"| s75
+    s76 -->|"calls"| s73
+    s76 -->|"calls"| s74
+    s76 -->|"calls"| s78
+    s76 -->|"calls"| s72
+    s76 -->|"calls"| s80
+    s76 -->|"calls"| s86
+    s76 -->|"calls"| s82
+    s76 -->|"calls"| s83
+    s76 -->|"calls"| s90
+    s76 -->|"calls"| s84
+    s76 -->|"calls"| s87
+    s76 -->|"calls"| s85
+    s76 -->|"calls"| s88
+    s76 -->|"calls"| s89
+    s78 -->|"calls"| s71
+    s78 -->|"calls"| s75
+    s78 -->|"calls"| s79
+    s82 -->|"calls"| s81
+    s83 -->|"calls"| s81
+    s89 -->|"calls"| s71
+    s90 -->|"calls"| s72
+    s90 -->|"calls"| s73
+    s90 -->|"calls"| s71
+    s90 -->|"calls"| s75
+    s90 -->|"calls"| s81
+    s92 -->|"calls"| s93
+    s96 -->|"calls"| s97
+    s96 -->|"calls"| s98
+    s96 -->|"calls"| s99
+    s97 -->|"calls"| s100
+    s98 -->|"calls"| s101
+    s104 -->|"calls"| s105
+    s107 -->|"calls"| s106
+    s107 -->|"calls"| s108
+    s108 -->|"calls"| s109
+    s116 -->|"calls"| s117
+    s116 -->|"calls"| s118
+    s116 -->|"calls"| s119
+    s116 -->|"calls"| s122
+    s119 -->|"calls"| s120
+    s120 -->|"calls"| s121
+    s126 -->|"calls"| s127
+    s126 -->|"calls"| s128
+    s126 -->|"calls"| s129
+    s126 -->|"calls"| s130
+    s126 -->|"calls"| s131
+    s137 -->|"calls"| s138
+    s138 -->|"calls"| s145
+    s138 -->|"calls"| s165
+    s139 -->|"calls"| s146
+    s139 -->|"calls"| s165
+    s140 -->|"calls"| s147
+    s140 -->|"calls"| s165
+    s141 -->|"calls"| s149
+    s141 -->|"calls"| s165
+    s142 -->|"calls"| s148
+    s142 -->|"calls"| s165
+    s143 -->|"calls"| s145
+    s143 -->|"calls"| s146
+    s143 -->|"calls"| s147
+    s143 -->|"calls"| s149
+    s143 -->|"calls"| s148
+    s143 -->|"calls"| s150
+    s143 -->|"calls"| s165
+    s144 -->|"calls"| s145
+    s145 -->|"calls"| s157
+    s145 -->|"calls"| s158
+    s145 -->|"calls"| s163
+    s145 -->|"calls"| s164
+    s145 -->|"calls"| s159
+    s146 -->|"calls"| s158
+    s146 -->|"calls"| s164
+    s146 -->|"calls"| s159
+    s147 -->|"calls"| s164
+    s147 -->|"calls"| s155
+    s148 -->|"calls"| s164
+    s149 -->|"calls"| s152
+    s149 -->|"calls"| s153
+    s149 -->|"calls"| s154
+    s149 -->|"calls"| s151
+    s149 -->|"calls"| s155
+    s150 -->|"calls"| s156
+    s151 -->|"calls"| s153
+    s151 -->|"calls"| s152
+    s159 -->|"calls"| s160
+    s159 -->|"calls"| s162
+    s159 -->|"calls"| s161
+    s170 -->|"calls"| s171
+    s171 -->|"calls"| s176
+    s171 -->|"calls"| s178
+    s172 -->|"calls"| s176
+    s172 -->|"calls"| s181
+    s173 -->|"calls"| s176
+    s173 -->|"calls"| s182
+    s174 -->|"calls"| s176
+    s174 -->|"calls"| s183
+    s175 -->|"calls"| s176
+    s175 -->|"calls"| s184
+    s177 -->|"calls"| s179
+    s178 -->|"calls"| s180
+    s178 -->|"calls"| s179
+    s179 -->|"calls"| s193
+    s179 -->|"calls"| s187
+    s179 -->|"calls"| s190
+    s179 -->|"calls"| s192
+    s179 -->|"calls"| s185
+    s179 -->|"calls"| s186
+    s179 -->|"calls"| s189
+    s179 -->|"calls"| s188
+    s180 -->|"calls"| s193
+    s180 -->|"calls"| s187
+    s180 -->|"calls"| s190
+    s180 -->|"calls"| s192
+    s180 -->|"calls"| s185
+    s180 -->|"calls"| s186
+    s180 -->|"calls"| s189
+    s180 -->|"calls"| s188
+    s181 -->|"calls"| s193
+    s181 -->|"calls"| s187
+    s181 -->|"calls"| s190
+    s181 -->|"calls"| s192
+    s181 -->|"calls"| s185
+    s181 -->|"calls"| s186
+    s181 -->|"calls"| s189
+    s182 -->|"calls"| s193
+    s182 -->|"calls"| s187
+    s182 -->|"calls"| s185
+    s182 -->|"calls"| s186
+    s182 -->|"calls"| s190
+    s183 -->|"calls"| s193
+    s183 -->|"calls"| s187
+    s183 -->|"calls"| s185
+    s183 -->|"calls"| s186
+    s183 -->|"calls"| s190
+    s184 -->|"calls"| s193
+    s184 -->|"calls"| s185
+    s184 -->|"calls"| s186
+    s184 -->|"calls"| s190
+    s1 -.->|"calls"| s92
+    s26 -.->|"calls"| s76
+    s26 -.->|"calls"| s68
+    s76 -.->|"calls"| s163
+    s93 -.->|"calls"| s105
+    s93 -.->|"calls"| s107
+    s93 -.->|"calls"| s34
+    s93 -.->|"calls"| s4
+    s93 -.->|"calls"| s48
+    s93 -.->|"calls"| s56
+    s93 -.->|"calls"| s23
+    s93 -.->|"calls"| s68
+    s93 -.->|"calls"| s95
+    s93 -.->|"calls"| s113
+    s93 -.->|"calls"| s116
+    s93 -.->|"calls"| s170
+    s93 -.->|"calls"| s133
+    s93 -.->|"calls"| s136
+    s93 -.->|"calls"| s169
+    s93 -.->|"calls"| s126
+    s93 -.->|"calls"| s124
+    s96 -.->|"calls"| s199
+
+    style lane_go_main fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_analyzer fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_csharp fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_flowxml fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_golang fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_python fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_sql fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_ssis fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_cli fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_correlation fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_discovery fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_enrichment fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_excel fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_json fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_mermaid fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_svg fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;
+    style lane_go_model fill:#F8FAFC,stroke:#E2E8F0,stroke-width:1.5px,rx:8px,ry:8px;

@@ -1,0 +1,264 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "lineColor": "#2563EB", "clusterBkg": "#F8FAFC", "clusterBorder": "#CBD5E1", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart LR
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph stage_1 ["Stage 1: Go Service (main)"]
+        direction TB
+        j1["<b>main</b><br/><small>Function</small><br/><sub>Function main</sub>"]:::defaultNode
+    end
+
+    subgraph stage_2 ["Stage 2: Go Service (analyzer)"]
+        direction TB
+        j2[("<b>FileAnalysisResult</b><br/><small>Database Table</small><br/><sub>FileAnalysisResult contains the extracted model elements from analyzing a single file.</sub>")]:::dbNode
+    end
+
+    subgraph stage_3 ["Stage 3: Go Service (csharp)"]
+        direction TB
+        j3[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for C# and Razor/Blazor source files using tree-sitter.</sub>")]:::dbNode
+        j4["<b>New</b><br/><small>Function</small><br/><sub>New creates a new C# Analyzer.</sub>"]:::defaultNode
+        j5["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j6["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .cs and .razor extensions.</sub>"]:::defaultNode
+        j7["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses C# or Razor/Blazor files.</sub>"]:::defaultNode
+        j8["<b>Analyzer.analyzeRazor</b><br/><small>Function</small><br/><sub>Function Analyzer.analyzeRazor</sub>"]:::defaultNode
+        j9["<b>Analyzer.analyzeCSharp</b><br/><small>Function</small><br/><sub>Function Analyzer.analyzeCSharp</sub>"]:::defaultNode
+        j10["<b>Analyzer.extractFromNode</b><br/><small>Function</small><br/><sub>Function Analyzer.extractFromNode</sub>"]:::defaultNode
+        j11["<b>Analyzer.extractMethodInvocations</b><br/><small>Function</small><br/><sub>Function Analyzer.extractMethodInvocations</sub>"]:::defaultNode
+        j12["<b>extractCSharpRouteAttribute</b><br/><small>Function</small><br/><sub>Function extractCSharpRouteAttribute</sub>"]:::defaultNode
+        j13["<b>isEFOperation</b><br/><small>Function</small><br/><sub>Function isEFOperation</sub>"]:::defaultNode
+        j14["<b>cleanEFName</b><br/><small>Function</small><br/><sub>Function cleanEFName</sub>"]:::defaultNode
+    end
+
+    subgraph stage_4 ["Stage 4: Go Service (flowxml)"]
+        direction TB
+        j15[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for workflow XML and SSIS packages.</sub>")]:::dbNode
+        j16[("<b>CustomWorkflowXML</b><br/><small>Database Table</small><br/><sub>Custom Workflow XML structures</sub>")]:::dbNode
+        j17[("<b>CustomStepXML</b><br/><small>Database Table</small><br/><sub>Go Struct CustomStepXML in flowxml</sub>")]:::dbNode
+        j18[("<b>CustomTransitionXML</b><br/><small>Database Table</small><br/><sub>Go Struct CustomTransitionXML in flowxml</sub>")]:::dbNode
+        j19[("<b>ProcessXML</b><br/><small>Database Table</small><br/><sub>BPMN / Generic Process XML structures</sub>")]:::dbNode
+        j20[("<b>GenericTaskXML</b><br/><small>Database Table</small><br/><sub>Go Struct GenericTaskXML in flowxml</sub>")]:::dbNode
+        j21[("<b>SequenceFlowXML</b><br/><small>Database Table</small><br/><sub>Go Struct SequenceFlowXML in flowxml</sub>")]:::dbNode
+        j22[("<b>pipelineNode</b><br/><small>Database Table</small><br/><sub>Go Struct pipelineNode in flowxml</sub>")]:::dbNode
+        j23["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Flow XML Analyzer.</sub>"]:::defaultNode
+        j24["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j25["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .xml and .dtsx extensions.</sub>"]:::defaultNode
+        j26["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile unmarshals workflow XML definitions into canonical ProcessModel elements.</sub>"]:::defaultNode
+        stage_4_more["+ 6 more steps..."]
+    end
+
+    subgraph stage_5 ["Stage 5: Go Service (golang)"]
+        direction TB
+        j27[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for Go source files.</sub>")]:::dbNode
+        j28["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Go Analyzer.</sub>"]:::defaultNode
+        j29["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j30["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true if the extension is .go.</sub>"]:::defaultNode
+        j31["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses Go source code and extracts endpoints, DB queries, gRPC registrations, and function calls.</sub>"]:::defaultNode
+        j32["<b>isGRPCHandler</b><br/><small>Function</small><br/><sub>isGRPCHandler checks if a function signature matches gRPC handler pattern.</sub>"]:::defaultNode
+        j33["<b>isHTTPHandlerFunc</b><br/><small>Function</small><br/><sub>isHTTPHandlerFunc checks if a function signature matches http.HandlerFunc.</sub>"]:::defaultNode
+        j34["<b>extractHTTPRoute</b><br/><small>Function</small><br/><sub>extractHTTPRoute detects HTTP route registration calls.</sub>"]:::defaultNode
+        j35["<b>extractGRPCRegistration</b><br/><small>Function</small><br/><sub>extractGRPCRegistration detects pb.Register...Server(...)</sub>"]:::defaultNode
+        j36["<b>extractDBQuery</b><br/><small>Function</small><br/><sub>extractDBQuery detects database calls like Query, Exec, Find, Create, etc.</sub>"]:::defaultNode
+        j37["<b>extractSimpleCallName</b><br/><small>Function</small><br/><sub>Function extractSimpleCallName</sub>"]:::defaultNode
+        j38["<b>extractQualifiedCall</b><br/><small>Function</small><br/><sub>Function extractQualifiedCall</sub>"]:::defaultNode
+        stage_5_more["+ 2 more steps..."]
+    end
+
+    subgraph stage_6 ["Stage 6: Go Service (python)"]
+        direction TB
+        j39[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for Python files using tree-sitter.</sub>")]:::dbNode
+        j40["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Python Analyzer.</sub>"]:::defaultNode
+        j41["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j42["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .py extension.</sub>"]:::defaultNode
+        j43["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses Python files and extracts endpoints, functions, and call chains.</sub>"]:::defaultNode
+        j44["<b>Analyzer.extractCalls</b><br/><small>Function</small><br/><sub>Function Analyzer.extractCalls</sub>"]:::defaultNode
+        j45["<b>extractPythonRoute</b><br/><small>Function</small><br/><sub>Function extractPythonRoute</sub>"]:::defaultNode
+        j46["<b>isPythonDBCall</b><br/><small>Function</small><br/><sub>Function isPythonDBCall</sub>"]:::defaultNode
+    end
+
+    subgraph stage_7 ["Stage 7: Go Service (sql)"]
+        direction TB
+        j47[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for SQL scripts and queries.</sub>")]:::dbNode
+        j48["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SQL Analyzer.</sub>"]:::defaultNode
+        j49["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j50["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .sql files.</sub>"]:::defaultNode
+        j51["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile parses SQL scripts and extracts table operations, views, stored procedures, and queries.</sub>"]:::defaultNode
+        j52["<b>Analyzer.processParsedStatement</b><br/><small>Function</small><br/><sub>Function Analyzer.processParsedStatement</sub>"]:::defaultNode
+        j53["<b>Analyzer.processFallbackStatement</b><br/><small>Function</small><br/><sub>Function Analyzer.processFallbackStatement</sub>"]:::defaultNode
+        j54["<b>extractTablesFromSelect</b><br/><small>Function</small><br/><sub>Function extractTablesFromSelect</sub>"]:::defaultNode
+        j55["<b>splitStatements</b><br/><small>Function</small><br/><sub>Function splitStatements</sub>"]:::defaultNode
+        j56["<b>extractTableColumns</b><br/><small>Function</small><br/><sub>Function extractTableColumns</sub>"]:::defaultNode
+    end
+
+    subgraph stage_8 ["Stage 8: Go Service (ssis)"]
+        direction TB
+        j57[("<b>Analyzer</b><br/><small>Database Table</small><br/><sub>Analyzer implements static analysis for SQL Server Integration Services (SSIS) .dtsx packages.</sub>")]:::dbNode
+        j58[("<b>dtsxNode</b><br/><small>Database Table</small><br/><sub>dtsxNode represents a node in the XML hierarchy with normalized attribute lookups.</sub>")]:::dbNode
+        j59[("<b>connInfo</b><br/><small>Database Table</small><br/><sub>connInfo stores parsed metadata about a connection manager.</sub>")]:::dbNode
+        j60["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SSIS Analyzer.</sub>"]:::defaultNode
+        j61["<b>Analyzer.Language</b><br/><small>Function</small><br/><sub>Language returns the language identifier.</sub>"]:::defaultNode
+        j62["<b>Analyzer.CanAnalyze</b><br/><small>Function</small><br/><sub>CanAnalyze returns true for .dtsx and SSIS .xml files.</sub>"]:::defaultNode
+        j63["<b>dtsxNode.Attr</b><br/><small>Function</small><br/><sub>Function dtsxNode.Attr</sub>"]:::defaultNode
+        j64["<b>dtsxNode.FindChild</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindChild</sub>"]:::defaultNode
+        j65["<b>dtsxNode.FindChildren</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindChildren</sub>"]:::defaultNode
+        j66["<b>dtsxNode.FindDescendant</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindDescendant</sub>"]:::defaultNode
+        j67["<b>dtsxNode.FindDescendants</b><br/><small>Function</small><br/><sub>Function dtsxNode.FindDescendants</sub>"]:::defaultNode
+        j68["<b>Analyzer.AnalyzeFile</b><br/><small>Function</small><br/><sub>AnalyzeFile unmarshals SSIS package XML definitions into canonical ProcessModel elements.</sub>"]:::defaultNode
+        stage_8_more["+ 14 more steps..."]
+    end
+
+    subgraph stage_9 ["Stage 9: Go Service (cli)"]
+        direction TB
+        j69[("<b>AnalyzeOptions</b><br/><small>Database Table</small><br/><sub>Go Struct AnalyzeOptions in cli</sub>")]:::dbNode
+        j70["<b>NewAnalyzeCmd</b><br/><small>Function</small><br/><sub>NewAnalyzeCmd creates the 'analyze' cobra command.</sub>"]:::defaultNode
+        j71["<b>RunAnalyze</b><br/><small>Function</small><br/><sub>RunAnalyze executes the full CodeFlow analysis pipeline.</sub>"]:::defaultNode
+    end
+
+    subgraph stage_10 ["Stage 10: Go Service (correlation)"]
+        direction TB
+        j72[("<b>Engine</b><br/><small>Database Table</small><br/><sub>Engine correlates steps across multi-language components and unifies them into a canonical ProcessModel.</sub>")]:::dbNode
+        j73["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Correlation Engine.</sub>"]:::defaultNode
+        j74["<b>Engine.Correlate</b><br/><small>Function</small><br/><sub>Correlate takes file analysis results and produces a correlated ProcessModel.</sub>"]:::defaultNode
+        j75["<b>Engine.correlateRoutes</b><br/><small>Function</small><br/><sub>Function Engine.correlateRoutes</sub>"]:::defaultNode
+        j76["<b>Engine.correlateDatabases</b><br/><small>Function</small><br/><sub>Function Engine.correlateDatabases</sub>"]:::defaultNode
+        j77["<b>Engine.correlateCalls</b><br/><small>Function</small><br/><sub>Function Engine.correlateCalls</sub>"]:::defaultNode
+        j78["<b>normalizeRoute</b><br/><small>Function</small><br/><sub>Function normalizeRoute</sub>"]:::defaultNode
+        j79["<b>matchWord</b><br/><small>Function</small><br/><sub>Function matchWord</sub>"]:::defaultNode
+    end
+
+    subgraph stage_11 ["Stage 11: Go Service (discovery)"]
+        direction TB
+        j80[("<b>DiscoveredFile</b><br/><small>Database Table</small><br/><sub>DiscoveredFile contains metadata about a recognized source file.</sub>")]:::dbNode
+        j81[("<b>Scanner</b><br/><small>Database Table</small><br/><sub>Scanner handles filesystem traversal and file filtering.</sub>")]:::dbNode
+        j82["<b>NewScanner</b><br/><small>Function</small><br/><sub>NewScanner creates a new Scanner instance for the given root directory. Optional excludes can be provided as folder names, relative paths (to cwd or to source root), absolute paths, or file glob patterns (e.g. *_test.go, test_*.py, *.spec.ts).</sub>"]:::defaultNode
+        j83["<b>NewScannerWithOptions</b><br/><small>Function</small><br/><sub>NewScannerWithOptions creates a new Scanner instance with configurable .gitignore handling.</sub>"]:::defaultNode
+        j84["<b>MapExtensionToLanguage</b><br/><small>Function</small><br/><sub>MapExtensionToLanguage maps a file extension to its recognized canonical language.</sub>"]:::defaultNode
+        j85["<b>Scanner.Scan</b><br/><small>Function</small><br/><sub>Scan performs filesystem discovery and returns matching source files.</sub>"]:::defaultNode
+        j86["<b>Scanner.isExcluded</b><br/><small>Function</small><br/><sub>Function Scanner.isExcluded</sub>"]:::defaultNode
+        j87["<b>matchPattern</b><br/><small>Function</small><br/><sub>matchPattern evaluates glob patterns including wildcards, base name matching, and double-star (**).</sub>"]:::defaultNode
+    end
+
+    subgraph stage_12 ["Stage 12: Go Service (enrichment)"]
+        direction TB
+        j88[("<b>Enricher</b><br/><small>Database Table</small><br/><sub>Enricher enriches technical AST steps into business-readable descriptions using AI.</sub>")]:::dbNode
+        j89[("<b>StepInput</b><br/><small>Database Table</small><br/><sub>Go Struct StepInput in enrichment</sub>")]:::dbNode
+        j90[("<b>StepOutput</b><br/><small>Database Table</small><br/><sub>Go Struct StepOutput in enrichment</sub>")]:::dbNode
+        j91["<b>New</b><br/><small>Function</small><br/><sub>New creates a new AI Enricher with environment keys.</sub>"]:::defaultNode
+        j92["<b>Enricher.SetClient</b><br/><small>Function</small><br/><sub>SetClient allows injecting a custom HTTPClient for testing.</sub>"]:::defaultNode
+        j93["<b>Enricher.SetMockHandler</b><br/><small>Function</small><br/><sub>SetMockHandler allows mock AI responses in unit tests.</sub>"]:::defaultNode
+        j94(["<b>Enricher.Enrich</b><br/><small>API Endpoint</small><br/><sub>Enrich processes steps in ProcessModel and updates their descriptions.</sub>"]):::apiNode
+        j95(["<b>Enricher.callGemini</b><br/><small>API Endpoint</small><br/><sub>gRPC Service Handler Enricher.callGemini</sub>"]):::apiNode
+        j96(["<b>Enricher.callOpenAI</b><br/><small>API Endpoint</small><br/><sub>gRPC Service Handler Enricher.callOpenAI</sub>"]):::apiNode
+        j97["<b>Enricher.fallbackRuleBasedEnrichment</b><br/><small>Function</small><br/><sub>Function Enricher.fallbackRuleBasedEnrichment</sub>"]:::defaultNode
+        j98["<b>translateToBusinessTerms</b><br/><small>Function</small><br/><sub>Function translateToBusinessTerms</sub>"]:::defaultNode
+        j99["<b>splitCamelCase</b><br/><small>Function</small><br/><sub>Function splitCamelCase</sub>"]:::defaultNode
+        stage_12_more["+ 1 more steps..."]
+    end
+
+    subgraph stage_13 ["Stage 13: Go Service (excel)"]
+        direction TB
+        j100[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into Visio Data Visualizer compatible workbooks.</sub>")]:::dbNode
+        j101["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Excel Exporter.</sub>"]:::defaultNode
+        j102["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export creates a standard single-sheet Visio Data Visualizer compatible Excel file at outputPath.</sub>"]:::defaultNode
+        j103["<b>Exporter.ExportCustomWorkbook</b><br/><small>Function</small><br/><sub>ExportCustomWorkbook creates an interactive, multi-sheet Excel Data Visualizer custom workbook. This workbook provides an in-Excel visual process navigator and complete dependency traceability that functions without requiring the retired Microsoft Visio Data Visualizer add-in.</sub>"]:::defaultNode
+        j104["<b>Exporter.buildDashboardSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildDashboardSheet</sub>"]:::defaultNode
+        j105["<b>Exporter.buildVisualMapSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildVisualMapSheet</sub>"]:::defaultNode
+        j106["<b>Exporter.buildSchemaSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildSchemaSheet</sub>"]:::defaultNode
+        j107["<b>Exporter.buildTraceabilitySheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildTraceabilitySheet</sub>"]:::defaultNode
+        j108["<b>Exporter.buildServicesSheet</b><br/><small>Function</small><br/><sub>Function Exporter.buildServicesSheet</sub>"]:::defaultNode
+    end
+
+    subgraph stage_14 ["Stage 14: Go Service (json)"]
+        direction TB
+        j109[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter exports ProcessModel to JSON.</sub>")]:::dbNode
+        j110["<b>New</b><br/><small>Function</small><br/><sub>New creates a new JSON Exporter.</sub>"]:::defaultNode
+        j111["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export serializes the ProcessModel to the specified file path in JSON format.</sub>"]:::defaultNode
+    end
+
+    subgraph stage_15 ["Stage 15: Go Service (mermaid)"]
+        direction TB
+        j112[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into Mermaid diagrams.</sub>")]:::dbNode
+        j113["<b>New</b><br/><small>Function</small><br/><sub>New creates a new Mermaid Exporter.</sub>"]:::defaultNode
+        j114["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export writes the default top-down flowchart (.mmd) to outputPath.</sub>"]:::defaultNode
+        j115["<b>Exporter.ExportFlowchart</b><br/><small>Function</small><br/><sub>ExportFlowchart writes a flowchart (TD or LR) diagram to outputPath.</sub>"]:::defaultNode
+        j116["<b>Exporter.ExportJourney</b><br/><small>Function</small><br/><sub>ExportJourney writes a universal journey flowchart (flowchart LR) to outputPath.</sub>"]:::defaultNode
+        j117["<b>Exporter.ExportSequence</b><br/><small>Function</small><br/><sub>ExportSequence writes a sequence diagram (sequenceDiagram) to outputPath.</sub>"]:::defaultNode
+        j118["<b>Exporter.ExportERDiagram</b><br/><small>Function</small><br/><sub>ExportERDiagram writes an Entity-Relationship diagram (erDiagram) to outputPath.</sub>"]:::defaultNode
+        j119["<b>Exporter.ExportStateDiagram</b><br/><small>Function</small><br/><sub>ExportStateDiagram writes a state diagram (stateDiagram-v2) to outputPath.</sub>"]:::defaultNode
+        j120["<b>Exporter.ExportMarkdown</b><br/><small>Function</small><br/><sub>ExportMarkdown writes the specified diagram wrapped inside a standard markdown code block.</sub>"]:::defaultNode
+        j121["<b>Exporter.Generate</b><br/><small>Function</small><br/><sub>Generate returns the default flowchart TD representation.</sub>"]:::defaultNode
+        j122["<b>Exporter.GenerateFlowchart</b><br/><small>Function</small><br/><sub>GenerateFlowchart returns a Mermaid flowchart (TD or LR) styled to match modern vector graphics. It maps node IDs to compact short IDs to stay within Mermaid's character limit.</sub>"]:::defaultNode
+        j123["<b>Exporter.GenerateJourney</b><br/><small>Function</small><br/><sub>GenerateJourney outputs a Universal Journey Flowchart using the standard 'flowchart LR' header. This is 100% compatible with all Markdown previewers and GitHub/IDE renderers.</sub>"]:::defaultNode
+        stage_15_more["+ 19 more steps..."]
+    end
+
+    subgraph stage_16 ["Stage 16: Go Service (svg)"]
+        direction TB
+        j124[("<b>Exporter</b><br/><small>Database Table</small><br/><sub>Exporter converts a ProcessModel into SVG vector diagrams.</sub>")]:::dbNode
+        j125[("<b>point</b><br/><small>Database Table</small><br/><sub>Go Struct point in svg</sub>")]:::dbNode
+        j126[("<b>nodeBox</b><br/><small>Database Table</small><br/><sub>Go Struct nodeBox in svg</sub>")]:::dbNode
+        j127["<b>New</b><br/><small>Function</small><br/><sub>New creates a new SVG Exporter.</sub>"]:::defaultNode
+        j128["<b>Exporter.Export</b><br/><small>Function</small><br/><sub>Export writes the ProcessModel as a Flowchart TD SVG file to outputPath.</sub>"]:::defaultNode
+        j129["<b>Exporter.ExportFlowchart</b><br/><small>Function</small><br/><sub>ExportFlowchart writes a Flowchart (TD or LR) SVG to outputPath.</sub>"]:::defaultNode
+        j130["<b>Exporter.ExportJourney</b><br/><small>Function</small><br/><sub>ExportJourney writes a Customer/Data Journey SVG to outputPath.</sub>"]:::defaultNode
+        j131["<b>Exporter.ExportSequenceDiagram</b><br/><small>Function</small><br/><sub>ExportSequenceDiagram writes a Lifeline Sequence Diagram SVG to outputPath.</sub>"]:::defaultNode
+        j132["<b>Exporter.ExportStateDiagram</b><br/><small>Function</small><br/><sub>ExportStateDiagram writes a UML State Machine SVG to outputPath.</sub>"]:::defaultNode
+        j133["<b>Exporter.ExportERDiagram</b><br/><small>Function</small><br/><sub>ExportERDiagram writes an Entity-Relationship SVG to outputPath.</sub>"]:::defaultNode
+        j134["<b>writeSVGFile</b><br/><small>Function</small><br/><sub>Function writeSVGFile</sub>"]:::defaultNode
+        j135["<b>Exporter.Generate</b><br/><small>Function</small><br/><sub>Generate renders the default SVG (Flowchart TD).</sub>"]:::defaultNode
+        stage_16_more["+ 16 more steps..."]
+    end
+
+    subgraph stage_17 ["Stage 17: Go Service (model)"]
+        direction TB
+        j136[("<b>ProcessModel</b><br/><small>Database Table</small><br/><sub>ProcessModel represents the top-level canonical graph of analyzed workflows.</sub>")]:::dbNode
+        j137[("<b>ASTNode</b><br/><small>Database Table</small><br/><sub>ASTNode represents an abstract syntax tree node for code analysis.</sub>")]:::dbNode
+        j138[("<b>Step</b><br/><small>Database Table</small><br/><sub>Step represents a discreet executable action or endpoint within a workflow.</sub>")]:::dbNode
+        j139[("<b>Link</b><br/><small>Database Table</small><br/><sub>Link represents a directed connection or transition between two Steps.</sub>")]:::dbNode
+        j140[("<b>Swimlane</b><br/><small>Database Table</small><br/><sub>Swimlane categorizes steps by service, domain, module, or layer.</sub>")]:::dbNode
+        j141["<b>NewProcessModel</b><br/><small>Function</small><br/><sub>NewProcessModel initializes an empty ProcessModel.</sub>"]:::defaultNode
+        j142["<b>ProcessModel.AddSwimlane</b><br/><small>Function</small><br/><sub>AddSwimlane adds a new swimlane if not already present.</sub>"]:::defaultNode
+        j143["<b>ProcessModel.AddStep</b><br/><small>Function</small><br/><sub>AddStep appends a step to the model.</sub>"]:::defaultNode
+        j144["<b>ProcessModel.AddLink</b><br/><small>Function</small><br/><sub>AddLink appends a link between steps.</sub>"]:::defaultNode
+        j145["<b>ProcessModel.FindStep</b><br/><small>Function</small><br/><sub>FindStep finds a step by ID.</sub>"]:::defaultNode
+        j146["<b>ProcessModel.FindSwimlane</b><br/><small>Function</small><br/><sub>FindSwimlane finds a swimlane by ID.</sub>"]:::defaultNode
+    end
+
+    stage_1 ==> stage_2
+    stage_2 ==> stage_3
+    stage_3 ==> stage_4
+    stage_4 ==> stage_5
+    stage_5 ==> stage_6
+    stage_6 ==> stage_7
+    stage_7 ==> stage_8
+    stage_8 ==> stage_9
+    stage_9 ==> stage_10
+    stage_10 ==> stage_11
+    stage_11 ==> stage_12
+    stage_12 ==> stage_13
+    stage_13 ==> stage_14
+    stage_14 ==> stage_15
+    stage_15 ==> stage_16
+    stage_16 ==> stage_17
+
+    style stage_1 fill:#F8FAFC,stroke:#3B82F6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_2 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_3 fill:#F8FAFC,stroke:#8B5CF6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_4 fill:#F8FAFC,stroke:#F59E0B,stroke-width:2px,rx:8px,ry:8px;
+    style stage_5 fill:#F8FAFC,stroke:#EC4899,stroke-width:2px,rx:8px,ry:8px;
+    style stage_6 fill:#F8FAFC,stroke:#06B6D4,stroke-width:2px,rx:8px,ry:8px;
+    style stage_7 fill:#F8FAFC,stroke:#3B82F6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_8 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_9 fill:#F8FAFC,stroke:#8B5CF6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_10 fill:#F8FAFC,stroke:#F59E0B,stroke-width:2px,rx:8px,ry:8px;
+    style stage_11 fill:#F8FAFC,stroke:#EC4899,stroke-width:2px,rx:8px,ry:8px;
+    style stage_12 fill:#F8FAFC,stroke:#06B6D4,stroke-width:2px,rx:8px,ry:8px;
+    style stage_13 fill:#F8FAFC,stroke:#3B82F6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_14 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_15 fill:#F8FAFC,stroke:#8B5CF6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_16 fill:#F8FAFC,stroke:#F59E0B,stroke-width:2px,rx:8px,ry:8px;
+    style stage_17 fill:#F8FAFC,stroke:#EC4899,stroke-width:2px,rx:8px,ry:8px;

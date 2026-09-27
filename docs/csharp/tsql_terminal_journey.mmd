@@ -1,0 +1,79 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "fontSize": "13px", "primaryColor": "#FFFFFF", "primaryBorderColor": "#CBD5E1", "primaryTextColor": "#0F172A", "lineColor": "#2563EB", "clusterBkg": "#F8FAFC", "clusterBorder": "#CBD5E1", "edgeLabelBackground": "#FFFFFF"}, "maxTextSize": 1000000}}%%
+flowchart LR
+    classDef default fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef defaultNode fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#0F172A,rx:6px,ry:6px;
+    classDef dbNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#065F46,rx:6px,ry:6px;
+    classDef apiNode fill:#FFFFFF,stroke:#3B82F6,stroke-width:2px,color:#1E40AF,rx:6px,ry:6px;
+    classDef scriptNode fill:#FFFFFF,stroke:#6366F1,stroke-width:2px,color:#3730A3,rx:6px,ry:6px;
+    classDef procNode fill:#FFFFFF,stroke:#8B5CF6,stroke-width:2px,color:#5B21B6,rx:6px,ry:6px;
+    classDef taskNode fill:#FFFFFF,stroke:#F59E0B,stroke-width:2px,color:#92400E,rx:6px,ry:6px;
+    classDef assertNode fill:#FFFFFF,stroke:#EC4899,stroke-width:2px,color:#9D174D,rx:6px,ry:6px;
+    subgraph stage_2 ["Stage 2: C# Class (Program)"]
+        direction TB
+        j1["<b>Main</b><br/><small>Function</small><br/><sub>Method Main</sub>"]:::defaultNode
+        j2["<b>ReadSqlInput</b><br/><small>Function</small><br/><sub>Method ReadSqlInput</sub>"]:::defaultNode
+        j3[("<b>EF: lines.Add</b><br/><small>SQL Query</small><br/><sub>Entity Framework Operation lines.Add(nextLine)</sub>")]:::dbNode
+        j4["<b>TryResolveSqlFileCommand</b><br/><small>Function</small><br/><sub>Method TryResolveSqlFileCommand</sub>"]:::defaultNode
+        j5["<b>ExecuteSql</b><br/><small>Function</small><br/><sub>Method ExecuteSql</sub>"]:::defaultNode
+        j6["<b>ExecuteSqlNewConnection</b><br/><small>Function</small><br/><sub>Method ExecuteSqlNewConnection</sub>"]:::defaultNode
+        j7["<b>ExecuteSqlFile</b><br/><small>Function</small><br/><sub>Method ExecuteSqlFile</sub>"]:::defaultNode
+        j8["<b>ExecuteSqlFileNewConnection</b><br/><small>Function</small><br/><sub>Method ExecuteSqlFileNewConnection</sub>"]:::defaultNode
+    end
+
+    subgraph stage_4 ["Stage 4: C# Class (ProgramTests)"]
+        direction TB
+        j9["<b>TryResolveSqlFileCommand_ParsesValidFileCommands</b><br/><small>Function</small><br/><sub>Method TryResolveSqlFileCommand_ParsesValidFileCommands</sub>"]:::defaultNode
+        j10["<b>TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</b><br/><small>Function</small><br/><sub>Method TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</sub>"]:::defaultNode
+        j11["<b>TryResolveSqlFileCommand_UnquotesQuotedPaths</b><br/><small>Function</small><br/><sub>Method TryResolveSqlFileCommand_UnquotesQuotedPaths</sub>"]:::defaultNode
+    end
+
+    subgraph stage_5 ["Stage 5: SQL Database (script)"]
+        direction TB
+        j12[("<b>SELECT FROM sysssislog</b><br/><small>SQL Query</small><br/><sub>Query table sysssislog</sub>")]:::dbNode
+    end
+
+    subgraph stage_6 ["Stage 6: SQL Database (script_get_resultsets)"]
+        direction TB
+        j13[("<b>SELECT FROM sysssislog</b><br/><small>SQL Query</small><br/><sub>Query table sysssislog</sub>")]:::dbNode
+        j14["<b>EXEC SET</b><br/><small>Stored Procedure</small><br/><sub>Executes stored procedure SET</sub>"]:::procNode
+        j15[("<b>SELECT FROM temp</b><br/><small>SQL Query</small><br/><sub>Query table temp</sub>")]:::dbNode
+        j16["<b>EXEC wrapper</b><br/><small>Stored Procedure</small><br/><sub>Executes stored procedure wrapper</sub>"]:::procNode
+        j17["<b>EXEC in</b><br/><small>Stored Procedure</small><br/><sub>Executes stored procedure in</sub>"]:::procNode
+    end
+
+    subgraph stage_7 ["Stage 7: SQL Database (script_session)"]
+        direction TB
+        j18[("<b>SELECT FROM sysssislog</b><br/><small>SQL Query</small><br/><sub>Query table sysssislog</sub>")]:::dbNode
+    end
+
+    subgraph stage_8 ["Stage 8: SQL Database (script_temptable)"]
+        direction TB
+        j19[("<b>SELECT FROM sysssislog</b><br/><small>SQL Query</small><br/><sub>Query table sysssislog</sub>")]:::dbNode
+        j20[("<b>CREATE TABLE #TempTable</b><br/><small>Table Operation</small><br/><sub>Table schema definition #TempTable</sub>")]:::dbNode
+        j21[("<b>SELECT FROM columns</b><br/><small>SQL Query</small><br/><sub>Query table columns</sub>")]:::dbNode
+    end
+
+    subgraph stage_9 ["Stage 9: SQL Database (ssis_logging_report)"]
+        direction TB
+        j22[("<b>INSERT INTO @DurationMap</b><br/><small>Table Operation</small><br/><sub>Insert records into table @DurationMap</sub>")]:::dbNode
+        j23[("<b>INSERT INTO @PackageRunsTable</b><br/><small>Table Operation</small><br/><sub>Insert records into table @PackageRunsTable</sub>")]:::dbNode
+        j24[("<b>SELECT FROM @PackageRunsTable</b><br/><small>SQL Query</small><br/><sub>Query table @PackageRunsTable</sub>")]:::dbNode
+        j25[("<b>INSERT INTO @ExecutionRunsTable</b><br/><small>Table Operation</small><br/><sub>Insert records into table @ExecutionRunsTable</sub>")]:::dbNode
+        j26[("<b>SELECT FROM @PackageRunsTable</b><br/><small>SQL Query</small><br/><sub>Query table @PackageRunsTable</sub>")]:::dbNode
+        j27[("<b>SELECT FROM sysssislog</b><br/><small>SQL Query</small><br/><sub>Query table sysssislog</sub>")]:::dbNode
+    end
+
+    stage_2 ==> stage_4
+    stage_4 ==> stage_5
+    stage_5 ==> stage_6
+    stage_6 ==> stage_7
+    stage_7 ==> stage_8
+    stage_8 ==> stage_9
+
+    style stage_2 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_4 fill:#F8FAFC,stroke:#F59E0B,stroke-width:2px,rx:8px,ry:8px;
+    style stage_5 fill:#F8FAFC,stroke:#EC4899,stroke-width:2px,rx:8px,ry:8px;
+    style stage_6 fill:#F8FAFC,stroke:#06B6D4,stroke-width:2px,rx:8px,ry:8px;
+    style stage_7 fill:#F8FAFC,stroke:#3B82F6,stroke-width:2px,rx:8px,ry:8px;
+    style stage_8 fill:#F8FAFC,stroke:#10B981,stroke-width:2px,rx:8px,ry:8px;
+    style stage_9 fill:#F8FAFC,stroke:#8B5CF6,stroke-width:2px,rx:8px,ry:8px;

@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1156 2160" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="50" y="28" class="title">TsqlTerminal Workflow (ER Diagram)</text>
+<rect x="50" y="80" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="80" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="102" width="488" height="8" fill="#2563EB" />
+<text x="60" y="100" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  Main</text>
+<text x="60" y="130" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="148" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="166" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="60" y="184" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="80" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="80" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="102" width="488" height="8" fill="#2563EB" />
+<text x="628" y="100" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  ReadSqlInput</text>
+<text x="628" y="130" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="148" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="166" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="628" y="184" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="270" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="270" width="488" height="30" rx="6" fill="#059669" />
+<rect x="50" y="292" width="488" height="8" fill="#059669" />
+<text x="60" y="290" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[TABLE]  EF: lines.Add</text>
+<text x="60" y="320" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="338" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="356" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="60" y="374" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="618" y="270" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="270" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="292" width="488" height="8" fill="#2563EB" />
+<text x="628" y="290" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  TryResolveSqlFileCommand</text>
+<text x="628" y="320" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="338" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="356" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="628" y="374" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="460" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="460" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="482" width="488" height="8" fill="#2563EB" />
+<text x="60" y="480" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  ExecuteSql</text>
+<text x="60" y="510" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="528" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="546" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="60" y="564" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="460" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="460" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="482" width="488" height="8" fill="#2563EB" />
+<text x="628" y="480" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  ExecuteSqlNewConnection</text>
+<text x="628" y="510" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="528" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="546" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="628" y="564" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="650" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="650" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="672" width="488" height="8" fill="#2563EB" />
+<text x="60" y="670" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  ExecuteSqlFile</text>
+<text x="60" y="700" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="718" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="736" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="60" y="754" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="650" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="650" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="672" width="488" height="8" fill="#2563EB" />
+<text x="628" y="670" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  ExecuteSqlFileNewConnection</text>
+<text x="628" y="700" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="718" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="736" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="628" y="754" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="840" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="840" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="862" width="488" height="8" fill="#2563EB" />
+<text x="60" y="860" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  TryResolveSqlFileCommand_ParsesValidFileCommands</text>
+<text x="60" y="890" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="908" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="926" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="60" y="944" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="840" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="840" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="862" width="488" height="8" fill="#2563EB" />
+<text x="628" y="860" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands</text>
+<text x="628" y="890" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="908" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="926" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="628" y="944" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="1030" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1030" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="1052" width="488" height="8" fill="#2563EB" />
+<text x="60" y="1050" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  TryResolveSqlFileCommand_UnquotesQuotedPaths</text>
+<text x="60" y="1080" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="1098" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="1116" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : Function</text>
+<text x="60" y="1134" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="1030" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1030" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="1052" width="488" height="8" fill="#2563EB" />
+<text x="628" y="1050" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  SELECT FROM sysssislog</text>
+<text x="628" y="1080" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="1098" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="1116" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : DatabaseQuery</text>
+<text x="628" y="1134" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="1220" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1220" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="1242" width="488" height="8" fill="#2563EB" />
+<text x="60" y="1240" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  EXEC SET</text>
+<text x="60" y="1270" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="1288" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="1306" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : StoredProcedure</text>
+<text x="60" y="1324" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="1220" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1220" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="1242" width="488" height="8" fill="#2563EB" />
+<text x="628" y="1240" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  SELECT FROM temp</text>
+<text x="628" y="1270" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="1288" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="1306" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : DatabaseQuery</text>
+<text x="628" y="1324" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="1410" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1410" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="1432" width="488" height="8" fill="#2563EB" />
+<text x="60" y="1430" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  EXEC wrapper</text>
+<text x="60" y="1460" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="1478" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="1496" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : StoredProcedure</text>
+<text x="60" y="1514" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="1410" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1410" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="1432" width="488" height="8" fill="#2563EB" />
+<text x="628" y="1430" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  EXEC in</text>
+<text x="628" y="1460" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="1478" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="1496" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : StoredProcedure</text>
+<text x="628" y="1514" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="1600" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1600" width="488" height="30" rx="6" fill="#059669" />
+<rect x="50" y="1622" width="488" height="8" fill="#059669" />
+<text x="60" y="1620" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[TABLE]  CREATE TABLE #TempTable</text>
+<text x="60" y="1650" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="1668" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="1686" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="60" y="1704" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="618" y="1600" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1600" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="618" y="1622" width="488" height="8" fill="#2563EB" />
+<text x="628" y="1620" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  SELECT FROM columns</text>
+<text x="628" y="1650" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="1668" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="1686" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : DatabaseQuery</text>
+<text x="628" y="1704" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="50" y="1790" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1790" width="488" height="30" rx="6" fill="#059669" />
+<rect x="50" y="1812" width="488" height="8" fill="#059669" />
+<text x="60" y="1810" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[TABLE]  INSERT INTO @DurationMap</text>
+<text x="60" y="1840" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="1858" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="1876" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="60" y="1894" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="618" y="1790" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1790" width="488" height="30" rx="6" fill="#059669" />
+<rect x="618" y="1812" width="488" height="8" fill="#059669" />
+<text x="628" y="1810" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[TABLE]  INSERT INTO @PackageRunsTable</text>
+<text x="628" y="1840" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="1858" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="1876" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="628" y="1894" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="50" y="1980" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1980" width="488" height="30" rx="6" fill="#2563EB" />
+<rect x="50" y="2002" width="488" height="8" fill="#2563EB" />
+<text x="60" y="2000" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[ENTITY]  SELECT FROM @PackageRunsTable</text>
+<text x="60" y="2030" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="2048" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="2066" font-family="'Consolas', monospace" font-size="10" fill="#334155">    type : DatabaseQuery</text>
+<text x="60" y="2084" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(20)</text>
+<rect x="618" y="1980" width="488" height="130" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="618" y="1980" width="488" height="30" rx="6" fill="#059669" />
+<rect x="618" y="2002" width="488" height="8" fill="#059669" />
+<text x="628" y="2000" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[TABLE]  INSERT INTO @ExecutionRunsTable</text>
+<text x="628" y="2030" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="628" y="2048" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="628" y="2066" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="628" y="2084" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<line x1="862" y1="145" x2="294" y2="335" stroke="#059669" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+<rect x="521" y="232" width="114" height="15" rx="3" fill="#ECFDF5" stroke="#A7F3D0" />
+<text x="578" y="243" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" fill="#047857" text-anchor="middle">executes EF query</text>
+</svg>

@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 836 6180" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="50" y="28" class="title">CodeFlow Workflow (ER Diagram)</text>
+<rect x="50" y="80" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="80" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="102" width="328" height="8" fill="#059669" />
+<text x="60" y="100" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  FileAnalysisResult</text>
+<text x="60" y="130" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Steps : []model.Step</text>
+<text x="60" y="148" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Links : []model.Link</text>
+<text x="60" y="166" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Swimlanes : []model.Swimlane</text>
+<text x="60" y="184" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ASTNodes : []*model.ASTNode</text>
+<rect x="458" y="80" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="80" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="102" width="328" height="8" fill="#059669" />
+<text x="468" y="100" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Analyzer</text>
+<text x="468" y="130" font-family="'Consolas', monospace" font-size="10" fill="#334155">    parser : *sitter.Parser</text>
+<rect x="50" y="550" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="550" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="572" width="328" height="8" fill="#059669" />
+<text x="60" y="570" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  CustomWorkflowXML</text>
+<text x="60" y="600" font-family="'Consolas', monospace" font-size="10" fill="#334155">    XMLName : xml.Name</text>
+<text x="60" y="618" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="636" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="60" y="654" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Swimlane : string</text>
+<text x="60" y="672" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Steps : []CustomStepXML</text>
+<text x="60" y="690" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Transitions : []CustomTransitionXML</text>
+<rect x="458" y="550" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="550" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="572" width="328" height="8" fill="#059669" />
+<text x="468" y="570" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  CustomStepXML</text>
+<text x="468" y="600" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="618" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="468" y="636" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Type : string</text>
+<text x="468" y="654" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Swimlane : string</text>
+<text x="468" y="672" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Line : int</text>
+<text x="468" y="690" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Description : string</text>
+<text x="468" y="708" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Action : string</text>
+<rect x="50" y="1020" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1020" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="1042" width="328" height="8" fill="#059669" />
+<text x="60" y="1040" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  CustomTransitionXML</text>
+<text x="60" y="1070" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="1088" font-family="'Consolas', monospace" font-size="10" fill="#334155">    From : string</text>
+<text x="60" y="1106" font-family="'Consolas', monospace" font-size="10" fill="#334155">    To : string</text>
+<text x="60" y="1124" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Label : string</text>
+<text x="60" y="1142" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Condition : string</text>
+<rect x="458" y="1020" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="1020" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="1042" width="328" height="8" fill="#059669" />
+<text x="468" y="1040" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  ProcessXML</text>
+<text x="468" y="1070" font-family="'Consolas', monospace" font-size="10" fill="#334155">    XMLName : xml.Name</text>
+<text x="468" y="1088" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="1106" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="468" y="1124" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Tasks : []GenericTaskXML</text>
+<text x="468" y="1142" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ServiceTasks : []GenericTaskXML</text>
+<text x="468" y="1160" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SequenceFlows : []SequenceFlowXML</text>
+<rect x="50" y="1490" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1490" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="1512" width="328" height="8" fill="#059669" />
+<text x="60" y="1510" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  GenericTaskXML</text>
+<text x="60" y="1540" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="1558" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<rect x="458" y="1490" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="1490" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="1512" width="328" height="8" fill="#059669" />
+<text x="468" y="1510" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  SequenceFlowXML</text>
+<text x="468" y="1540" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="1558" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SourceRef : string</text>
+<text x="468" y="1576" font-family="'Consolas', monospace" font-size="10" fill="#334155">    TargetRef : string</text>
+<text x="468" y="1594" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<rect x="50" y="1960" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="1960" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="1982" width="328" height="8" fill="#059669" />
+<text x="60" y="1980" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  pipelineNode</text>
+<text x="60" y="2010" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Tag : string</text>
+<text x="60" y="2028" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="2046" font-family="'Consolas', monospace" font-size="10" fill="#334155">    DB : string</text>
+<text x="60" y="2064" font-family="'Consolas', monospace" font-size="10" fill="#334155">    TargetDB : string</text>
+<text x="60" y="2082" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Language : string</text>
+<text x="60" y="2100" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Var : string</text>
+<text x="60" y="2118" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Equals : string</text>
+<text x="60" y="2136" font-family="'Consolas', monospace" font-size="10" fill="#334155">    OutputVar : string</text>
+<text x="60" y="2154" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Desc : string</text>
+<text x="60" y="2172" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Message : string</text>
+<text x="60" y="2190" font-family="'Consolas', monospace" font-size="10" fill="#334155">    OnFailure : string</text>
+<text x="60" y="2208" font-family="'Consolas', monospace" font-size="10" fill="#334155">    URL : string</text>
+<text x="60" y="2226" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Method : string</text>
+<text x="60" y="2244" font-family="'Consolas', monospace" font-size="10" fill="#334155">    TargetTable : string</text>
+<text x="60" y="2262" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SourceTable : string</text>
+<text x="60" y="2280" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Content : string</text>
+<text x="60" y="2298" font-family="'Consolas', monospace" font-size="10" fill="#334155">    LineNumber : int</text>
+<text x="60" y="2316" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Children : []*pipelineNode</text>
+<text x="60" y="2334" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ThenBranch : []*pipelineNode</text>
+<text x="60" y="2352" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ElseBranch : []*pipelineNode</text>
+<rect x="458" y="1960" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="1960" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="1982" width="328" height="8" fill="#059669" />
+<text x="468" y="1980" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  dtsxNode</text>
+<text x="468" y="2010" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Tag : string</text>
+<text x="468" y="2028" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Attrs : map[string]string</text>
+<text x="468" y="2046" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Content : string</text>
+<text x="468" y="2064" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Line : int</text>
+<text x="468" y="2082" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Children : []*dtsxNode</text>
+<rect x="50" y="2430" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="2430" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="2452" width="328" height="8" fill="#059669" />
+<text x="60" y="2450" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  connInfo</text>
+<text x="60" y="2480" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="2498" font-family="'Consolas', monospace" font-size="10" fill="#334155">    RefID : string</text>
+<text x="60" y="2516" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="60" y="2534" font-family="'Consolas', monospace" font-size="10" fill="#334155">    CreationName : string</text>
+<text x="60" y="2552" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ConnectionString : string</text>
+<text x="60" y="2570" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Database : string</text>
+<text x="60" y="2588" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Server : string</text>
+<text x="60" y="2606" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Resource : string</text>
+<rect x="458" y="2430" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="2430" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="2452" width="328" height="8" fill="#059669" />
+<text x="468" y="2450" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  AnalyzeOptions</text>
+<text x="468" y="2480" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SourceDir : string</text>
+<text x="468" y="2498" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Recursive : bool</text>
+<text x="468" y="2516" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Formats : string</text>
+<text x="468" y="2534" font-family="'Consolas', monospace" font-size="10" fill="#334155">    OutputBase : string</text>
+<text x="468" y="2552" font-family="'Consolas', monospace" font-size="10" fill="#334155">    OutputDir : string</text>
+<text x="468" y="2570" font-family="'Consolas', monospace" font-size="10" fill="#334155">    OutputName : string</text>
+<text x="468" y="2588" font-family="'Consolas', monospace" font-size="10" fill="#334155">    AIEnrichment : bool</text>
+<text x="468" y="2606" font-family="'Consolas', monospace" font-size="10" fill="#334155">    CustomWorkbook : bool</text>
+<text x="468" y="2624" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ExcludeDirs : []string</text>
+<text x="468" y="2642" font-family="'Consolas', monospace" font-size="10" fill="#334155">    IgnorePatterns : []string</text>
+<text x="468" y="2660" font-family="'Consolas', monospace" font-size="10" fill="#334155">    IgnoreTests : bool</text>
+<text x="468" y="2678" font-family="'Consolas', monospace" font-size="10" fill="#334155">    DiagramType : string</text>
+<text x="468" y="2696" font-family="'Consolas', monospace" font-size="10" fill="#334155">    NoTruncate : bool</text>
+<text x="468" y="2714" font-family="'Consolas', monospace" font-size="10" fill="#334155">    NoGitignore : bool</text>
+<rect x="50" y="2900" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="2900" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="2922" width="328" height="8" fill="#059669" />
+<text x="60" y="2920" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Engine</text>
+<text x="60" y="2950" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="2968" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="2986" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="60" y="3004" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="458" y="2900" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="2900" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="2922" width="328" height="8" fill="#059669" />
+<text x="468" y="2920" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  DiscoveredFile</text>
+<text x="468" y="2950" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Path : string</text>
+<text x="468" y="2968" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Extension : string</text>
+<text x="468" y="2986" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Language : string</text>
+<rect x="50" y="3370" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="3370" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="3392" width="328" height="8" fill="#059669" />
+<text x="60" y="3390" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Scanner</text>
+<text x="60" y="3420" font-family="'Consolas', monospace" font-size="10" fill="#334155">    rootDir : string</text>
+<text x="60" y="3438" font-family="'Consolas', monospace" font-size="10" fill="#334155">    recursive : bool</text>
+<text x="60" y="3456" font-family="'Consolas', monospace" font-size="10" fill="#334155">    absExcludes : []string</text>
+<text x="60" y="3474" font-family="'Consolas', monospace" font-size="10" fill="#334155">    relExcludes : []string</text>
+<text x="60" y="3492" font-family="'Consolas', monospace" font-size="10" fill="#334155">    nameExcludes : []string</text>
+<text x="60" y="3510" font-family="'Consolas', monospace" font-size="10" fill="#334155">    filePatterns : []string</text>
+<text x="60" y="3528" font-family="'Consolas', monospace" font-size="10" fill="#334155">    ignorer : *gitignore.GitIgnore</text>
+<rect x="458" y="3370" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="3370" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="3392" width="328" height="8" fill="#059669" />
+<text x="468" y="3390" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Enricher</text>
+<text x="468" y="3420" font-family="'Consolas', monospace" font-size="10" fill="#334155">    client : HTTPClient</text>
+<text x="468" y="3438" font-family="'Consolas', monospace" font-size="10" fill="#334155">    geminiKey : string</text>
+<text x="468" y="3456" font-family="'Consolas', monospace" font-size="10" fill="#334155">    openAIKey : string</text>
+<text x="468" y="3474" font-family="'Consolas', monospace" font-size="10" fill="#334155">    mockPrompt : &amp;{455 &lt;nil&gt; 0x16c29a44aed0 0x16c29a44af30}</text>
+<rect x="50" y="3840" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="3840" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="3862" width="328" height="8" fill="#059669" />
+<text x="60" y="3860" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  StepInput</text>
+<text x="60" y="3890" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="3908" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="60" y="3926" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Type : string</text>
+<text x="60" y="3944" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Language : string</text>
+<text x="60" y="3962" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Description : string</text>
+<rect x="458" y="3840" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="3840" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="3862" width="328" height="8" fill="#059669" />
+<text x="468" y="3860" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  StepOutput</text>
+<text x="468" y="3890" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="3908" font-family="'Consolas', monospace" font-size="10" fill="#334155">    BusinessDescription : string</text>
+<rect x="50" y="4310" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="4310" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="4332" width="328" height="8" fill="#059669" />
+<text x="60" y="4330" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Exporter</text>
+<text x="60" y="4360" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  id : bigint</text>
+<text x="60" y="4378" font-family="'Consolas', monospace" font-size="10" fill="#334155">    created_at : datetime</text>
+<text x="60" y="4396" font-family="'Consolas', monospace" font-size="10" fill="#334155">    status : varchar(50)</text>
+<text x="60" y="4414" font-family="'Consolas', monospace" font-size="10" fill="#334155">    payload : nvarchar(max)</text>
+<rect x="458" y="4310" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="4310" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="4332" width="328" height="8" fill="#059669" />
+<text x="468" y="4330" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  point</text>
+<text x="468" y="4360" font-family="'Consolas', monospace" font-size="10" fill="#334155">    x : float64</text>
+<text x="468" y="4378" font-family="'Consolas', monospace" font-size="10" fill="#334155">    y : float64</text>
+<rect x="50" y="4780" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="4780" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="4802" width="328" height="8" fill="#059669" />
+<text x="60" y="4800" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  nodeBox</text>
+<text x="60" y="4830" font-family="'Consolas', monospace" font-size="10" fill="#334155">    x : float64</text>
+<text x="60" y="4848" font-family="'Consolas', monospace" font-size="10" fill="#334155">    y : float64</text>
+<text x="60" y="4866" font-family="'Consolas', monospace" font-size="10" fill="#334155">    w : float64</text>
+<text x="60" y="4884" font-family="'Consolas', monospace" font-size="10" fill="#334155">    h : float64</text>
+<rect x="458" y="4780" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="4780" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="4802" width="328" height="8" fill="#059669" />
+<text x="468" y="4800" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  ProcessModel</text>
+<text x="468" y="4830" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="4848" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="468" y="4866" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Swimlanes : []Swimlane</text>
+<text x="468" y="4884" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Steps : []Step</text>
+<text x="468" y="4902" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Links : []Link</text>
+<text x="468" y="4920" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Metadata : map[string]any</text>
+<rect x="50" y="5250" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="5250" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="5272" width="328" height="8" fill="#059669" />
+<text x="60" y="5270" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  ASTNode</text>
+<text x="60" y="5300" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="5318" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Type : string</text>
+<text x="60" y="5336" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="60" y="5354" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Children : []*ASTNode</text>
+<text x="60" y="5372" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Data : map[string]any</text>
+<rect x="458" y="5250" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="5250" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="5272" width="328" height="8" fill="#059669" />
+<text x="468" y="5270" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Step</text>
+<text x="468" y="5300" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="5318" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SwimlaneID : string</text>
+<text x="468" y="5336" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="468" y="5354" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Description : string</text>
+<text x="468" y="5372" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Type : string</text>
+<text x="468" y="5390" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Language : string</text>
+<text x="468" y="5408" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SourceFile : string</text>
+<text x="468" y="5426" font-family="'Consolas', monospace" font-size="10" fill="#334155">    LineNumber : int</text>
+<text x="468" y="5444" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Metadata : map[string]any</text>
+<rect x="50" y="5720" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="50" y="5720" width="328" height="30" rx="6" fill="#059669" />
+<rect x="50" y="5742" width="328" height="8" fill="#059669" />
+<text x="60" y="5740" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Link</text>
+<text x="60" y="5770" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="60" y="5788" font-family="'Consolas', monospace" font-size="10" fill="#334155">    SourceStepID : string</text>
+<text x="60" y="5806" font-family="'Consolas', monospace" font-size="10" fill="#334155">    TargetStepID : string</text>
+<text x="60" y="5824" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Label : string</text>
+<text x="60" y="5842" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Condition : string</text>
+<text x="60" y="5860" font-family="'Consolas', monospace" font-size="10" fill="#334155">    IsCrossService : bool</text>
+<rect x="458" y="5720" width="328" height="410" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="458" y="5720" width="328" height="30" rx="6" fill="#059669" />
+<rect x="458" y="5742" width="328" height="8" fill="#059669" />
+<text x="468" y="5740" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">[STRUCT]  Swimlane</text>
+<text x="468" y="5770" font-family="'Consolas', monospace" font-size="10" fill="#334155">PK  ID : string</text>
+<text x="468" y="5788" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Name : string</text>
+<text x="468" y="5806" font-family="'Consolas', monospace" font-size="10" fill="#334155">    Description : string</text>
+</svg>

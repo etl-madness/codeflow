@@ -1,0 +1,20 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
+sequenceDiagram
+    autonumber
+    participant P1 as C# Class (Program)
+    participant P2 as C# Class (Program)
+    participant P3 as C# Class (UnitTest1)
+    participant P4 as C# Class (ProgramTests)
+    participant P5 as SQL Database (script)
+    participant P6 as SQL Database (script_get_resultsets)
+    participant P7 as SQL Database (script_session)
+    participant P8 as SQL Database (script_temptable)
+    participant P9 as SQL Database (ssis_logging_report)
+    P1->>P2: invokes
+    P2->>P3: invokes
+    P3->>P4: invokes
+    P4->>P5: invokes
+    P5->>P6: invokes
+    P6->>P7: invokes
+    P7->>P8: invokes
+    P8->>P9: invokes

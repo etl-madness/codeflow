@@ -1,0 +1,237 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "primaryColor": "#FFFFFF", "primaryBorderColor": "#3B82F6", "primaryTextColor": "#0F172A", "lineColor": "#64748B", "textColor": "#0F172A"}}}%%
+erDiagram
+    pipelineNode {
+        string Tag
+        string ID PK
+        string DB
+        string TargetDB
+        string Language
+        string Var
+        string Equals
+        string OutputVar
+        string Desc
+        string Message
+        string OnFailure
+        string URL
+        string Method
+        string TargetTable
+        string SourceTable
+        string Content
+        int LineNumber
+        pipelineNode Children
+        pipelineNode ThenBranch
+        pipelineNode ElseBranch
+    }
+
+    DiscoveredFile {
+        string Path
+        string Extension
+        string Language
+    }
+
+    Exporter {
+        bool NoTruncate
+    }
+
+    ProcessModel {
+        string ID PK
+        string Name
+        Swimlane Swimlanes
+        Step Steps
+        Link Links
+        map_string_any Metadata
+    }
+
+    Analyzer {
+        sitter_Parser parser
+    }
+
+    CustomWorkflowXML {
+        xml_Name XMLName
+        string ID PK
+        string Name
+        string Swimlane
+        CustomStepXML Steps
+        CustomTransitionXML Transitions
+    }
+
+    GenericTaskXML {
+        string ID PK
+        string Name
+    }
+
+    AnalyzeOptions {
+        string SourceDir
+        bool Recursive
+        string Formats
+        string OutputBase
+        string OutputDir
+        string OutputName
+        bool AIEnrichment
+        bool CustomWorkbook
+        string ExcludeDirs
+        string IgnorePatterns
+        bool IgnoreTests
+        string DiagramType
+        bool NoTruncate
+        bool NoGitignore
+    }
+
+    Engine {
+        string id PK
+    }
+
+    Enricher {
+        HTTPClient client
+        string geminiKey
+        string openAIKey
+        455__nil__0x16c29a44aed0_0x16c29a44af30 mockPrompt
+    }
+
+    StepInput {
+        string ID PK
+        string Name
+        string Type
+        string Language
+        string Description
+    }
+
+    ASTNode {
+        string ID PK
+        string Type
+        string Name
+        ASTNode Children
+        map_string_any Data
+    }
+
+    CustomTransitionXML {
+        string ID PK
+        string From
+        string To
+        string Label
+        string Condition
+    }
+
+    dtsxNode {
+        string Tag
+        map_string_string Attrs
+        string Content
+        int Line
+        dtsxNode Children
+    }
+
+    StepOutput {
+        string ID PK
+        string BusinessDescription
+    }
+
+    Step {
+        string ID PK
+        string SwimlaneID
+        string Name
+        string Description
+        string Type
+        string Language
+        string SourceFile
+        int LineNumber
+        map_string_any Metadata
+    }
+
+    Link {
+        string ID PK
+        string SourceStepID
+        string TargetStepID
+        string Label
+        string Condition
+        bool IsCrossService
+    }
+
+    Swimlane {
+        string ID PK
+        string Name
+        string Description
+    }
+
+    FileAnalysisResult {
+        model_Step Steps
+        model_Link Links
+        model_Swimlane Swimlanes
+        model_ASTNode ASTNodes
+    }
+
+    CustomStepXML {
+        string ID PK
+        string Name
+        string Type
+        string Swimlane
+        int Line
+        string Description
+        string Action
+    }
+
+    ProcessXML {
+        xml_Name XMLName
+        string ID PK
+        string Name
+        GenericTaskXML Tasks
+        GenericTaskXML ServiceTasks
+        SequenceFlowXML SequenceFlows
+    }
+
+    SequenceFlowXML {
+        string ID PK
+        string SourceRef
+        string TargetRef
+        string Name
+    }
+
+    connInfo {
+        string ID PK
+        string RefID
+        string Name
+        string CreationName
+        string ConnectionString
+        string Database
+        string Server
+        string Resource
+    }
+
+    Scanner {
+        string rootDir
+        bool recursive
+        string absExcludes
+        string relExcludes
+        string nameExcludes
+        string filePatterns
+        gitignore_GitIgnore ignorer
+    }
+
+    point {
+        float64 x
+        float64 y
+    }
+
+    nodeBox {
+        float64 x
+        float64 y
+        float64 w
+        float64 h
+    }
+
+    Go_Service__main ||--o{ Go_Service__cli : "calls"
+    Go_Service__flowxml ||--o{ Go_Service__ssis : "calls"
+    Go_Service__ssis ||--o{ Go_Service__mermaid : "calls"
+    Go_Service__cli ||--o{ Go_Service__discovery : "calls"
+    Go_Service__cli ||--o{ Go_Service__golang : "calls"
+    Go_Service__cli ||--o{ Go_Service__csharp : "calls"
+    Go_Service__cli ||--o{ Go_Service__python : "calls"
+    Go_Service__cli ||--o{ Go_Service__sql : "calls"
+    Go_Service__cli ||--o{ Go_Service__flowxml : "calls"
+    Go_Service__cli ||--o{ Go_Service__ssis : "calls"
+    Go_Service__cli ||--o{ Go_Service__correlation : "calls"
+    Go_Service__cli ||--o{ Go_Service__enrichment : "calls"
+    Go_Service__cli ||--o{ Go_Service__svg : "calls"
+    Go_Service__cli ||--o{ Go_Service__json : "calls"
+    Go_Service__cli ||--o{ Go_Service__mermaid : "calls"
+    Go_Service__cli ||--o{ Go_Service__excel : "calls"
+    Go_Service__correlation ||--o{ Go_Service__model : "calls"

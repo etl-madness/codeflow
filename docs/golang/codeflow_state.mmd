@@ -1,0 +1,111 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "stateBkg": "#FFFFFF", "stateBorder": "#3B82F6", "stateLabelColor": "#0F172A", "labelColor": "#0F172A", "transitionColor": "#64748B", "transitionLabelColor": "#334155"}}}%%
+stateDiagram-v2
+    [*] --> Start
+    state "Go Service (main)" as State_1
+    State_1: entry / main
+    state "Go Service (analyzer)" as State_2
+    State_2: entry / FileAnalysisResult
+    state "Go Service (csharp)" as State_3
+    State_3: entry / Analyzer
+    State_3: do / New
+    State_3: do / Analyzer.Language
+    State_3: do / Analyzer.CanAnalyze
+    State_3: ... +8 more steps
+    state "Go Service (flowxml)" as State_4
+    State_4: entry / Analyzer
+    State_4: do / CustomWorkflowXML
+    State_4: do / CustomStepXML
+    State_4: do / CustomTransitionXML
+    State_4: ... +14 more steps
+    state "Go Service (golang)" as State_5
+    State_5: entry / Analyzer
+    State_5: do / New
+    State_5: do / Analyzer.Language
+    State_5: do / Analyzer.CanAnalyze
+    State_5: ... +10 more steps
+    state "Go Service (python)" as State_6
+    State_6: entry / Analyzer
+    State_6: do / New
+    State_6: do / Analyzer.Language
+    State_6: do / Analyzer.CanAnalyze
+    State_6: ... +4 more steps
+    state "Go Service (sql)" as State_7
+    State_7: entry / Analyzer
+    State_7: do / New
+    State_7: do / Analyzer.Language
+    State_7: do / Analyzer.CanAnalyze
+    State_7: ... +6 more steps
+    state "Go Service (ssis)" as State_8
+    State_8: entry / Analyzer
+    State_8: do / dtsxNode
+    State_8: do / connInfo
+    State_8: do / New
+    State_8: ... +22 more steps
+    state "Go Service (cli)" as State_9
+    State_9: entry / AnalyzeOptions
+    State_9: do / NewAnalyzeCmd
+    State_9: exit / RunAnalyze
+    state "Go Service (correlation)" as State_10
+    State_10: entry / Engine
+    State_10: do / New
+    State_10: do / Engine.Correlate
+    State_10: do / Engine.correlateRoutes
+    State_10: ... +4 more steps
+    state "Go Service (discovery)" as State_11
+    State_11: entry / DiscoveredFile
+    State_11: do / Scanner
+    State_11: do / NewScanner
+    State_11: do / NewScannerWithOptions
+    State_11: ... +4 more steps
+    state "Go Service (enrichment)" as State_12
+    State_12: entry / Enricher
+    State_12: do / StepInput
+    State_12: do / StepOutput
+    State_12: do / New
+    State_12: ... +9 more steps
+    state "Go Service (excel)" as State_13
+    State_13: entry / Exporter
+    State_13: do / New
+    State_13: do / Exporter.Export
+    State_13: do / Exporter.ExportCustomWorkbook
+    State_13: ... +5 more steps
+    state "Go Service (json)" as State_14
+    State_14: entry / Exporter
+    State_14: do / New
+    State_14: exit / Exporter.Export
+    state "Go Service (mermaid)" as State_15
+    State_15: entry / Exporter
+    State_15: do / New
+    State_15: do / Exporter.Export
+    State_15: do / Exporter.ExportFlowchart
+    State_15: ... +27 more steps
+    state "Go Service (svg)" as State_16
+    State_16: entry / Exporter
+    State_16: do / point
+    State_16: do / nodeBox
+    State_16: do / New
+    State_16: ... +24 more steps
+    state "Go Service (model)" as State_17
+    State_17: entry / ProcessModel
+    State_17: do / ASTNode
+    State_17: do / Step
+    State_17: do / Link
+    State_17: ... +7 more steps
+    Start --> State_1
+    State_1 --> State_2: [next]
+    State_2 --> State_3: [next]
+    State_3 --> State_4: [next]
+    State_4 --> State_5: [next]
+    State_5 --> State_6: [next]
+    State_6 --> State_7: [next]
+    State_7 --> State_8: [next]
+    State_8 --> State_9: [next]
+    State_9 --> State_10: [next]
+    State_10 --> State_11: [next]
+    State_11 --> State_12: [next]
+    State_12 --> State_13: [next]
+    State_13 --> State_14: [next]
+    State_14 --> State_15: [next]
+    State_15 --> State_16: [next]
+    State_16 --> State_17: [next]
+    State_17 --> [*]

@@ -1,0 +1,1348 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7410 3230" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">CodeFlow Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">Go Service (main)</text>
+<text x="395" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="55" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#1  [Function]</text>
+<text x="67" y="193" class="node-title" font-size="12">main</text>
+<text x="67" y="209" class="node-desc">Function main</text>
+<line x1="418" y1="102" x2="467" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="426" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="442" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="475" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="475" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="475" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="490" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="501" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="490" y="117" class="lane-title" font-size="14">Go Service (analyzer)</text>
+<text x="830" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="490" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="490" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="502" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="502" y="193" class="node-title" font-size="12">FileAnalysisResult</text>
+<text x="502" y="209" class="node-desc">FileAnalysisResult contains the extracted model</text>
+<text x="502" y="224" class="node-desc">elements from analyzing a single file.</text>
+<line x1="853" y1="102" x2="902" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="860" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="878" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="910" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="910" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="910" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="925" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="936" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 3</text>
+<text x="925" y="117" class="lane-title" font-size="14">Go Service (csharp)</text>
+<text x="1265" y="93" class="node-desc" font-size="11">12 milestones in stage</text>
+<rect x="925" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="937" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="937" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="937" y="209" class="node-desc">Analyzer implements static analysis for C# and</text>
+<text x="937" y="224" class="node-desc">Razor/Blazor source files using tree-sitter.</text>
+<rect x="925" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="937" y="293" class="node-title" font-size="12">New</text>
+<text x="937" y="309" class="node-desc">New creates a new C# Analyzer.</text>
+<rect x="925" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="340" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="937" y="378" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="937" y="394" class="node-desc">Language returns the language identifier.</text>
+<rect x="925" y="425" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="425" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="937" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="937" y="463" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="937" y="479" class="node-desc">CanAnalyze returns true for .cs and .razor</text>
+<text x="937" y="494" class="node-desc">extensions.</text>
+<rect x="925" y="525" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="525" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="543" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="937" y="563" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="937" y="579" class="node-desc">AnalyzeFile parses C# or Razor/Blazor files.</text>
+<rect x="925" y="610" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="610" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="628" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="937" y="648" class="node-title" font-size="12">Analyzer.analyzeRazor</text>
+<text x="937" y="664" class="node-desc">Function Analyzer.analyzeRazor</text>
+<rect x="925" y="695" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="695" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="713" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="937" y="733" class="node-title" font-size="12">Analyzer.analyzeCSharp</text>
+<text x="937" y="749" class="node-desc">Function Analyzer.analyzeCSharp</text>
+<rect x="925" y="780" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="780" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="798" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="937" y="818" class="node-title" font-size="12">Analyzer.extractFromNode</text>
+<text x="937" y="834" class="node-desc">Function Analyzer.extractFromNode</text>
+<rect x="925" y="865" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="865" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="883" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="937" y="903" class="node-title" font-size="12">Analyzer.extractMethodInvocations</text>
+<text x="937" y="919" class="node-desc">Function Analyzer.extractMethodInvocations</text>
+<rect x="925" y="950" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="950" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="968" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="937" y="988" class="node-title" font-size="12">extractCSharpRouteAttribute</text>
+<text x="937" y="1004" class="node-desc">Function extractCSharpRouteAttribute</text>
+<rect x="925" y="1035" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="1035" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="1053" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="937" y="1073" class="node-title" font-size="12">isEFOperation</text>
+<text x="937" y="1089" class="node-desc">Function isEFOperation</text>
+<rect x="925" y="1120" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="1120" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="1138" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="937" y="1158" class="node-title" font-size="12">cleanEFName</text>
+<text x="937" y="1174" class="node-desc">Function cleanEFName</text>
+<line x1="1288" y1="102" x2="1337" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1296" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1312" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1345" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1345" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1345" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="1360" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1371" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 4</text>
+<text x="1360" y="117" class="lane-title" font-size="14">Go Service (flowxml)</text>
+<text x="1700" y="93" class="node-desc" font-size="11">18 milestones in stage</text>
+<rect x="1360" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="1372" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="1372" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="1372" y="209" class="node-desc">Analyzer implements static analysis for workflow</text>
+<text x="1372" y="224" class="node-desc">XML and SSIS packages.</text>
+<rect x="1360" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="255" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="1372" y="293" class="node-title" font-size="12">CustomWorkflowXML</text>
+<text x="1372" y="309" class="node-desc">Custom Workflow XML structures</text>
+<rect x="1360" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="340" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseTable]</text>
+<text x="1372" y="378" class="node-title" font-size="12">CustomStepXML</text>
+<text x="1372" y="394" class="node-desc">Go Struct CustomStepXML in flowxml</text>
+<rect x="1360" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="425" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [DatabaseTable]</text>
+<text x="1372" y="463" class="node-title" font-size="12">CustomTransitionXML</text>
+<text x="1372" y="479" class="node-desc">Go Struct CustomTransitionXML in flowxml</text>
+<rect x="1360" y="510" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="510" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [DatabaseTable]</text>
+<text x="1372" y="548" class="node-title" font-size="12">ProcessXML</text>
+<text x="1372" y="564" class="node-desc">BPMN / Generic Process XML structures</text>
+<rect x="1360" y="595" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="595" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="613" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [DatabaseTable]</text>
+<text x="1372" y="633" class="node-title" font-size="12">GenericTaskXML</text>
+<text x="1372" y="649" class="node-desc">Go Struct GenericTaskXML in flowxml</text>
+<rect x="1360" y="680" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="680" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="698" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#7  [DatabaseTable]</text>
+<text x="1372" y="718" class="node-title" font-size="12">SequenceFlowXML</text>
+<text x="1372" y="734" class="node-desc">Go Struct SequenceFlowXML in flowxml</text>
+<rect x="1360" y="765" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="765" width="4" height="70" rx="2" fill="#10B981" />
+<text x="1372" y="783" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#8  [DatabaseTable]</text>
+<text x="1372" y="803" class="node-title" font-size="12">pipelineNode</text>
+<text x="1372" y="819" class="node-desc">Go Struct pipelineNode in flowxml</text>
+<rect x="1360" y="850" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="850" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="868" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="1372" y="888" class="node-title" font-size="12">New</text>
+<text x="1372" y="904" class="node-desc">New creates a new Flow XML Analyzer.</text>
+<rect x="1360" y="935" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="935" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="953" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="1372" y="973" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="1372" y="989" class="node-desc">Language returns the language identifier.</text>
+<rect x="1360" y="1020" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1020" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1038" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="1372" y="1058" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="1372" y="1074" class="node-desc">CanAnalyze returns true for .xml and .dtsx</text>
+<text x="1372" y="1089" class="node-desc">extensions.</text>
+<rect x="1360" y="1120" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1120" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1138" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="1372" y="1158" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="1372" y="1174" class="node-desc">AnalyzeFile unmarshals workflow XML definitions</text>
+<text x="1372" y="1189" class="node-desc">into canonical ProcessModel elements.</text>
+<rect x="1360" y="1220" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1220" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1238" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="1372" y="1258" class="node-title" font-size="12">Analyzer.parseGenericOrSSISXML</text>
+<text x="1372" y="1274" class="node-desc">Function Analyzer.parseGenericOrSSISXML</text>
+<rect x="1360" y="1305" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1305" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1323" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#14  [Function]</text>
+<text x="1372" y="1343" class="node-title" font-size="12">Analyzer.parsePipelineXML</text>
+<text x="1372" y="1359" class="node-desc">Function Analyzer.parsePipelineXML</text>
+<rect x="1360" y="1390" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1390" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1408" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#15  [Function]</text>
+<text x="1372" y="1428" class="node-title" font-size="12">readPipelineVariables</text>
+<text x="1372" y="1444" class="node-desc">Function readPipelineVariables</text>
+<rect x="1360" y="1475" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1475" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1493" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#16  [Function]</text>
+<text x="1372" y="1513" class="node-title" font-size="12">readPipelineDatabases</text>
+<text x="1372" y="1529" class="node-desc">Function readPipelineDatabases</text>
+<rect x="1360" y="1560" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1560" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1578" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#17  [Function]</text>
+<text x="1372" y="1598" class="node-title" font-size="12">readPipelineChildNodes</text>
+<text x="1372" y="1614" class="node-desc">Function readPipelineChildNodes</text>
+<rect x="1360" y="1645" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="1645" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1372" y="1663" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#18  [Function]</text>
+<text x="1372" y="1683" class="node-title" font-size="12">readSinglePipelineNode</text>
+<text x="1372" y="1699" class="node-desc">Function readSinglePipelineNode</text>
+<line x1="1723" y1="102" x2="1772" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1730" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1748" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1780" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1780" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1780" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="1795" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1806" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 5</text>
+<text x="1795" y="117" class="lane-title" font-size="14">Go Service (golang)</text>
+<text x="2135" y="93" class="node-desc" font-size="11">14 milestones in stage</text>
+<rect x="1795" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="1807" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="1807" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="1807" y="209" class="node-desc">Analyzer implements static analysis for Go</text>
+<text x="1807" y="224" class="node-desc">source files.</text>
+<rect x="1795" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="1807" y="293" class="node-title" font-size="12">New</text>
+<text x="1807" y="309" class="node-desc">New creates a new Go Analyzer.</text>
+<rect x="1795" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="340" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="1807" y="378" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="1807" y="394" class="node-desc">Language returns the language identifier.</text>
+<rect x="1795" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="425" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="1807" y="463" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="1807" y="479" class="node-desc">CanAnalyze returns true if the extension is .go.</text>
+<rect x="1795" y="510" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="510" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="1807" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="1807" y="548" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="1807" y="564" class="node-desc">AnalyzeFile parses Go source code and extracts</text>
+<text x="1807" y="579" class="node-desc">endpoints, DB queries, gRPC registrations, and</text>
+<text x="1807" y="594" class="node-desc">function calls.</text>
+<rect x="1795" y="625" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="625" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1807" y="643" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="1807" y="663" class="node-title" font-size="12">isGRPCHandler</text>
+<text x="1807" y="679" class="node-desc">isGRPCHandler checks if a function signature</text>
+<text x="1807" y="694" class="node-desc">matches gRPC handler pattern.</text>
+<rect x="1795" y="725" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="725" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1807" y="743" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="1807" y="763" class="node-title" font-size="12">isHTTPHandlerFunc</text>
+<text x="1807" y="779" class="node-desc">isHTTPHandlerFunc checks if a function signature</text>
+<text x="1807" y="794" class="node-desc">matches http.HandlerFunc.</text>
+<rect x="1795" y="825" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="825" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1807" y="843" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="1807" y="863" class="node-title" font-size="12">extractHTTPRoute</text>
+<text x="1807" y="879" class="node-desc">extractHTTPRoute detects HTTP route registration</text>
+<text x="1807" y="894" class="node-desc">calls.</text>
+<rect x="1795" y="925" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="925" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1807" y="943" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="1807" y="963" class="node-title" font-size="12">extractGRPCRegistration</text>
+<text x="1807" y="979" class="node-desc">extractGRPCRegistration detects</text>
+<text x="1807" y="994" class="node-desc">pb.Register...Server(...)</text>
+<rect x="1795" y="1025" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="1025" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="1807" y="1043" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="1807" y="1063" class="node-title" font-size="12">extractDBQuery</text>
+<text x="1807" y="1079" class="node-desc">extractDBQuery detects database calls like</text>
+<text x="1807" y="1094" class="node-desc">Query, Exec, Find, Create, etc.</text>
+<rect x="1795" y="1125" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="1125" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="1143" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="1807" y="1163" class="node-title" font-size="12">extractSimpleCallName</text>
+<text x="1807" y="1179" class="node-desc">Function extractSimpleCallName</text>
+<rect x="1795" y="1210" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="1210" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="1228" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="1807" y="1248" class="node-title" font-size="12">extractQualifiedCall</text>
+<text x="1807" y="1264" class="node-desc">Function extractQualifiedCall</text>
+<rect x="1795" y="1295" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="1295" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="1313" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="1807" y="1333" class="node-title" font-size="12">extractReceiverType</text>
+<text x="1807" y="1349" class="node-desc">Function extractReceiverType</text>
+<rect x="1795" y="1380" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1795" y="1380" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="1807" y="1398" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#14  [Function]</text>
+<text x="1807" y="1418" class="node-title" font-size="12">exprToString</text>
+<text x="1807" y="1434" class="node-desc">Function exprToString</text>
+<line x1="2158" y1="102" x2="2207" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="2166" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="2182" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="2215" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="2215" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="2215" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="2230" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="2241" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 6</text>
+<text x="2230" y="117" class="lane-title" font-size="14">Go Service (python)</text>
+<text x="2570" y="93" class="node-desc" font-size="11">8 milestones in stage</text>
+<rect x="2230" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="2242" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="2242" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="2242" y="209" class="node-desc">Analyzer implements static analysis for Python</text>
+<text x="2242" y="224" class="node-desc">files using tree-sitter.</text>
+<rect x="2230" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="2242" y="293" class="node-title" font-size="12">New</text>
+<text x="2242" y="309" class="node-desc">New creates a new Python Analyzer.</text>
+<rect x="2230" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="340" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="2242" y="378" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="2242" y="394" class="node-desc">Language returns the language identifier.</text>
+<rect x="2230" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="425" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="2242" y="463" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="2242" y="479" class="node-desc">CanAnalyze returns true for .py extension.</text>
+<rect x="2230" y="510" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="510" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="2242" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="2242" y="548" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="2242" y="564" class="node-desc">AnalyzeFile parses Python files and extracts</text>
+<text x="2242" y="579" class="node-desc">endpoints, functions, and call chains.</text>
+<rect x="2230" y="610" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="610" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="628" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="2242" y="648" class="node-title" font-size="12">Analyzer.extractCalls</text>
+<text x="2242" y="664" class="node-desc">Function Analyzer.extractCalls</text>
+<rect x="2230" y="695" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="695" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="713" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="2242" y="733" class="node-title" font-size="12">extractPythonRoute</text>
+<text x="2242" y="749" class="node-desc">Function extractPythonRoute</text>
+<rect x="2230" y="780" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2230" y="780" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2242" y="798" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="2242" y="818" class="node-title" font-size="12">isPythonDBCall</text>
+<text x="2242" y="834" class="node-desc">Function isPythonDBCall</text>
+<line x1="2593" y1="102" x2="2642" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="2600" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="2618" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="2650" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="2650" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="2650" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="2665" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="2676" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 7</text>
+<text x="2665" y="117" class="lane-title" font-size="14">Go Service (sql)</text>
+<text x="3005" y="93" class="node-desc" font-size="11">10 milestones in stage</text>
+<rect x="2665" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="2677" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="2677" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="2677" y="209" class="node-desc">Analyzer implements static analysis for SQL</text>
+<text x="2677" y="224" class="node-desc">scripts and queries.</text>
+<rect x="2665" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="2677" y="293" class="node-title" font-size="12">New</text>
+<text x="2677" y="309" class="node-desc">New creates a new SQL Analyzer.</text>
+<rect x="2665" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="340" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="2677" y="378" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="2677" y="394" class="node-desc">Language returns the language identifier.</text>
+<rect x="2665" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="425" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="2677" y="463" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="2677" y="479" class="node-desc">CanAnalyze returns true for .sql files.</text>
+<rect x="2665" y="510" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="510" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="2677" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="2677" y="548" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="2677" y="564" class="node-desc">AnalyzeFile parses SQL scripts and extracts</text>
+<text x="2677" y="579" class="node-desc">table operations, views, stored procedures, and</text>
+<text x="2677" y="594" class="node-desc">queries.</text>
+<rect x="2665" y="625" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="625" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="643" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="2677" y="663" class="node-title" font-size="12">Analyzer.processParsedStatement</text>
+<text x="2677" y="679" class="node-desc">Function Analyzer.processParsedStatement</text>
+<rect x="2665" y="710" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="710" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="728" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="2677" y="748" class="node-title" font-size="12">Analyzer.processFallbackStatement</text>
+<text x="2677" y="764" class="node-desc">Function Analyzer.processFallbackStatement</text>
+<rect x="2665" y="795" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="795" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="813" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="2677" y="833" class="node-title" font-size="12">extractTablesFromSelect</text>
+<text x="2677" y="849" class="node-desc">Function extractTablesFromSelect</text>
+<rect x="2665" y="880" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="880" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="898" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="2677" y="918" class="node-title" font-size="12">splitStatements</text>
+<text x="2677" y="934" class="node-desc">Function splitStatements</text>
+<rect x="2665" y="965" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="2665" y="965" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="2677" y="983" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="2677" y="1003" class="node-title" font-size="12">extractTableColumns</text>
+<text x="2677" y="1019" class="node-desc">Function extractTableColumns</text>
+<line x1="3028" y1="102" x2="3077" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="3036" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="3052" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="3085" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="3085" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="3085" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="3100" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="3111" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 8</text>
+<text x="3100" y="117" class="lane-title" font-size="14">Go Service (ssis)</text>
+<text x="3440" y="93" class="node-desc" font-size="11">26 milestones in stage</text>
+<rect x="3100" y="155" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="155" width="4" height="100" rx="2" fill="#10B981" />
+<text x="3112" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="3112" y="193" class="node-title" font-size="12">Analyzer</text>
+<text x="3112" y="209" class="node-desc">Analyzer implements static analysis for SQL</text>
+<text x="3112" y="224" class="node-desc">Server Integration Services (SSIS) .dtsx</text>
+<text x="3112" y="239" class="node-desc">packages.</text>
+<rect x="3100" y="270" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="270" width="4" height="85" rx="2" fill="#10B981" />
+<text x="3112" y="288" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="3112" y="308" class="node-title" font-size="12">dtsxNode</text>
+<text x="3112" y="324" class="node-desc">dtsxNode represents a node in the XML hierarchy</text>
+<text x="3112" y="339" class="node-desc">with normalized attribute lookups.</text>
+<rect x="3100" y="370" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="370" width="4" height="85" rx="2" fill="#10B981" />
+<text x="3112" y="388" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseTable]</text>
+<text x="3112" y="408" class="node-title" font-size="12">connInfo</text>
+<text x="3112" y="424" class="node-desc">connInfo stores parsed metadata about a</text>
+<text x="3112" y="439" class="node-desc">connection manager.</text>
+<rect x="3100" y="470" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="470" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="488" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="3112" y="508" class="node-title" font-size="12">New</text>
+<text x="3112" y="524" class="node-desc">New creates a new SSIS Analyzer.</text>
+<rect x="3100" y="555" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="555" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="573" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="3112" y="593" class="node-title" font-size="12">Analyzer.Language</text>
+<text x="3112" y="609" class="node-desc">Language returns the language identifier.</text>
+<rect x="3100" y="640" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="640" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="3112" y="658" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="3112" y="678" class="node-title" font-size="12">Analyzer.CanAnalyze</text>
+<text x="3112" y="694" class="node-desc">CanAnalyze returns true for .dtsx and SSIS .xml</text>
+<text x="3112" y="709" class="node-desc">files.</text>
+<rect x="3100" y="740" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="740" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="758" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="3112" y="778" class="node-title" font-size="12">dtsxNode.Attr</text>
+<text x="3112" y="794" class="node-desc">Function dtsxNode.Attr</text>
+<rect x="3100" y="825" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="825" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="843" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="3112" y="863" class="node-title" font-size="12">dtsxNode.FindChild</text>
+<text x="3112" y="879" class="node-desc">Function dtsxNode.FindChild</text>
+<rect x="3100" y="910" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="910" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="928" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="3112" y="948" class="node-title" font-size="12">dtsxNode.FindChildren</text>
+<text x="3112" y="964" class="node-desc">Function dtsxNode.FindChildren</text>
+<rect x="3100" y="995" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="995" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1013" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="3112" y="1033" class="node-title" font-size="12">dtsxNode.FindDescendant</text>
+<text x="3112" y="1049" class="node-desc">Function dtsxNode.FindDescendant</text>
+<rect x="3100" y="1080" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1080" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1098" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="3112" y="1118" class="node-title" font-size="12">dtsxNode.FindDescendants</text>
+<text x="3112" y="1134" class="node-desc">Function dtsxNode.FindDescendants</text>
+<rect x="3100" y="1165" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1165" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1183" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="3112" y="1203" class="node-title" font-size="12">Analyzer.AnalyzeFile</text>
+<text x="3112" y="1219" class="node-desc">AnalyzeFile unmarshals SSIS package XML</text>
+<text x="3112" y="1234" class="node-desc">definitions into canonical ProcessModel</text>
+<text x="3112" y="1249" class="node-desc">elements.</text>
+<rect x="3100" y="1280" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1280" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1298" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="3112" y="1318" class="node-title" font-size="12">parseDTSXTree</text>
+<text x="3112" y="1334" class="node-desc">Function parseDTSXTree</text>
+<rect x="3100" y="1365" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1365" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1383" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#14  [Function]</text>
+<text x="3112" y="1403" class="node-title" font-size="12">parseConnectionManager</text>
+<text x="3112" y="1419" class="node-desc">Function parseConnectionManager</text>
+<rect x="3100" y="1450" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1450" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1468" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#15  [Function]</text>
+<text x="3112" y="1488" class="node-title" font-size="12">extractParam</text>
+<text x="3112" y="1504" class="node-desc">Function extractParam</text>
+<rect x="3100" y="1535" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1535" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1553" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#16  [Function]</text>
+<text x="3112" y="1573" class="node-title" font-size="12">classifySSISTask</text>
+<text x="3112" y="1589" class="node-desc">Function classifySSISTask</text>
+<rect x="3100" y="1620" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1620" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1638" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#17  [Function]</text>
+<text x="3112" y="1658" class="node-title" font-size="12">cleanSQLIdentifier</text>
+<text x="3112" y="1674" class="node-desc">Function cleanSQLIdentifier</text>
+<rect x="3100" y="1705" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1705" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1723" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#18  [Function]</text>
+<text x="3112" y="1743" class="node-title" font-size="12">extractStoredProcedure</text>
+<text x="3112" y="1759" class="node-desc">Function extractStoredProcedure</text>
+<rect x="3100" y="1790" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1790" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1808" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#19  [Function]</text>
+<text x="3112" y="1828" class="node-title" font-size="12">extractTableAndAction</text>
+<text x="3112" y="1844" class="node-desc">Function extractTableAndAction</text>
+<rect x="3100" y="1875" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1875" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1893" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#20  [Function]</text>
+<text x="3112" y="1913" class="node-title" font-size="12">extractDBFromProc</text>
+<text x="3112" y="1929" class="node-desc">Function extractDBFromProc</text>
+<rect x="3100" y="1960" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="1960" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="1978" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#21  [Function]</text>
+<text x="3112" y="1998" class="node-title" font-size="12">extractDBFromTable</text>
+<text x="3112" y="2014" class="node-desc">Function extractDBFromTable</text>
+<rect x="3100" y="2045" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="2045" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="2063" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#22  [Function]</text>
+<text x="3112" y="2083" class="node-title" font-size="12">summarizeQuery</text>
+<text x="3112" y="2099" class="node-desc">Function summarizeQuery</text>
+<rect x="3100" y="2130" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="2130" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="2148" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#23  [Function]</text>
+<text x="3112" y="2168" class="node-title" font-size="12">sanitizeID</text>
+<text x="3112" y="2184" class="node-desc">Function sanitizeID</text>
+<rect x="3100" y="2215" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="2215" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="2233" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#24  [Function]</text>
+<text x="3112" y="2253" class="node-title" font-size="12">extractBaseName</text>
+<text x="3112" y="2269" class="node-desc">Function extractBaseName</text>
+<rect x="3100" y="2300" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="2300" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="2318" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#25  [Function]</text>
+<text x="3112" y="2338" class="node-title" font-size="12">formatPrecedenceCondition</text>
+<text x="3112" y="2354" class="node-desc">Function formatPrecedenceCondition</text>
+<rect x="3100" y="2385" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3100" y="2385" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3112" y="2403" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#26  [Function]</text>
+<text x="3112" y="2423" class="node-title" font-size="12">parseDataFlowComponents</text>
+<text x="3112" y="2439" class="node-desc">Function parseDataFlowComponents</text>
+<line x1="3463" y1="102" x2="3512" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="3470" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="3488" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="3520" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="3520" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="3520" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="3535" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="3546" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 9</text>
+<text x="3535" y="117" class="lane-title" font-size="14">Go Service (cli)</text>
+<text x="3875" y="93" class="node-desc" font-size="11">3 milestones in stage</text>
+<rect x="3535" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3535" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="3547" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="3547" y="193" class="node-title" font-size="12">AnalyzeOptions</text>
+<text x="3547" y="209" class="node-desc">Go Struct AnalyzeOptions in cli</text>
+<rect x="3535" y="240" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3535" y="240" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="3547" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="3547" y="278" class="node-title" font-size="12">NewAnalyzeCmd</text>
+<text x="3547" y="294" class="node-desc">NewAnalyzeCmd creates the &#39;analyze&#39; cobra</text>
+<text x="3547" y="309" class="node-desc">command.</text>
+<rect x="3535" y="340" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3535" y="340" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="3547" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="3547" y="378" class="node-title" font-size="12">RunAnalyze</text>
+<text x="3547" y="394" class="node-desc">RunAnalyze executes the full CodeFlow analysis</text>
+<text x="3547" y="409" class="node-desc">pipeline.</text>
+<line x1="3898" y1="102" x2="3947" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="3906" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="3922" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="3955" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="3955" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="3955" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="3970" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="3981" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 10</text>
+<text x="3970" y="117" class="lane-title" font-size="14">Go Service (correlation)</text>
+<text x="4310" y="93" class="node-desc" font-size="11">8 milestones in stage</text>
+<rect x="3970" y="155" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="155" width="4" height="100" rx="2" fill="#10B981" />
+<text x="3982" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="3982" y="193" class="node-title" font-size="12">Engine</text>
+<text x="3982" y="209" class="node-desc">Engine correlates steps across multi-language</text>
+<text x="3982" y="224" class="node-desc">components and unifies them into a canonical</text>
+<text x="3982" y="239" class="node-desc">ProcessModel.</text>
+<rect x="3970" y="270" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="270" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="288" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="3982" y="308" class="node-title" font-size="12">New</text>
+<text x="3982" y="324" class="node-desc">New creates a new Correlation Engine.</text>
+<rect x="3970" y="355" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="355" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="3982" y="373" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="3982" y="393" class="node-title" font-size="12">Engine.Correlate</text>
+<text x="3982" y="409" class="node-desc">Correlate takes file analysis results and</text>
+<text x="3982" y="424" class="node-desc">produces a correlated ProcessModel.</text>
+<rect x="3970" y="455" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="455" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="473" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="3982" y="493" class="node-title" font-size="12">Engine.correlateRoutes</text>
+<text x="3982" y="509" class="node-desc">Function Engine.correlateRoutes</text>
+<rect x="3970" y="540" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="540" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="558" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="3982" y="578" class="node-title" font-size="12">Engine.correlateDatabases</text>
+<text x="3982" y="594" class="node-desc">Function Engine.correlateDatabases</text>
+<rect x="3970" y="625" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="625" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="643" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="3982" y="663" class="node-title" font-size="12">Engine.correlateCalls</text>
+<text x="3982" y="679" class="node-desc">Function Engine.correlateCalls</text>
+<rect x="3970" y="710" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="710" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="728" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="3982" y="748" class="node-title" font-size="12">normalizeRoute</text>
+<text x="3982" y="764" class="node-desc">Function normalizeRoute</text>
+<rect x="3970" y="795" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="3970" y="795" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="3982" y="813" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="3982" y="833" class="node-title" font-size="12">matchWord</text>
+<text x="3982" y="849" class="node-desc">Function matchWord</text>
+<line x1="4333" y1="102" x2="4382" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="4340" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="4358" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="4390" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="4390" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="4390" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="4405" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="4416" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 11</text>
+<text x="4405" y="117" class="lane-title" font-size="14">Go Service (discovery)</text>
+<text x="4745" y="93" class="node-desc" font-size="11">8 milestones in stage</text>
+<rect x="4405" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="4417" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="4417" y="193" class="node-title" font-size="12">DiscoveredFile</text>
+<text x="4417" y="209" class="node-desc">DiscoveredFile contains metadata about a</text>
+<text x="4417" y="224" class="node-desc">recognized source file.</text>
+<rect x="4405" y="255" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="255" width="4" height="85" rx="2" fill="#10B981" />
+<text x="4417" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="4417" y="293" class="node-title" font-size="12">Scanner</text>
+<text x="4417" y="309" class="node-desc">Scanner handles filesystem traversal and file</text>
+<text x="4417" y="324" class="node-desc">filtering.</text>
+<rect x="4405" y="355" width="340" height="145" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="355" width="4" height="145" rx="2" fill="#9CA3AF" />
+<text x="4417" y="373" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="4417" y="393" class="node-title" font-size="12">NewScanner</text>
+<text x="4417" y="409" class="node-desc">NewScanner creates a new Scanner instance for</text>
+<text x="4417" y="424" class="node-desc">the given root directory. Optional excludes can</text>
+<text x="4417" y="439" class="node-desc">be provided as folder names, relative paths (to</text>
+<text x="4417" y="454" class="node-desc">cwd or to source root), absolute paths, or file</text>
+<text x="4417" y="469" class="node-desc">glob patterns (e.g. *_test.go, test_*.py,</text>
+<text x="4417" y="484" class="node-desc">*.spec.ts).</text>
+<rect x="4405" y="515" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="515" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4417" y="533" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="4417" y="553" class="node-title" font-size="12">NewScannerWithOptions</text>
+<text x="4417" y="569" class="node-desc">NewScannerWithOptions creates a new Scanner</text>
+<text x="4417" y="584" class="node-desc">instance with configurable .gitignore handling.</text>
+<rect x="4405" y="615" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="615" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4417" y="633" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="4417" y="653" class="node-title" font-size="12">MapExtensionToLanguage</text>
+<text x="4417" y="669" class="node-desc">MapExtensionToLanguage maps a file extension to</text>
+<text x="4417" y="684" class="node-desc">its recognized canonical language.</text>
+<rect x="4405" y="715" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="715" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4417" y="733" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="4417" y="753" class="node-title" font-size="12">Scanner.Scan</text>
+<text x="4417" y="769" class="node-desc">Scan performs filesystem discovery and returns</text>
+<text x="4417" y="784" class="node-desc">matching source files.</text>
+<rect x="4405" y="815" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="815" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="4417" y="833" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="4417" y="853" class="node-title" font-size="12">Scanner.isExcluded</text>
+<text x="4417" y="869" class="node-desc">Function Scanner.isExcluded</text>
+<rect x="4405" y="900" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4405" y="900" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="4417" y="918" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="4417" y="938" class="node-title" font-size="12">matchPattern</text>
+<text x="4417" y="954" class="node-desc">matchPattern evaluates glob patterns including</text>
+<text x="4417" y="969" class="node-desc">wildcards, base name matching, and double-star</text>
+<text x="4417" y="984" class="node-desc">(**).</text>
+<line x1="4768" y1="102" x2="4817" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="4776" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="4792" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="4825" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="4825" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="4825" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="4840" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="4851" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 12</text>
+<text x="4840" y="117" class="lane-title" font-size="14">Go Service (enrichment)</text>
+<text x="5180" y="93" class="node-desc" font-size="11">13 milestones in stage</text>
+<rect x="4840" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="4852" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="4852" y="193" class="node-title" font-size="12">Enricher</text>
+<text x="4852" y="209" class="node-desc">Enricher enriches technical AST steps into</text>
+<text x="4852" y="224" class="node-desc">business-readable descriptions using AI.</text>
+<rect x="4840" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="255" width="4" height="70" rx="2" fill="#10B981" />
+<text x="4852" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="4852" y="293" class="node-title" font-size="12">StepInput</text>
+<text x="4852" y="309" class="node-desc">Go Struct StepInput in enrichment</text>
+<rect x="4840" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="340" width="4" height="70" rx="2" fill="#10B981" />
+<text x="4852" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseTable]</text>
+<text x="4852" y="378" class="node-title" font-size="12">StepOutput</text>
+<text x="4852" y="394" class="node-desc">Go Struct StepOutput in enrichment</text>
+<rect x="4840" y="425" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="425" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4852" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="4852" y="463" class="node-title" font-size="12">New</text>
+<text x="4852" y="479" class="node-desc">New creates a new AI Enricher with environment</text>
+<text x="4852" y="494" class="node-desc">keys.</text>
+<rect x="4840" y="525" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="525" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4852" y="543" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="4852" y="563" class="node-title" font-size="12">Enricher.SetClient</text>
+<text x="4852" y="579" class="node-desc">SetClient allows injecting a custom HTTPClient</text>
+<text x="4852" y="594" class="node-desc">for testing.</text>
+<rect x="4840" y="625" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="625" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="4852" y="643" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="4852" y="663" class="node-title" font-size="12">Enricher.SetMockHandler</text>
+<text x="4852" y="679" class="node-desc">SetMockHandler allows mock AI responses in unit</text>
+<text x="4852" y="694" class="node-desc">tests.</text>
+<rect x="4840" y="725" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="725" width="4" height="85" rx="2" fill="#3B82F6" />
+<text x="4852" y="743" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#2563EB">#7  [Endpoint]</text>
+<text x="4852" y="763" class="node-title" font-size="12">Enricher.Enrich</text>
+<text x="4852" y="779" class="node-desc">Enrich processes steps in ProcessModel and</text>
+<text x="4852" y="794" class="node-desc">updates their descriptions.</text>
+<rect x="4840" y="825" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="825" width="4" height="70" rx="2" fill="#3B82F6" />
+<text x="4852" y="843" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#2563EB">#8  [Endpoint]</text>
+<text x="4852" y="863" class="node-title" font-size="12">Enricher.callGemini</text>
+<text x="4852" y="879" class="node-desc">gRPC Service Handler Enricher.callGemini</text>
+<rect x="4840" y="910" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="910" width="4" height="70" rx="2" fill="#3B82F6" />
+<text x="4852" y="928" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#2563EB">#9  [Endpoint]</text>
+<text x="4852" y="948" class="node-title" font-size="12">Enricher.callOpenAI</text>
+<text x="4852" y="964" class="node-desc">gRPC Service Handler Enricher.callOpenAI</text>
+<rect x="4840" y="995" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="995" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="4852" y="1013" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="4852" y="1033" class="node-title" font-size="12">Enricher.fallbackRuleBasedEnrichment</text>
+<text x="4852" y="1049" class="node-desc">Function Enricher.fallbackRuleBasedEnrichment</text>
+<rect x="4840" y="1080" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="1080" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="4852" y="1098" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="4852" y="1118" class="node-title" font-size="12">translateToBusinessTerms</text>
+<text x="4852" y="1134" class="node-desc">Function translateToBusinessTerms</text>
+<rect x="4840" y="1165" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="1165" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="4852" y="1183" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="4852" y="1203" class="node-title" font-size="12">splitCamelCase</text>
+<text x="4852" y="1219" class="node-desc">Function splitCamelCase</text>
+<rect x="4840" y="1250" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="4840" y="1250" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="4852" y="1268" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="4852" y="1288" class="node-title" font-size="12">extractJSONFromResponse</text>
+<text x="4852" y="1304" class="node-desc">Function extractJSONFromResponse</text>
+<line x1="5203" y1="102" x2="5252" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="5210" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="5228" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="5260" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="5260" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="5260" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="5275" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="5286" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 13</text>
+<text x="5275" y="117" class="lane-title" font-size="14">Go Service (excel)</text>
+<text x="5615" y="93" class="node-desc" font-size="11">9 milestones in stage</text>
+<rect x="5275" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="5287" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="5287" y="193" class="node-title" font-size="12">Exporter</text>
+<text x="5287" y="209" class="node-desc">Exporter converts a ProcessModel into Visio Data</text>
+<text x="5287" y="224" class="node-desc">Visualizer compatible workbooks.</text>
+<rect x="5275" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="5287" y="293" class="node-title" font-size="12">New</text>
+<text x="5287" y="309" class="node-desc">New creates a new Excel Exporter.</text>
+<rect x="5275" y="340" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="340" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="5287" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="5287" y="378" class="node-title" font-size="12">Exporter.Export</text>
+<text x="5287" y="394" class="node-desc">Export creates a standard single-sheet Visio</text>
+<text x="5287" y="409" class="node-desc">Data Visualizer compatible Excel file at</text>
+<text x="5287" y="424" class="node-desc">outputPath.</text>
+<rect x="5275" y="455" width="340" height="160" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="455" width="4" height="160" rx="2" fill="#9CA3AF" />
+<text x="5287" y="473" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="5287" y="493" class="node-title" font-size="12">Exporter.ExportCustomWorkbook</text>
+<text x="5287" y="509" class="node-desc">ExportCustomWorkbook creates an interactive,</text>
+<text x="5287" y="524" class="node-desc">multi-sheet Excel Data Visualizer custom</text>
+<text x="5287" y="539" class="node-desc">workbook. This workbook provides an in-Excel</text>
+<text x="5287" y="554" class="node-desc">visual process navigator and complete dependency</text>
+<text x="5287" y="569" class="node-desc">traceability that functions without requiring</text>
+<text x="5287" y="584" class="node-desc">the retired Microsoft Visio Data Visualizer</text>
+<text x="5287" y="599" class="node-desc">add-in.</text>
+<rect x="5275" y="630" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="630" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="648" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="5287" y="668" class="node-title" font-size="12">Exporter.buildDashboardSheet</text>
+<text x="5287" y="684" class="node-desc">Function Exporter.buildDashboardSheet</text>
+<rect x="5275" y="715" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="715" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="733" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="5287" y="753" class="node-title" font-size="12">Exporter.buildVisualMapSheet</text>
+<text x="5287" y="769" class="node-desc">Function Exporter.buildVisualMapSheet</text>
+<rect x="5275" y="800" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="800" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="818" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="5287" y="838" class="node-title" font-size="12">Exporter.buildSchemaSheet</text>
+<text x="5287" y="854" class="node-desc">Function Exporter.buildSchemaSheet</text>
+<rect x="5275" y="885" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="885" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="903" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="5287" y="923" class="node-title" font-size="12">Exporter.buildTraceabilitySheet</text>
+<text x="5287" y="939" class="node-desc">Function Exporter.buildTraceabilitySheet</text>
+<rect x="5275" y="970" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5275" y="970" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5287" y="988" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="5287" y="1008" class="node-title" font-size="12">Exporter.buildServicesSheet</text>
+<text x="5287" y="1024" class="node-desc">Function Exporter.buildServicesSheet</text>
+<line x1="5638" y1="102" x2="5687" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="5646" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="5662" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="5695" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="5695" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="5695" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="5710" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="5721" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 14</text>
+<text x="5710" y="117" class="lane-title" font-size="14">Go Service (json)</text>
+<text x="6050" y="93" class="node-desc" font-size="11">3 milestones in stage</text>
+<rect x="5710" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5710" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="5722" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="5722" y="193" class="node-title" font-size="12">Exporter</text>
+<text x="5722" y="209" class="node-desc">Exporter exports ProcessModel to JSON.</text>
+<rect x="5710" y="240" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5710" y="240" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="5722" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="5722" y="278" class="node-title" font-size="12">New</text>
+<text x="5722" y="294" class="node-desc">New creates a new JSON Exporter.</text>
+<rect x="5710" y="325" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="5710" y="325" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="5722" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="5722" y="363" class="node-title" font-size="12">Exporter.Export</text>
+<text x="5722" y="379" class="node-desc">Export serializes the ProcessModel to the</text>
+<text x="5722" y="394" class="node-desc">specified file path in JSON format.</text>
+<line x1="6073" y1="102" x2="6122" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="6080" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="6098" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="6130" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="6130" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="6130" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="6145" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="6156" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 15</text>
+<text x="6145" y="117" class="lane-title" font-size="14">Go Service (mermaid)</text>
+<text x="6485" y="93" class="node-desc" font-size="11">31 milestones in stage</text>
+<rect x="6145" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="6157" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="6157" y="193" class="node-title" font-size="12">Exporter</text>
+<text x="6157" y="209" class="node-desc">Exporter converts a ProcessModel into Mermaid</text>
+<text x="6157" y="224" class="node-desc">diagrams.</text>
+<rect x="6145" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="255" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#2  [Function]</text>
+<text x="6157" y="293" class="node-title" font-size="12">New</text>
+<text x="6157" y="309" class="node-desc">New creates a new Mermaid Exporter.</text>
+<rect x="6145" y="340" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="340" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Function]</text>
+<text x="6157" y="378" class="node-title" font-size="12">Exporter.Export</text>
+<text x="6157" y="394" class="node-desc">Export writes the default top-down flowchart</text>
+<text x="6157" y="409" class="node-desc">(.mmd) to outputPath.</text>
+<rect x="6145" y="440" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="440" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="458" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="6157" y="478" class="node-title" font-size="12">Exporter.ExportFlowchart</text>
+<text x="6157" y="494" class="node-desc">ExportFlowchart writes a flowchart (TD or LR)</text>
+<text x="6157" y="509" class="node-desc">diagram to outputPath.</text>
+<rect x="6145" y="540" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="540" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="558" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="6157" y="578" class="node-title" font-size="12">Exporter.ExportJourney</text>
+<text x="6157" y="594" class="node-desc">ExportJourney writes a universal journey</text>
+<text x="6157" y="609" class="node-desc">flowchart (flowchart LR) to outputPath.</text>
+<rect x="6145" y="640" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="640" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="658" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="6157" y="678" class="node-title" font-size="12">Exporter.ExportSequence</text>
+<text x="6157" y="694" class="node-desc">ExportSequence writes a sequence diagram</text>
+<text x="6157" y="709" class="node-desc">(sequenceDiagram) to outputPath.</text>
+<rect x="6145" y="740" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="740" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="758" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="6157" y="778" class="node-title" font-size="12">Exporter.ExportERDiagram</text>
+<text x="6157" y="794" class="node-desc">ExportERDiagram writes an Entity-Relationship</text>
+<text x="6157" y="809" class="node-desc">diagram (erDiagram) to outputPath.</text>
+<rect x="6145" y="840" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="840" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="858" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="6157" y="878" class="node-title" font-size="12">Exporter.ExportStateDiagram</text>
+<text x="6157" y="894" class="node-desc">ExportStateDiagram writes a state diagram</text>
+<text x="6157" y="909" class="node-desc">(stateDiagram-v2) to outputPath.</text>
+<rect x="6145" y="940" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="940" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="958" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="6157" y="978" class="node-title" font-size="12">Exporter.ExportMarkdown</text>
+<text x="6157" y="994" class="node-desc">ExportMarkdown writes the specified diagram</text>
+<text x="6157" y="1009" class="node-desc">wrapped inside a standard markdown code block.</text>
+<rect x="6145" y="1040" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1040" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1058" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="6157" y="1078" class="node-title" font-size="12">Exporter.Generate</text>
+<text x="6157" y="1094" class="node-desc">Generate returns the default flowchart TD</text>
+<text x="6157" y="1109" class="node-desc">representation.</text>
+<rect x="6145" y="1140" width="340" height="115" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1140" width="4" height="115" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1158" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="6157" y="1178" class="node-title" font-size="12">Exporter.GenerateFlowchart</text>
+<text x="6157" y="1194" class="node-desc">GenerateFlowchart returns a Mermaid flowchart</text>
+<text x="6157" y="1209" class="node-desc">(TD or LR) styled to match modern vector</text>
+<text x="6157" y="1224" class="node-desc">graphics. It maps node IDs to compact short IDs</text>
+<text x="6157" y="1239" class="node-desc">to stay within Mermaid&#39;s character limit.</text>
+<rect x="6145" y="1270" width="340" height="115" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1270" width="4" height="115" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1288" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="6157" y="1308" class="node-title" font-size="12">Exporter.GenerateJourney</text>
+<text x="6157" y="1324" class="node-desc">GenerateJourney outputs a Universal Journey</text>
+<text x="6157" y="1339" class="node-desc">Flowchart using the standard &#39;flowchart LR&#39;</text>
+<text x="6157" y="1354" class="node-desc">header. This is 100% compatible with all</text>
+<text x="6157" y="1369" class="node-desc">Markdown previewers and GitHub/IDE renderers.</text>
+<rect x="6145" y="1400" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1400" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1418" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="6157" y="1438" class="node-title" font-size="12">Exporter.GenerateSequenceDiagram</text>
+<text x="6157" y="1454" class="node-desc">GenerateSequenceDiagram outputs a Mermaid</text>
+<text x="6157" y="1469" class="node-desc">sequenceDiagram showing interactions across</text>
+<text x="6157" y="1484" class="node-desc">swimlanes.</text>
+<rect x="6145" y="1515" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1515" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1533" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#14  [Function]</text>
+<text x="6157" y="1553" class="node-title" font-size="12">Exporter.GenerateStateDiagram</text>
+<text x="6157" y="1569" class="node-desc">GenerateStateDiagram outputs a Mermaid</text>
+<text x="6157" y="1584" class="node-desc">stateDiagram-v2 showing process state</text>
+<text x="6157" y="1599" class="node-desc">progression.</text>
+<rect x="6145" y="1630" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1630" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1648" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#15  [Function]</text>
+<text x="6157" y="1668" class="node-title" font-size="12">Exporter.GenerateERDiagram</text>
+<text x="6157" y="1684" class="node-desc">GenerateERDiagram returns a Mermaid</text>
+<text x="6157" y="1699" class="node-desc">Entity-Relationship diagram (erDiagram).</text>
+<rect x="6145" y="1730" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1730" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1748" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#16  [Function]</text>
+<text x="6157" y="1768" class="node-title" font-size="12">Exporter.GenerateRawJourney</text>
+<text x="6157" y="1784" class="node-desc">GenerateRawJourney outputs native Mermaid</text>
+<text x="6157" y="1799" class="node-desc">&#39;journey&#39; syntax (for engines supporting the</text>
+<text x="6157" y="1814" class="node-desc">keyword).</text>
+<rect x="6145" y="1845" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1845" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1863" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#17  [Function]</text>
+<text x="6157" y="1883" class="node-title" font-size="12">getStepEntityName</text>
+<text x="6157" y="1899" class="node-desc">Function getStepEntityName</text>
+<rect x="6145" y="1930" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="1930" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="1948" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#18  [Function]</text>
+<text x="6157" y="1968" class="node-title" font-size="12">cleanEntityName</text>
+<text x="6157" y="1984" class="node-desc">Function cleanEntityName</text>
+<rect x="6145" y="2015" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2015" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2033" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#19  [Function]</text>
+<text x="6157" y="2053" class="node-title" font-size="12">sanitizeEntityIdentifier</text>
+<text x="6157" y="2069" class="node-desc">Function sanitizeEntityIdentifier</text>
+<rect x="6145" y="2100" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2100" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2118" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#20  [Function]</text>
+<text x="6157" y="2138" class="node-title" font-size="12">sanitizeAttributeType</text>
+<text x="6157" y="2154" class="node-desc">Function sanitizeAttributeType</text>
+<rect x="6145" y="2185" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2185" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2203" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#21  [Function]</text>
+<text x="6157" y="2223" class="node-title" font-size="12">sanitizeEntityLabel</text>
+<text x="6157" y="2239" class="node-desc">Function sanitizeEntityLabel</text>
+<rect x="6145" y="2270" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2270" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2288" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#22  [Function]</text>
+<text x="6157" y="2308" class="node-title" font-size="12">cleanJourneyText</text>
+<text x="6157" y="2324" class="node-desc">Function cleanJourneyText</text>
+<rect x="6145" y="2355" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2355" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2373" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#23  [Function]</text>
+<text x="6157" y="2393" class="node-title" font-size="12">themeInitFlowchart</text>
+<text x="6157" y="2409" class="node-desc">Function themeInitFlowchart</text>
+<rect x="6145" y="2440" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2440" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2458" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#24  [Function]</text>
+<text x="6157" y="2478" class="node-title" font-size="12">flowchartClassDefs</text>
+<text x="6157" y="2494" class="node-desc">Function flowchartClassDefs</text>
+<rect x="6145" y="2525" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2525" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2543" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#25  [Function]</text>
+<text x="6157" y="2563" class="node-title" font-size="12">Exporter.formatNode</text>
+<text x="6157" y="2579" class="node-desc">Function Exporter.formatNode</text>
+<rect x="6145" y="2610" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2610" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2628" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#26  [Function]</text>
+<text x="6157" y="2648" class="node-title" font-size="12">escapeNodeText</text>
+<text x="6157" y="2664" class="node-desc">Function escapeNodeText</text>
+<rect x="6145" y="2695" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2695" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2713" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#27  [Function]</text>
+<text x="6157" y="2733" class="node-title" font-size="12">getClassForType</text>
+<text x="6157" y="2749" class="node-desc">Function getClassForType</text>
+<rect x="6145" y="2780" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2780" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2798" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#28  [Function]</text>
+<text x="6157" y="2818" class="node-title" font-size="12">formatTypeBadge</text>
+<text x="6157" y="2834" class="node-desc">Function formatTypeBadge</text>
+<rect x="6145" y="2865" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2865" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2883" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#29  [Function]</text>
+<text x="6157" y="2903" class="node-title" font-size="12">sanitizeID</text>
+<text x="6157" y="2919" class="node-desc">Function sanitizeID</text>
+<rect x="6145" y="2950" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="2950" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="2968" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#30  [Function]</text>
+<text x="6157" y="2988" class="node-title" font-size="12">escapeLabel</text>
+<text x="6157" y="3004" class="node-desc">Function escapeLabel</text>
+<rect x="6145" y="3035" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6145" y="3035" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6157" y="3053" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#31  [Function]</text>
+<text x="6157" y="3073" class="node-title" font-size="12">writeFile</text>
+<text x="6157" y="3089" class="node-desc">Function writeFile</text>
+<line x1="6508" y1="102" x2="6557" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="6516" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="6532" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="6565" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="6565" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="6565" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="6580" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="6591" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 16</text>
+<text x="6580" y="117" class="lane-title" font-size="14">Go Service (svg)</text>
+<text x="6920" y="93" class="node-desc" font-size="11">28 milestones in stage</text>
+<rect x="6580" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="6592" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="6592" y="193" class="node-title" font-size="12">Exporter</text>
+<text x="6592" y="209" class="node-desc">Exporter converts a ProcessModel into SVG vector</text>
+<text x="6592" y="224" class="node-desc">diagrams.</text>
+<rect x="6580" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="255" width="4" height="70" rx="2" fill="#10B981" />
+<text x="6592" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="6592" y="293" class="node-title" font-size="12">point</text>
+<text x="6592" y="309" class="node-desc">Go Struct point in svg</text>
+<rect x="6580" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="340" width="4" height="70" rx="2" fill="#10B981" />
+<text x="6592" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseTable]</text>
+<text x="6592" y="378" class="node-title" font-size="12">nodeBox</text>
+<text x="6592" y="394" class="node-desc">Go Struct nodeBox in svg</text>
+<rect x="6580" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="425" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#4  [Function]</text>
+<text x="6592" y="463" class="node-title" font-size="12">New</text>
+<text x="6592" y="479" class="node-desc">New creates a new SVG Exporter.</text>
+<rect x="6580" y="510" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="510" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#5  [Function]</text>
+<text x="6592" y="548" class="node-title" font-size="12">Exporter.Export</text>
+<text x="6592" y="564" class="node-desc">Export writes the ProcessModel as a Flowchart TD</text>
+<text x="6592" y="579" class="node-desc">SVG file to outputPath.</text>
+<rect x="6580" y="610" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="610" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="628" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="6592" y="648" class="node-title" font-size="12">Exporter.ExportFlowchart</text>
+<text x="6592" y="664" class="node-desc">ExportFlowchart writes a Flowchart (TD or LR)</text>
+<text x="6592" y="679" class="node-desc">SVG to outputPath.</text>
+<rect x="6580" y="710" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="710" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="728" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="6592" y="748" class="node-title" font-size="12">Exporter.ExportJourney</text>
+<text x="6592" y="764" class="node-desc">ExportJourney writes a Customer/Data Journey SVG</text>
+<text x="6592" y="779" class="node-desc">to outputPath.</text>
+<rect x="6580" y="810" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="810" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="828" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="6592" y="848" class="node-title" font-size="12">Exporter.ExportSequenceDiagram</text>
+<text x="6592" y="864" class="node-desc">ExportSequenceDiagram writes a Lifeline Sequence</text>
+<text x="6592" y="879" class="node-desc">Diagram SVG to outputPath.</text>
+<rect x="6580" y="910" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="910" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="928" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="6592" y="948" class="node-title" font-size="12">Exporter.ExportStateDiagram</text>
+<text x="6592" y="964" class="node-desc">ExportStateDiagram writes a UML State Machine</text>
+<text x="6592" y="979" class="node-desc">SVG to outputPath.</text>
+<rect x="6580" y="1010" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1010" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1028" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="6592" y="1048" class="node-title" font-size="12">Exporter.ExportERDiagram</text>
+<text x="6592" y="1064" class="node-desc">ExportERDiagram writes an Entity-Relationship</text>
+<text x="6592" y="1079" class="node-desc">SVG to outputPath.</text>
+<rect x="6580" y="1110" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1110" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1128" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="6592" y="1148" class="node-title" font-size="12">writeSVGFile</text>
+<text x="6592" y="1164" class="node-desc">Function writeSVGFile</text>
+<rect x="6580" y="1195" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1195" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1213" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#12  [Function]</text>
+<text x="6592" y="1233" class="node-title" font-size="12">Exporter.Generate</text>
+<text x="6592" y="1249" class="node-desc">Generate renders the default SVG (Flowchart TD).</text>
+<rect x="6580" y="1280" width="340" height="100" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1280" width="4" height="100" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1298" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#13  [Function]</text>
+<text x="6592" y="1318" class="node-title" font-size="12">Exporter.GenerateFlowchart</text>
+<text x="6592" y="1334" class="node-desc">GenerateFlowchart renders either a TD</text>
+<text x="6592" y="1349" class="node-desc">(top-to-bottom) or LR (left-to-right) flowchart</text>
+<text x="6592" y="1364" class="node-desc">SVG.</text>
+<rect x="6580" y="1395" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1395" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1413" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#14  [Function]</text>
+<text x="6592" y="1433" class="node-title" font-size="12">Exporter.GenerateFlowchartTD</text>
+<text x="6592" y="1449" class="node-desc">Function Exporter.GenerateFlowchartTD</text>
+<rect x="6580" y="1480" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1480" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1498" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#15  [Function]</text>
+<text x="6592" y="1518" class="node-title" font-size="12">Exporter.GenerateFlowchartLR</text>
+<text x="6592" y="1534" class="node-desc">Function Exporter.GenerateFlowchartLR</text>
+<rect x="6580" y="1565" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1565" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1583" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#16  [Function]</text>
+<text x="6592" y="1603" class="node-title" font-size="12">Exporter.GenerateJourney</text>
+<text x="6592" y="1619" class="node-desc">Function Exporter.GenerateJourney</text>
+<rect x="6580" y="1650" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1650" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1668" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#17  [Function]</text>
+<text x="6592" y="1688" class="node-title" font-size="12">Exporter.GenerateSequenceDiagram</text>
+<text x="6592" y="1704" class="node-desc">Function Exporter.GenerateSequenceDiagram</text>
+<rect x="6580" y="1735" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1735" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1753" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#18  [Function]</text>
+<text x="6592" y="1773" class="node-title" font-size="12">Exporter.GenerateStateDiagram</text>
+<text x="6592" y="1789" class="node-desc">Function Exporter.GenerateStateDiagram</text>
+<rect x="6580" y="1820" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1820" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1838" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#19  [Function]</text>
+<text x="6592" y="1858" class="node-title" font-size="12">Exporter.GenerateERDiagram</text>
+<text x="6592" y="1874" class="node-desc">Function Exporter.GenerateERDiagram</text>
+<rect x="6580" y="1905" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1905" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="1923" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#20  [Function]</text>
+<text x="6592" y="1943" class="node-title" font-size="12">commonSVGDefs</text>
+<text x="6592" y="1959" class="node-desc">Function commonSVGDefs</text>
+<rect x="6580" y="1990" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="1990" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2008" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#21  [Function]</text>
+<text x="6592" y="2028" class="node-title" font-size="12">commonSVGStyles</text>
+<text x="6592" y="2044" class="node-desc">Function commonSVGStyles</text>
+<rect x="6580" y="2075" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2075" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2093" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#22  [Function]</text>
+<text x="6592" y="2113" class="node-title" font-size="12">collectLanesAndSteps</text>
+<text x="6592" y="2129" class="node-desc">Function collectLanesAndSteps</text>
+<rect x="6580" y="2160" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2160" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2178" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#23  [Function]</text>
+<text x="6592" y="2198" class="node-title" font-size="12">drawLinks</text>
+<text x="6592" y="2214" class="node-desc">Function drawLinks</text>
+<rect x="6580" y="2245" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2245" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2263" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#24  [Function]</text>
+<text x="6592" y="2283" class="node-title" font-size="12">getNodeColors</text>
+<text x="6592" y="2299" class="node-desc">Function getNodeColors</text>
+<rect x="6580" y="2330" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2330" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2348" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#25  [Function]</text>
+<text x="6592" y="2368" class="node-title" font-size="12">Exporter.truncate</text>
+<text x="6592" y="2384" class="node-desc">Function Exporter.truncate</text>
+<rect x="6580" y="2415" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2415" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2433" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#26  [Function]</text>
+<text x="6592" y="2453" class="node-title" font-size="12">truncateString</text>
+<text x="6592" y="2469" class="node-desc">Function truncateString</text>
+<rect x="6580" y="2500" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2500" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2518" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#27  [Function]</text>
+<text x="6592" y="2538" class="node-title" font-size="12">wrapText</text>
+<text x="6592" y="2554" class="node-desc">Function wrapText</text>
+<rect x="6580" y="2585" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="6580" y="2585" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="6592" y="2603" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#28  [Function]</text>
+<text x="6592" y="2623" class="node-title" font-size="12">measureModelText</text>
+<text x="6592" y="2639" class="node-desc">Function measureModelText</text>
+<line x1="6943" y1="102" x2="6992" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="6950" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="6968" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="7000" y="65" width="370" height="3070" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="7000" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="7000" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="7015" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="7026" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 17</text>
+<text x="7015" y="117" class="lane-title" font-size="14">Go Service (model)</text>
+<text x="7355" y="93" class="node-desc" font-size="11">11 milestones in stage</text>
+<rect x="7015" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="7027" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [DatabaseTable]</text>
+<text x="7027" y="193" class="node-title" font-size="12">ProcessModel</text>
+<text x="7027" y="209" class="node-desc">ProcessModel represents the top-level canonical</text>
+<text x="7027" y="224" class="node-desc">graph of analyzed workflows.</text>
+<rect x="7015" y="255" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="255" width="4" height="85" rx="2" fill="#10B981" />
+<text x="7027" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseTable]</text>
+<text x="7027" y="293" class="node-title" font-size="12">ASTNode</text>
+<text x="7027" y="309" class="node-desc">ASTNode represents an abstract syntax tree node</text>
+<text x="7027" y="324" class="node-desc">for code analysis.</text>
+<rect x="7015" y="355" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="355" width="4" height="85" rx="2" fill="#10B981" />
+<text x="7027" y="373" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#3  [DatabaseTable]</text>
+<text x="7027" y="393" class="node-title" font-size="12">Step</text>
+<text x="7027" y="409" class="node-desc">Step represents a discreet executable action or</text>
+<text x="7027" y="424" class="node-desc">endpoint within a workflow.</text>
+<rect x="7015" y="455" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="455" width="4" height="85" rx="2" fill="#10B981" />
+<text x="7027" y="473" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [DatabaseTable]</text>
+<text x="7027" y="493" class="node-title" font-size="12">Link</text>
+<text x="7027" y="509" class="node-desc">Link represents a directed connection or</text>
+<text x="7027" y="524" class="node-desc">transition between two Steps.</text>
+<rect x="7015" y="555" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="555" width="4" height="85" rx="2" fill="#10B981" />
+<text x="7027" y="573" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [DatabaseTable]</text>
+<text x="7027" y="593" class="node-title" font-size="12">Swimlane</text>
+<text x="7027" y="609" class="node-desc">Swimlane categorizes steps by service, domain,</text>
+<text x="7027" y="624" class="node-desc">module, or layer.</text>
+<rect x="7015" y="655" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="655" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="7027" y="673" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#6  [Function]</text>
+<text x="7027" y="693" class="node-title" font-size="12">NewProcessModel</text>
+<text x="7027" y="709" class="node-desc">NewProcessModel initializes an empty</text>
+<text x="7027" y="724" class="node-desc">ProcessModel.</text>
+<rect x="7015" y="755" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="755" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="7027" y="773" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#7  [Function]</text>
+<text x="7027" y="793" class="node-title" font-size="12">ProcessModel.AddSwimlane</text>
+<text x="7027" y="809" class="node-desc">AddSwimlane adds a new swimlane if not already</text>
+<text x="7027" y="824" class="node-desc">present.</text>
+<rect x="7015" y="855" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="855" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="7027" y="873" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#8  [Function]</text>
+<text x="7027" y="893" class="node-title" font-size="12">ProcessModel.AddStep</text>
+<text x="7027" y="909" class="node-desc">AddStep appends a step to the model.</text>
+<rect x="7015" y="940" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="940" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="7027" y="958" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#9  [Function]</text>
+<text x="7027" y="978" class="node-title" font-size="12">ProcessModel.AddLink</text>
+<text x="7027" y="994" class="node-desc">AddLink appends a link between steps.</text>
+<rect x="7015" y="1025" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="1025" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="7027" y="1043" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#10  [Function]</text>
+<text x="7027" y="1063" class="node-title" font-size="12">ProcessModel.FindStep</text>
+<text x="7027" y="1079" class="node-desc">FindStep finds a step by ID.</text>
+<rect x="7015" y="1110" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="7015" y="1110" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="7027" y="1128" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#11  [Function]</text>
+<text x="7027" y="1148" class="node-title" font-size="12">ProcessModel.FindSwimlane</text>
+<text x="7027" y="1164" class="node-desc">FindSwimlane finds a swimlane by ID.</text>
+<line x1="225" y1="3150" x2="7185" y2="3150" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="225" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="225" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: Go Service (main)</text>
+<circle cx="660" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="660" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: Go Service (analyzer)</text>
+<circle cx="1095" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1095" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 3: Go Service (csharp)</text>
+<circle cx="1530" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1530" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 4: Go Service (flowxml)</text>
+<circle cx="1965" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1965" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 5: Go Service (golang)</text>
+<circle cx="2400" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="2400" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 6: Go Service (python)</text>
+<circle cx="2835" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="2835" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 7: Go Service (sql)</text>
+<circle cx="3270" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="3270" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 8: Go Service (ssis)</text>
+<circle cx="3705" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="3705" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 9: Go Service (cli)</text>
+<circle cx="4140" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="4140" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 10: Go Service (correlation)</text>
+<circle cx="4575" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="4575" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 11: Go Service (discovery)</text>
+<circle cx="5010" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="5010" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 12: Go Service (enrichment)</text>
+<circle cx="5445" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="5445" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 13: Go Service (excel)</text>
+<circle cx="5880" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="5880" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 14: Go Service (json)</text>
+<circle cx="6315" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="6315" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 15: Go Service (mermaid)</text>
+<circle cx="6750" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="6750" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 16: Go Service (svg)</text>
+<circle cx="7185" cy="3150" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="7185" y="3172" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 17: Go Service (model)</text>
+</svg>

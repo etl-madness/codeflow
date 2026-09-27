@@ -1,0 +1,37 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "actorBkg": "#FFFFFF", "actorBorder": "#3B82F6", "actorTextColor": "#0F172A", "actorLineColor": "#94A3B8", "signalColor": "#475569", "signalTextColor": "#0F172A", "labelBoxBkgColor": "#F8FAFC", "labelBoxBorderColor": "#E2E8F0", "activationBorderColor": "#2563EB", "activationBkgColor": "#EFF6FF"}}}%%
+sequenceDiagram
+    autonumber
+    participant P1 as Go Service (main)
+    participant P2 as Go Service (analyzer)
+    participant P3 as Go Service (csharp)
+    participant P4 as Go Service (flowxml)
+    participant P5 as Go Service (golang)
+    participant P6 as Go Service (python)
+    participant P7 as Go Service (sql)
+    participant P8 as Go Service (ssis)
+    participant P9 as Go Service (cli)
+    participant P10 as Go Service (correlation)
+    participant P11 as Go Service (discovery)
+    participant P12 as Go Service (enrichment)
+    participant P13 as Go Service (excel)
+    participant P14 as Go Service (json)
+    participant P15 as Go Service (mermaid)
+    participant P16 as Go Service (svg)
+    participant P17 as Go Service (model)
+    P1-->>P9: calls
+    P4-->>P8: calls
+    P8-->>P15: calls
+    P9-->>P11: calls
+    P9-->>P5: calls
+    P9-->>P3: calls
+    P9-->>P6: calls
+    P9-->>P7: calls
+    P9-->>P4: calls
+    P9-->>P8: calls
+    P9-->>P10: calls
+    P9-->>P12: calls
+    P9-->>P16: calls
+    P9-->>P14: calls
+    P9-->>P15: calls
+    P9-->>P13: calls
+    P10-->>P17: calls

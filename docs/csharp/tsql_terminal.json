@@ -1,0 +1,441 @@
+{
+  "id": "process-TsqlTerminal",
+  "name": "TsqlTerminal Workflow",
+  "swimlanes": [
+    {
+      "id": "cs:Program.cs",
+      "name": "C# Class (Program)",
+      "description": "C# file Program.cs"
+    },
+    {
+      "id": "cs:Program",
+      "name": "C# Class (Program)",
+      "description": "Class Program in Program.cs"
+    },
+    {
+      "id": "cs:UnitTest1.cs",
+      "name": "C# Class (UnitTest1)",
+      "description": "C# file UnitTest1.cs"
+    },
+    {
+      "id": "cs:ProgramTests",
+      "name": "C# Class (ProgramTests)",
+      "description": "Class ProgramTests in UnitTest1.cs"
+    },
+    {
+      "id": "sql:script",
+      "name": "SQL Database (script)",
+      "description": "SQL script in script.sql"
+    },
+    {
+      "id": "sql:script_get_resultsets",
+      "name": "SQL Database (script_get_resultsets)",
+      "description": "SQL script in script_get_resultsets.sql"
+    },
+    {
+      "id": "sql:script_session",
+      "name": "SQL Database (script_session)",
+      "description": "SQL script in script_session.sql"
+    },
+    {
+      "id": "sql:script_temptable",
+      "name": "SQL Database (script_temptable)",
+      "description": "SQL script in script_temptable.sql"
+    },
+    {
+      "id": "sql:ssis_logging_report",
+      "name": "SQL Database (ssis_logging_report)",
+      "description": "SQL script in ssis_logging_report.sql"
+    }
+  ],
+  "steps": [
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:Main:5",
+      "swimlane_id": "cs:Program",
+      "name": "Main",
+      "description": "Method Main",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 5,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ReadSqlInput:234",
+      "swimlane_id": "cs:Program",
+      "name": "ReadSqlInput",
+      "description": "Method ReadSqlInput",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 234,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ef:252",
+      "swimlane_id": "cs:Program",
+      "name": "EF: lines.Add",
+      "description": "Entity Framework Operation lines.Add(nextLine)",
+      "type": "DatabaseQuery",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 252,
+      "metadata": {
+        "operation": "lines.Add",
+        "raw": "lines.Add(nextLine)"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:TryResolveSqlFileCommand:258",
+      "swimlane_id": "cs:Program",
+      "name": "TryResolveSqlFileCommand",
+      "description": "Method TryResolveSqlFileCommand",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 258,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ExecuteSql:284",
+      "swimlane_id": "cs:Program",
+      "name": "ExecuteSql",
+      "description": "Method ExecuteSql",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 284,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ExecuteSqlNewConnection:322",
+      "swimlane_id": "cs:Program",
+      "name": "ExecuteSqlNewConnection",
+      "description": "Method ExecuteSqlNewConnection",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 322,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ExecuteSqlFile:363",
+      "swimlane_id": "cs:Program",
+      "name": "ExecuteSqlFile",
+      "description": "Method ExecuteSqlFile",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 363,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ExecuteSqlFileNewConnection:389",
+      "swimlane_id": "cs:Program",
+      "name": "ExecuteSqlFileNewConnection",
+      "description": "Method ExecuteSqlFileNewConnection",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs",
+      "line_number": 389,
+      "metadata": {
+        "class": "Program"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs:TryResolveSqlFileCommand_ParsesValidFileCommands:5",
+      "swimlane_id": "cs:ProgramTests",
+      "name": "TryResolveSqlFileCommand_ParsesValidFileCommands",
+      "description": "Method TryResolveSqlFileCommand_ParsesValidFileCommands",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs",
+      "line_number": 5,
+      "metadata": {
+        "class": "ProgramTests"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs:TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands:16",
+      "swimlane_id": "cs:ProgramTests",
+      "name": "TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands",
+      "description": "Method TryResolveSqlFileCommand_ReturnsFalse_ForNonFileCommands",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs",
+      "line_number": 16,
+      "metadata": {
+        "class": "ProgramTests"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs:TryResolveSqlFileCommand_UnquotesQuotedPaths:27",
+      "swimlane_id": "cs:ProgramTests",
+      "name": "TryResolveSqlFileCommand_UnquotesQuotedPaths",
+      "description": "Method TryResolveSqlFileCommand_UnquotesQuotedPaths",
+      "type": "Function",
+      "language": "csharp",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\TsqlTerminalTests\\UnitTest1.cs",
+      "line_number": 27,
+      "metadata": {
+        "class": "ProgramTests"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script.sql:stmt:1",
+      "swimlane_id": "sql:script",
+      "name": "SELECT FROM sysssislog",
+      "description": "Query table sysssislog",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script.sql",
+      "line_number": 1
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql:stmt:5",
+      "swimlane_id": "sql:script_get_resultsets",
+      "name": "SELECT FROM sysssislog",
+      "description": "Query table sysssislog",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql",
+      "line_number": 7
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql:stmt:6",
+      "swimlane_id": "sql:script_get_resultsets",
+      "name": "EXEC SET",
+      "description": "Executes stored procedure SET",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql",
+      "line_number": 23,
+      "metadata": {
+        "procedure": "SET"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql:stmt:8",
+      "swimlane_id": "sql:script_get_resultsets",
+      "name": "SELECT FROM temp",
+      "description": "Query table temp",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql",
+      "line_number": 39
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql:stmt:11",
+      "swimlane_id": "sql:script_get_resultsets",
+      "name": "EXEC wrapper",
+      "description": "Executes stored procedure wrapper",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql",
+      "line_number": 70,
+      "metadata": {
+        "procedure": "wrapper"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql:stmt:14",
+      "swimlane_id": "sql:script_get_resultsets",
+      "name": "EXEC in",
+      "description": "Executes stored procedure in",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_get_resultsets.sql",
+      "line_number": 77,
+      "metadata": {
+        "procedure": "in"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_session.sql:stmt:1",
+      "swimlane_id": "sql:script_session",
+      "name": "SELECT FROM sysssislog",
+      "description": "Query table sysssislog",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_session.sql",
+      "line_number": 1
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql:stmt:1",
+      "swimlane_id": "sql:script_temptable",
+      "name": "SELECT FROM sysssislog",
+      "description": "Query table sysssislog",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql",
+      "line_number": 1
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql:stmt:2",
+      "swimlane_id": "sql:script_temptable",
+      "name": "CREATE TABLE #TempTable",
+      "description": "Table schema definition #TempTable",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql",
+      "line_number": 14,
+      "metadata": {
+        "columns": [
+          {
+            "key": "",
+            "name": "WHEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "THEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "CASE",
+            "type": "WHEN"
+          },
+          {
+            "key": "",
+            "name": "ELSE",
+            "type": "CAST"
+          },
+          {
+            "key": "",
+            "name": "WHEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "THEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "CASE",
+            "type": "WHEN"
+          },
+          {
+            "key": "",
+            "name": "ELSE",
+            "type": "CAST"
+          },
+          {
+            "key": "",
+            "name": "WHEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "THEN",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "ELSE",
+            "type": "t"
+          },
+          {
+            "key": "",
+            "name": "CASE",
+            "type": "WHEN"
+          }
+        ],
+        "operation": "CREATE",
+        "table": "#TempTable"
+      }
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql:stmt:3",
+      "swimlane_id": "sql:script_temptable",
+      "name": "SELECT FROM columns",
+      "description": "Query table columns",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\script_temptable.sql",
+      "line_number": 36
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:10",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "INSERT INTO @DurationMap",
+      "description": "Insert records into table @DurationMap",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 36
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:18",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "INSERT INTO @PackageRunsTable",
+      "description": "Insert records into table @PackageRunsTable",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 63
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:20",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "SELECT FROM @PackageRunsTable",
+      "description": "Query table @PackageRunsTable",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 155
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:22",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "INSERT INTO @ExecutionRunsTable",
+      "description": "Insert records into table @ExecutionRunsTable",
+      "type": "TableOperation",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 188
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:23",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "SELECT FROM @PackageRunsTable",
+      "description": "Query table @PackageRunsTable",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 227
+    },
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql:stmt:24",
+      "swimlane_id": "sql:ssis_logging_report",
+      "name": "SELECT FROM sysssislog",
+      "description": "Query table sysssislog",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\example_scripts\\ssis_logging_report.sql",
+      "line_number": 232
+    }
+  ],
+  "links": [
+    {
+      "id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ReadSqlInput:234-\u003eC:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ef:252",
+      "source_step_id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ReadSqlInput:234",
+      "target_step_id": "C:\\Users\\U00001\\source\\repos\\TsqlTerminal\\Program.cs:ef:252",
+      "label": "executes EF query",
+      "is_cross_service": false
+    }
+  ]
+}
