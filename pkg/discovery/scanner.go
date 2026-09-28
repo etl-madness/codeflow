@@ -1,6 +1,7 @@
 package discovery
 
 import (
+	"bytes"
 	"os"
 	"path"
 	"path/filepath"
@@ -12,12 +13,13 @@ import (
 
 // Supported language identifiers.
 const (
-	LangGo      = "go"
-	LangCSharp  = "csharp"
-	LangPython  = "python"
-	LangSQL     = "sql"
-	LangFlowXML = "flowxml"
-	LangSSIS    = "ssis"
+	LangGo        = "go"
+	LangCSharp    = "csharp"
+	LangPython    = "python"
+	LangSQL       = "sql"
+	LangFlowXML   = "flowxml"
+	LangSSIS      = "ssis"
+	LangLiquibase = "liquibase"
 )
 
 // CommonTestPatterns provides default ignore patterns for test and spec files across supported languages.
@@ -213,10 +215,11 @@ func (s *Scanner) Scan() ([]DiscoveredFile, error) {
 	if !rootInfo.IsDir() {
 		ext := filepath.Ext(s.rootDir)
 		if lang, ok := MapExtensionToLanguage(ext); ok {
+			detectedLang := sniffLanguage(s.rootDir, lang)
 			discovered = append(discovered, DiscoveredFile{
 				Path:      s.rootDir,
 				Extension: strings.ToLower(ext),
-				Language:  lang,
+				Language:  detectedLang,
 			})
 		}
 		return discovered, nil
@@ -269,10 +272,11 @@ func (s *Scanner) Scan() ([]DiscoveredFile, error) {
 
 		ext := filepath.Ext(path)
 		if lang, ok := MapExtensionToLanguage(ext); ok {
+			detectedLang := sniffLanguage(path, lang)
 			discovered = append(discovered, DiscoveredFile{
 				Path:      path,
 				Extension: strings.ToLower(ext),
-				Language:  lang,
+				Language:  detectedLang,
 			})
 		}
 
@@ -393,4 +397,34 @@ func matchPattern(pattern, target string) bool {
 	}
 
 	return false
+}
+
+// sniffLanguage inspects the initial bytes of XML and SQL files to distinguish Liquibase changelogs and SSIS packages.
+func sniffLanguage(filePath string, defaultLang string) string {
+	ext := strings.ToLower(filepath.Ext(filePath))
+	if ext == ".xml" || ext == ".sql" {
+		f, err := os.Open(filePath)
+		if err != nil {
+			return defaultLang
+		}
+		defer f.Close()
+
+		buf := make([]byte, 1024)
+		n, _ := f.Read(buf)
+		header := buf[:n]
+
+		if ext == ".xml" {
+			if bytes.Contains(header, []byte("<databaseChangeLog")) {
+				return LangLiquibase
+			}
+			if bytes.Contains(header, []byte("<DTS:Executable")) || bytes.Contains(header, []byte("www.microsoft.com/SqlServer/Dts")) {
+				return LangSSIS
+			}
+		} else if ext == ".sql" {
+			if bytes.Contains(header, []byte("--liquibase formatted sql")) || bytes.Contains(header, []byte("--changeset ")) {
+				return LangLiquibase
+			}
+		}
+	}
+	return defaultLang
 }

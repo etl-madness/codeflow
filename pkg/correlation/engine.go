@@ -2,6 +2,7 @@ package correlation
 
 import (
 	"fmt"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -43,6 +44,9 @@ func (e *Engine) Correlate(modelID, modelName string, results []*analyzer.FileAn
 
 	// c) Cross-package and cross-service call correlation
 	e.correlateCalls(pm)
+
+	// d) SQL file and script reference correlation (<sqlFile>)
+	e.correlateSQLFiles(pm)
 
 	return pm
 }
@@ -103,15 +107,17 @@ func (e *Engine) correlateRoutes(pm *model.ProcessModel) {
 }
 
 func (e *Engine) correlateDatabases(pm *model.ProcessModel) {
-	// Index SQL steps by table name or procedure name
+	// Index SQL & Liquibase tables and stored procedures
 	sqlTables := make(map[string]*model.Step)
 	sqlProcs := make(map[string]*model.Step)
 
 	for i := range pm.Steps {
 		s := &pm.Steps[i]
-		if s.Language == "sql" {
+		if s.Language == "sql" || s.Language == "liquibase" || s.Type == "DatabaseTable" {
 			if tbl, ok := s.Metadata["table"].(string); ok && tbl != "" {
 				sqlTables[strings.ToLower(tbl)] = s
+			} else if s.Type == "DatabaseTable" && s.Name != "" {
+				sqlTables[strings.ToLower(s.Name)] = s
 			}
 			if proc, ok := s.Metadata["procedure"].(string); ok && proc != "" {
 				sqlProcs[strings.ToLower(proc)] = s
@@ -119,10 +125,39 @@ func (e *Engine) correlateDatabases(pm *model.ProcessModel) {
 		}
 	}
 
+	// Match cross-file foreign keys between tables
+	for i := range pm.Steps {
+		s := &pm.Steps[i]
+		if s.Type != "DatabaseTable" {
+			continue
+		}
+		fksRaw, ok := s.Metadata["foreign_keys"].([]map[string]string)
+		if !ok || len(fksRaw) == 0 {
+			continue
+		}
+		for _, fk := range fksRaw {
+			refTblName := strings.ToLower(fk["referenced_table"])
+			if targetStep, exists := sqlTables[refTblName]; exists && targetStep.ID != s.ID {
+				label := "references"
+				if cName := fk["constraint_name"]; cName != "" {
+					label = fmt.Sprintf("references (%s)", cName)
+				}
+				linkID := fmt.Sprintf("%s->%s:fk", s.ID, targetStep.ID)
+				pm.AddLink(model.Link{
+					ID:             linkID,
+					SourceStepID:   s.ID,
+					TargetStepID:   targetStep.ID,
+					Label:          label,
+					IsCrossService: targetStep.SwimlaneID != s.SwimlaneID,
+				})
+			}
+		}
+	}
+
 	// Match code steps that query databases
 	for i := range pm.Steps {
 		s := &pm.Steps[i]
-		if s.Language != "sql" && (s.Type == "DatabaseQuery" || strings.Contains(s.Description, "Database") || strings.Contains(s.Description, "EF")) {
+		if s.Language != "sql" && s.Language != "liquibase" && (s.Type == "DatabaseQuery" || strings.Contains(s.Description, "Database") || strings.Contains(s.Description, "EF")) {
 			rawQuery := ""
 			if q, ok := s.Metadata["query"].(string); ok {
 				rawQuery = q
@@ -258,4 +293,97 @@ func matchWord(text, word string) bool {
 	}
 	re := regexp.MustCompile(`\b` + regexp.QuoteMeta(word) + `\b`)
 	return re.MatchString(text)
+}
+
+func (e *Engine) correlateSQLFiles(pm *model.ProcessModel) {
+	existingLinks := make(map[string]bool)
+	for _, l := range pm.Links {
+		existingLinks[fmt.Sprintf("%s->%s", l.SourceStepID, l.TargetStepID)] = true
+	}
+
+	for i := range pm.Steps {
+		caller := &pm.Steps[i]
+
+		var sqlPaths []string
+		if p, ok := caller.Metadata["sql_file"].(string); ok && p != "" {
+			sqlPaths = append(sqlPaths, p)
+		}
+		if paths, ok := caller.Metadata["sql_files"].([]string); ok {
+			for _, p := range paths {
+				if p != "" {
+					sqlPaths = append(sqlPaths, p)
+				}
+			}
+		}
+
+		// Also check description if caller is a Liquibase changeSet executing an external SQL file
+		if len(sqlPaths) == 0 && (caller.Language == "liquibase" || caller.Metadata["is_liquibase"] == true) {
+			descLower := strings.ToLower(caller.Description)
+			if idx := strings.Index(descLower, "sqlfile>:"); idx != -1 {
+				sub := strings.TrimSpace(caller.Description[idx+len("sqlfile>:"):])
+				if f := strings.Fields(sub); len(f) > 0 {
+					sqlPaths = append(sqlPaths, f[0])
+				}
+			} else if idx := strings.Index(descLower, "sql file:"); idx != -1 {
+				sub := strings.TrimSpace(caller.Description[idx+len("sql file:"):])
+				if f := strings.Fields(sub); len(f) > 0 {
+					sqlPaths = append(sqlPaths, f[0])
+				}
+			}
+		}
+
+		if len(sqlPaths) == 0 {
+			continue
+		}
+
+		for _, sqlRef := range sqlPaths {
+			baseName := filepath.Base(sqlRef)
+			baseLower := strings.ToLower(baseName)
+			baseNoExt := strings.TrimSuffix(baseLower, strings.ToLower(filepath.Ext(baseName)))
+
+			// Find candidate steps belonging to this SQL file
+			var targetStep *model.Step
+			var firstFileStep *model.Step
+
+			for j := range pm.Steps {
+				cand := &pm.Steps[j]
+				if cand.ID == caller.ID || cand.SwimlaneID == caller.SwimlaneID {
+					continue
+				}
+
+				candFileBase := strings.ToLower(filepath.Base(cand.SourceFile))
+				matchesFile := candFileBase == baseLower || strings.Contains(candFileBase, baseNoExt) ||
+					strings.Contains(strings.ToLower(cand.SwimlaneID), baseNoExt)
+
+				if matchesFile {
+					if firstFileStep == nil {
+						firstFileStep = cand
+					}
+					// Prefer StoredProcedure or View step over inner query or statement
+					if cand.Type == "StoredProcedure" || cand.Type == "View" {
+						targetStep = cand
+						break
+					}
+				}
+			}
+
+			if targetStep == nil {
+				targetStep = firstFileStep
+			}
+
+			if targetStep != nil {
+				key := fmt.Sprintf("%s->%s", caller.ID, targetStep.ID)
+				if !existingLinks[key] {
+					existingLinks[key] = true
+					pm.AddLink(model.Link{
+						ID:             fmt.Sprintf("%s->%s:sqlfile", caller.ID, targetStep.ID),
+						SourceStepID:   caller.ID,
+						TargetStepID:   targetStep.ID,
+						Label:          "calls <sqlFile>",
+						IsCrossService: true,
+					})
+				}
+			}
+		}
+	}
 }

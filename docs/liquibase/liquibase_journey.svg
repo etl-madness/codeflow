@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1755 790" width="100%" height="100%">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+  </marker>
+  <marker id="seq-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB" />
+  </marker>
+  <marker id="cross-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+  </marker>
+  <marker id="milestone-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 1 L 12 6 L 0 11 z" fill="#6366F1" />
+  </marker>
+  <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+  </filter>
+</defs>
+<style>
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #1F2937; }
+  .lane-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #374151; }
+  .node-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #111827; }
+  .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6B7280; }
+  .node-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 9px; font-weight: bold; }
+  .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #4B5563; }
+  .state-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#F8FAFC" />
+<text x="40" y="28" class="title">liquibase Workflow (User / Data Journey)</text>
+<rect x="40" y="65" width="370" height="630" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="40" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="40" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="55" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="66" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 1</text>
+<text x="55" y="117" class="lane-title" font-size="14">Liquibase (core_changeset.1)</text>
+<text x="395" y="93" class="node-desc" font-size="11">5 milestones in stage</text>
+<rect x="55" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="155" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="67" y="193" class="node-title" font-size="12">db_admin:1</text>
+<text x="67" y="209" class="node-desc">Create customers table</text>
+<rect x="55" y="240" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="240" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="67" y="278" class="node-title" font-size="12">db_admin:2</text>
+<text x="67" y="294" class="node-desc">Create merchants table</text>
+<rect x="55" y="325" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="325" width="4" height="85" rx="2" fill="#9CA3AF" />
+<text x="67" y="343" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [Milestone]</text>
+<text x="67" y="363" class="node-title" font-size="12">db_admin:3</text>
+<text x="67" y="379" class="node-desc">Create index idx_customers_email on customers;</text>
+<text x="67" y="394" class="node-desc">Tag database milestone: v1.0-baseline</text>
+<rect x="55" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="425" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [DatabaseTable]</text>
+<text x="67" y="463" class="node-title" font-size="12">customers</text>
+<text x="67" y="479" class="node-desc">Customer profile and authentication records</text>
+<rect x="55" y="510" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="55" y="510" width="4" height="70" rx="2" fill="#10B981" />
+<text x="67" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [DatabaseTable]</text>
+<text x="67" y="548" class="node-title" font-size="12">merchants</text>
+<text x="67" y="564" class="node-desc">Merchant store entities</text>
+<line x1="418" y1="102" x2="467" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="426" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="442" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="475" y="65" width="370" height="630" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="475" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="475" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="490" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="501" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 2</text>
+<text x="490" y="117" class="lane-title" font-size="14">Liquibase (customer_changeset.1)</text>
+<text x="830" y="93" class="node-desc" font-size="11">1 milestones in stage</text>
+<rect x="490" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="490" y="155" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="502" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#1  [StoredProcedure]</text>
+<text x="502" y="193" class="node-title" font-size="12">me:dbbo_usp_GetCustomer.1</text>
+<text x="502" y="209" class="node-desc">Execute &lt;sqlFile&gt;: dbo_usp_GetCustomer.1.sql</text>
+<line x1="853" y1="102" x2="902" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="860" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="878" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="910" y="65" width="370" height="630" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="910" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="910" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="925" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="936" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 3</text>
+<text x="925" y="117" class="lane-title" font-size="14">Liquibase (sql_changeset.1)</text>
+<text x="1265" y="93" class="node-desc" font-size="11">6 milestones in stage</text>
+<rect x="925" y="155" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="155" width="4" height="85" rx="2" fill="#10B981" />
+<text x="937" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#1  [TableOperation]</text>
+<text x="937" y="193" class="node-title" font-size="12">architect:orders-v1</text>
+<text x="937" y="209" class="node-desc">Create orders table with foreign keys to</text>
+<text x="937" y="224" class="node-desc">customers and merchants</text>
+<rect x="925" y="255" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="255" width="4" height="70" rx="2" fill="#10B981" />
+<text x="937" y="273" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [TableOperation]</text>
+<text x="937" y="293" class="node-title" font-size="12">architect:payments-v1</text>
+<text x="937" y="309" class="node-desc">Create payments table with foreign key to orders</text>
+<rect x="925" y="340" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="340" width="4" height="70" rx="2" fill="#9CA3AF" />
+<text x="937" y="358" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4B5563">#3  [DatabaseView]</text>
+<text x="937" y="378" class="node-title" font-size="12">architect:views-and-procs</text>
+<text x="937" y="394" class="node-desc">Create analytics view for merchant billing</text>
+<rect x="925" y="425" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="425" width="4" height="70" rx="2" fill="#10B981" />
+<text x="937" y="443" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#4  [DatabaseQuery]</text>
+<text x="937" y="463" class="node-title" font-size="12">architect:milestone-v1.1</text>
+<text x="937" y="479" class="node-desc">Tag database release milestone</text>
+<rect x="925" y="510" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="510" width="4" height="70" rx="2" fill="#10B981" />
+<text x="937" y="528" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#5  [DatabaseTable]</text>
+<text x="937" y="548" class="node-title" font-size="12">orders</text>
+<text x="937" y="564" class="node-desc">Database Table orders</text>
+<rect x="925" y="595" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="925" y="595" width="4" height="70" rx="2" fill="#10B981" />
+<text x="937" y="613" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#6  [DatabaseTable]</text>
+<text x="937" y="633" class="node-title" font-size="12">payments</text>
+<text x="937" y="649" class="node-desc">Database Table payments</text>
+<line x1="1288" y1="102" x2="1337" y2="102" stroke="#6366F1" stroke-width="3" stroke-linecap="round" marker-end="url(#milestone-arrow)" />
+<rect x="1296" y="82" width="34" height="16" rx="4" fill="#EEF2FF" />
+<text x="1312" y="94" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#4F46E5" text-anchor="middle">==&gt;</text>
+<rect x="1345" y="65" width="370" height="630" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.8" filter="url(#shadow)" />
+<rect x="1345" y="65" width="370" height="75" rx="12" fill="#EEF2FF" />
+<rect x="1345" y="128" width="370" height="12" fill="#EEF2FF" />
+<rect x="1360" y="79" width="68" height="20" rx="10" fill="#4F46E5" />
+<text x="1371" y="93" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">STAGE 4</text>
+<text x="1360" y="117" class="lane-title" font-size="14">SQL Database (dbo_usp_GetCustomer.1)</text>
+<text x="1700" y="93" class="node-desc" font-size="11">2 milestones in stage</text>
+<rect x="1360" y="155" width="340" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="155" width="4" height="70" rx="2" fill="#8B5CF6" />
+<text x="1372" y="173" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">#1  [StoredProcedure]</text>
+<text x="1372" y="193" class="node-title" font-size="12">Proc: usp_GetCustomer</text>
+<text x="1372" y="209" class="node-desc">Stored Procedure Proc: usp_GetCustomer</text>
+<rect x="1360" y="240" width="340" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+<rect x="1360" y="240" width="4" height="85" rx="2" fill="#10B981" />
+<text x="1372" y="258" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" fill="#059669">#2  [DatabaseQuery]</text>
+<text x="1372" y="278" class="node-title" font-size="12">Query Customer</text>
+<text x="1372" y="294" class="node-desc">Reads table Customer within stored procedure</text>
+<text x="1372" y="309" class="node-desc">usp_GetCustomer</text>
+<line x1="225" y1="710" x2="1530" y2="710" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" />
+<circle cx="225" cy="710" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="225" y="732" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 1: Liquibase (core_changeset.1)</text>
+<circle cx="660" cy="710" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="660" y="732" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 2: Liquibase (customer_changeset.1)</text>
+<circle cx="1095" cy="710" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1095" y="732" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 3: Liquibase (sql_changeset.1)</text>
+<circle cx="1530" cy="710" r="9" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3" />
+<text x="1530" y="732" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Stage 4: SQL Database (dbo_usp_GetCustomer.1)</text>
+</svg>

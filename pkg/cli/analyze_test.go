@@ -355,6 +355,125 @@ func TestAnalyzeCommandNameWithExtension(t *testing.T) {
 	}
 }
 
+func TestAnalyzeCommandLiquibase(t *testing.T) {
+	tempDir := t.TempDir()
+
+	// 1. Create a Liquibase XML changelog
+	xmlContent := `<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
+    <changeSet id="1" author="admin">
+        <comment>Create users table</comment>
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>`
+	if err := os.WriteFile(filepath.Join(tempDir, "changelog.xml"), []byte(xmlContent), 0644); err != nil {
+		t.Fatalf("failed to write changelog.xml: %v", err)
+	}
+
+	// 2. Create a Liquibase Formatted SQL changelog
+	sqlContent := `--liquibase formatted sql
+--changeset admin:2
+CREATE TABLE audit_logs (
+    id INT PRIMARY KEY,
+    user_id INT,
+    action VARCHAR(100),
+    CONSTRAINT fk_audit_users FOREIGN KEY (user_id) REFERENCES users(id)
+);
+`
+	if err := os.WriteFile(filepath.Join(tempDir, "changelog.sql"), []byte(sqlContent), 0644); err != nil {
+		t.Fatalf("failed to write changelog.sql: %v", err)
+	}
+
+	outDir := filepath.Join(tempDir, "docs")
+
+	opts := &AnalyzeOptions{
+		SourceDir:   tempDir,
+		OutputDir:   outDir,
+		OutputName:  "liquibase_test",
+		Formats:     "mermaid,svg,excel,json",
+		DiagramType: "all",
+		NoTruncate:  true,
+	}
+
+	if err := RunAnalyze(opts); err != nil {
+		t.Fatalf("RunAnalyze failed on Liquibase files: %v", err)
+	}
+
+	// Verify all diagram types generated
+	expectedFiles := []string{
+		"liquibase_test.mmd",
+		"liquibase_test.svg",
+		"liquibase_test_lr.mmd",
+		"liquibase_test_lr.svg",
+		"liquibase_test_er.mmd",
+		"liquibase_test_er.svg",
+		"liquibase_test_journey.mmd",
+		"liquibase_test_journey.svg",
+		"liquibase_test_sequence.mmd",
+		"liquibase_test_sequence.svg",
+		"liquibase_test_state.mmd",
+		"liquibase_test_state.svg",
+		"liquibase_test.json",
+		"liquibase_test.xlsx",
+	}
+
+	for _, ef := range expectedFiles {
+		p := filepath.Join(outDir, ef)
+		fi, err := os.Stat(p)
+		if err != nil {
+			t.Errorf("expected generated file %s to exist: %v", ef, err)
+			continue
+		}
+		if fi.Size() == 0 {
+			t.Errorf("generated file %s is empty", ef)
+		}
+	}
+}
+
+func TestAnalyzeCommandLiquibasePrimaryOrder(t *testing.T) {
+	outDir := t.TempDir()
+
+	opts := &AnalyzeOptions{
+		SourceDir:        "../../examples/liquibase",
+		PrimaryChangelog: "../../examples/liquibase/changesets.xml",
+		Recursive:        true,
+		Formats:          "mermaid,json",
+		OutputName:       "primary_order_test",
+		OutputDir:        outDir,
+		DiagramType:      "all",
+		NoTruncate:       true,
+	}
+
+	if err := RunAnalyze(opts); err != nil {
+		t.Fatalf("RunAnalyze failed with primary changelog: %v", err)
+	}
+
+	mmdPath := filepath.Join(outDir, "primary_order_test.mmd")
+	cnt, err := os.ReadFile(mmdPath)
+	if err != nil {
+		t.Fatalf("failed to read primary_order_test.mmd: %v", err)
+	}
+	content := string(cnt)
+
+	// Verify changelog swimlanes exist
+	if !strings.Contains(content, "subgraph lane_liquibase_core_changeset") {
+		t.Errorf("expected subgraph lane_liquibase_core_changeset in output")
+	}
+	if !strings.Contains(content, "subgraph lane_liquibase_sql_changeset") {
+		t.Errorf("expected subgraph lane_liquibase_sql_changeset in output")
+	}
+
+	// Verify sequential execution link
+	if !strings.Contains(content, "executes next") {
+		t.Errorf("expected 'executes next' link in output diagram")
+	}
+}
+
 
 
 

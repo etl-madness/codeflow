@@ -1,0 +1,39 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "primaryColor": "#FFFFFF", "primaryBorderColor": "#3B82F6", "primaryTextColor": "#0F172A", "lineColor": "#64748B", "textColor": "#0F172A"}}}%%
+erDiagram
+    customers {
+        bigint id PK
+        varchar_50 first_name
+        varchar_50 last_name
+        varchar_255 email
+        datetime created_at
+    }
+
+    merchants {
+        bigint id PK
+        varchar_100 merchant_name
+        varchar_64 api_key
+        varchar_20 status
+    }
+
+    orders {
+        BIGINT id PK
+        BIGINT customer_id
+        BIGINT merchant_id
+        DECIMAL_12_2 order_total
+        VARCHAR_30 order_status
+        DATETIME created_at
+    }
+
+    payments {
+        BIGINT id PK
+        BIGINT order_id
+        VARCHAR_50 payment_method
+        DECIMAL_12_2 amount
+        VARCHAR_30 payment_status
+        VARCHAR_100 transaction_ref
+        DATETIME processed_at
+    }
+
+    orders ||--o{ customers : "references (fk_orders_customer)"
+    orders ||--o{ merchants : "references (fk_orders_merchant)"
+    payments ||--o{ orders : "references (fk_payments_order)"

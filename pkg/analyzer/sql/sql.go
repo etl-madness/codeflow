@@ -1,6 +1,7 @@
 package sql
 
 import (
+	"bytes"
 	"fmt"
 	"path/filepath"
 	"regexp"
@@ -9,6 +10,7 @@ import (
 	"github.com/xwb1989/sqlparser"
 
 	"codeflow/pkg/analyzer"
+	"codeflow/pkg/analyzer/liquibase"
 	"codeflow/pkg/model"
 )
 
@@ -31,8 +33,8 @@ func (a *Analyzer) CanAnalyze(ext string) bool {
 }
 
 var (
-	createProcRegex  = regexp.MustCompile(`(?i)CREATE\s+(?:OR\s+REPLACE\s+)?PROC(?:EDURE)?\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
-	createViewRegex  = regexp.MustCompile(`(?i)CREATE\s+(?:OR\s+REPLACE\s+)?VIEW\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
+	createProcRegex  = regexp.MustCompile(`(?i)CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?PROC(?:EDURE)?\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
+	createViewRegex  = regexp.MustCompile(`(?i)CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?VIEW\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
 	createTableRegex = regexp.MustCompile(`(?i)CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
 	execProcRegex    = regexp.MustCompile(`(?i)(?:EXEC|EXECUTE)\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
 	selectFromRegex  = regexp.MustCompile(`(?i)FROM\s+(?:\[?([#@\w]+)\]?\.)*\[?([#@\w]+)\]?`)
@@ -43,6 +45,11 @@ var (
 
 // AnalyzeFile parses SQL scripts and extracts table operations, views, stored procedures, and queries.
 func (a *Analyzer) AnalyzeFile(path string, content []byte) (*analyzer.FileAnalysisResult, error) {
+	// Check for Liquibase Formatted SQL
+	if bytes.Contains(content, []byte("--liquibase formatted sql")) || bytes.Contains(content, []byte("--changeset ")) {
+		return liquibase.New().AnalyzeFile(path, content)
+	}
+
 	fileName := filepath.Base(path)
 	defaultSchema := strings.TrimSuffix(fileName, filepath.Ext(fileName))
 	swimlaneID := fmt.Sprintf("sql:%s", defaultSchema)
@@ -247,20 +254,26 @@ func (a *Analyzer) processFallbackStatement(
 			procName = matches[1]
 		}
 		schema := matches[1]
+		displayName := fmt.Sprintf("Proc: %s", procName)
+
+		procMeta := map[string]any{
+			"procedure": procName,
+		}
+		if schema != "" && schema != procName {
+			procMeta["schema"] = schema
+			procMeta["full_procedure"] = fmt.Sprintf("%s.%s", schema, procName)
+		}
 
 		procStep := model.Step{
 			ID:          stepID,
 			SwimlaneID:  swimlaneID,
-			Name:        fmt.Sprintf("Proc: %s", procName),
-			Description: fmt.Sprintf("Stored Procedure %s", procName),
+			Name:        displayName,
+			Description: fmt.Sprintf("Stored Procedure %s", displayName),
 			Type:        "StoredProcedure",
 			Language:    "sql",
 			SourceFile:  path,
 			LineNumber:  line,
-			Metadata: map[string]any{
-				"procedure": procName,
-				"schema":    schema,
-			},
+			Metadata:    procMeta,
 		}
 		result.Steps = append(result.Steps, procStep)
 
@@ -456,9 +469,8 @@ func splitStatements(content string) []string {
 
 	var statements []string
 	for _, part := range parts {
-		// Split by semicolon
-		rawStmts := strings.Split(part, ";")
-		for _, s := range rawStmts {
+		stmts := splitBySemicolonWithBlocks(part)
+		for _, s := range stmts {
 			trimmed := strings.TrimSpace(s)
 			if trimmed != "" {
 				statements = append(statements, trimmed)
@@ -466,6 +478,110 @@ func splitStatements(content string) []string {
 		}
 	}
 	return statements
+}
+
+func splitBySemicolonWithBlocks(text string) []string {
+	var results []string
+	var current strings.Builder
+	depth := 0
+	inString := false
+	inLineComment := false
+	inBlockComment := false
+
+	runes := []rune(text)
+	n := len(runes)
+
+	for i := 0; i < n; i++ {
+		ch := runes[i]
+		next := rune(0)
+		if i+1 < n {
+			next = runes[i+1]
+		}
+
+		if inLineComment {
+			current.WriteRune(ch)
+			if ch == '\n' {
+				inLineComment = false
+			}
+			continue
+		}
+
+		if inBlockComment {
+			current.WriteRune(ch)
+			if ch == '*' && next == '/' {
+				current.WriteRune(next)
+				i++
+				inBlockComment = false
+			}
+			continue
+		}
+
+		if inString {
+			current.WriteRune(ch)
+			if ch == '\'' {
+				if next == '\'' {
+					current.WriteRune(next)
+					i++ // escaped quote
+				} else {
+					inString = false
+				}
+			}
+			continue
+		}
+
+		// Not in comment or string
+		if ch == '-' && next == '-' {
+			current.WriteRune(ch)
+			current.WriteRune(next)
+			i++
+			inLineComment = true
+			continue
+		}
+
+		if ch == '/' && next == '*' {
+			current.WriteRune(ch)
+			current.WriteRune(next)
+			i++
+			inBlockComment = true
+			continue
+		}
+
+		if ch == '\'' {
+			current.WriteRune(ch)
+			inString = true
+			continue
+		}
+
+		// Check for word boundary BEGIN or END
+		if (ch == 'b' || ch == 'B') && (i == 0 || !isWordChar(runes[i-1])) {
+			if i+5 <= n && strings.EqualFold(string(runes[i:i+5]), "BEGIN") && (i+5 == n || !isWordChar(runes[i+5])) {
+				depth++
+			}
+		} else if (ch == 'e' || ch == 'E') && (i == 0 || !isWordChar(runes[i-1])) {
+			if i+3 <= n && strings.EqualFold(string(runes[i:i+3]), "END") && (i+3 == n || !isWordChar(runes[i+3])) {
+				if depth > 0 {
+					depth--
+				}
+			}
+		}
+
+		if ch == ';' && depth == 0 {
+			results = append(results, current.String())
+			current.Reset()
+			continue
+		}
+
+		current.WriteRune(ch)
+	}
+
+	if current.Len() > 0 {
+		results = append(results, current.String())
+	}
+	return results
+}
+
+func isWordChar(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_' || r == '@' || r == '#'
 }
 
 func extractTableColumns(stmt string) []map[string]string {

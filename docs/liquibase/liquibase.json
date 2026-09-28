@@ -1,0 +1,506 @@
+{
+  "id": "process-liquibase",
+  "name": "liquibase Workflow",
+  "swimlanes": [
+    {
+      "id": "lane_liquibase_core_changeset_1",
+      "name": "Liquibase (core_changeset.1)",
+      "description": "Liquibase migration changelog core_changeset.1.xml"
+    },
+    {
+      "id": "lane_liquibase_customer_changeset_1",
+      "name": "Liquibase (customer_changeset.1)",
+      "description": "Liquibase migration changelog customer_changeset.1.xml"
+    },
+    {
+      "id": "lane_liquibase_sql_changeset_1",
+      "name": "Liquibase (sql_changeset.1)",
+      "description": "Liquibase migration changelog sql_changeset.1.sql"
+    },
+    {
+      "id": "sql:dbo_usp_GetCustomer.1",
+      "name": "SQL Database (dbo_usp_GetCustomer.1)",
+      "description": "SQL script in dbo_usp_GetCustomer.1.sql"
+    }
+  ],
+  "steps": [
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
+      "name": "db_admin:1",
+      "description": "Create customers table",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
+      "line_number": 8,
+      "metadata": {
+        "author": "db_admin",
+        "changeset_id": "1",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.0",
+        "rollback": "DROP TABLE customers;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "customers"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
+      "name": "db_admin:2",
+      "description": "Create merchants table",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
+      "line_number": 30,
+      "metadata": {
+        "author": "db_admin",
+        "changeset_id": "2",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.0",
+        "rollback": "DROP TABLE merchants;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "merchants"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
+      "name": "db_admin:3",
+      "description": "Create index idx_customers_email on customers; Tag database milestone: v1.0-baseline",
+      "type": "Milestone",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
+      "line_number": 49,
+      "metadata": {
+        "author": "db_admin",
+        "changeset_id": "3",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "customers"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "swimlane_id": "lane_liquibase_customer_changeset_1",
+      "name": "me:dbbo_usp_GetCustomer.1",
+      "description": "Execute \u003csqlFile\u003e: dbo_usp_GetCustomer.1.sql",
+      "type": "StoredProcedure",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\customer_changeset.1.xml",
+      "line_number": 10,
+      "metadata": {
+        "author": "me",
+        "changeset_id": "dbbo_usp_GetCustomer.1",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false,
+        "sql_file": "../ddl/dbo_usp_GetCustomer.1.sql",
+        "sql_file_base": "dbo_usp_GetCustomer.1.sql",
+        "sql_files": [
+          "../ddl/dbo_usp_GetCustomer.1.sql"
+        ]
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:orders-v1",
+      "description": "Create orders table with foreign keys to customers and merchants",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 3,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "orders-v1",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.1",
+        "rollback": "DROP TABLE orders;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "orders"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:payments-v1",
+      "description": "Create payments table with foreign key to orders",
+      "type": "TableOperation",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 17,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "payments-v1",
+        "contexts": "dev,prod",
+        "is_liquibase": true,
+        "labels": "v1.1",
+        "rollback": "DROP TABLE payments;",
+        "run_always": false,
+        "run_on_change": false,
+        "table": "payments"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:views-and-procs",
+      "description": "Create analytics view for merchant billing",
+      "type": "DatabaseView",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 31,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "views-and-procs",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "architect:milestone-v1.1",
+      "description": "Tag database release milestone",
+      "type": "DatabaseQuery",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 43,
+      "metadata": {
+        "author": "architect",
+        "changeset_id": "milestone-v1.1",
+        "contexts": "",
+        "is_liquibase": true,
+        "labels": "",
+        "run_always": false,
+        "run_on_change": false
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:customers",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
+      "name": "customers",
+      "description": "Customer profile and authentication records",
+      "type": "DatabaseTable",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
+      "line_number": 0,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "id",
+            "type": "bigint"
+          },
+          {
+            "key": "",
+            "name": "first_name",
+            "type": "varchar(50)"
+          },
+          {
+            "key": "",
+            "name": "last_name",
+            "type": "varchar(50)"
+          },
+          {
+            "key": "",
+            "name": "email",
+            "type": "varchar(255)"
+          },
+          {
+            "key": "",
+            "name": "created_at",
+            "type": "datetime"
+          }
+        ],
+        "foreign_keys": null,
+        "is_liquibase": true,
+        "table": "customers"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants",
+      "swimlane_id": "lane_liquibase_core_changeset_1",
+      "name": "merchants",
+      "description": "Merchant store entities",
+      "type": "DatabaseTable",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\core_changeset.1.xml",
+      "line_number": 0,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "id",
+            "type": "bigint"
+          },
+          {
+            "key": "",
+            "name": "merchant_name",
+            "type": "varchar(100)"
+          },
+          {
+            "key": "",
+            "name": "api_key",
+            "type": "varchar(64)"
+          },
+          {
+            "key": "",
+            "name": "status",
+            "type": "varchar(20)"
+          }
+        ],
+        "foreign_keys": null,
+        "is_liquibase": true,
+        "table": "merchants"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "orders",
+      "description": "Database Table orders",
+      "type": "DatabaseTable",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 0,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "id",
+            "type": "BIGINT"
+          },
+          {
+            "key": "",
+            "name": "customer_id",
+            "type": "BIGINT"
+          },
+          {
+            "key": "",
+            "name": "merchant_id",
+            "type": "BIGINT"
+          },
+          {
+            "key": "",
+            "name": "order_total",
+            "type": "DECIMAL(12,2)"
+          },
+          {
+            "key": "",
+            "name": "order_status",
+            "type": "VARCHAR(30)"
+          },
+          {
+            "key": "",
+            "name": "created_at",
+            "type": "DATETIME"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "base_columns": "customer_id",
+            "base_table": "orders",
+            "constraint_name": "fk_orders_customer",
+            "referenced_columns": "id",
+            "referenced_table": "customers"
+          },
+          {
+            "base_columns": "merchant_id",
+            "base_table": "orders",
+            "constraint_name": "fk_orders_merchant",
+            "referenced_columns": "id",
+            "referenced_table": "merchants"
+          }
+        ],
+        "is_liquibase": true,
+        "table": "orders"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments",
+      "swimlane_id": "lane_liquibase_sql_changeset_1",
+      "name": "payments",
+      "description": "Database Table payments",
+      "type": "DatabaseTable",
+      "language": "liquibase",
+      "source_file": "examples\\liquibase\\changeset\\sql_changeset.1.sql",
+      "line_number": 0,
+      "metadata": {
+        "columns": [
+          {
+            "key": "PK",
+            "name": "id",
+            "type": "BIGINT"
+          },
+          {
+            "key": "",
+            "name": "order_id",
+            "type": "BIGINT"
+          },
+          {
+            "key": "",
+            "name": "payment_method",
+            "type": "VARCHAR(50)"
+          },
+          {
+            "key": "",
+            "name": "amount",
+            "type": "DECIMAL(12,2)"
+          },
+          {
+            "key": "",
+            "name": "payment_status",
+            "type": "VARCHAR(30)"
+          },
+          {
+            "key": "",
+            "name": "transaction_ref",
+            "type": "VARCHAR(100)"
+          },
+          {
+            "key": "",
+            "name": "processed_at",
+            "type": "DATETIME"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "base_columns": "order_id",
+            "base_table": "payments",
+            "constraint_name": "fk_payments_order",
+            "referenced_columns": "id",
+            "referenced_table": "orders"
+          }
+        ],
+        "is_liquibase": true,
+        "table": "payments"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "swimlane_id": "sql:dbo_usp_GetCustomer.1",
+      "name": "Proc: usp_GetCustomer",
+      "description": "Stored Procedure Proc: usp_GetCustomer",
+      "type": "StoredProcedure",
+      "language": "sql",
+      "source_file": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql",
+      "line_number": 1,
+      "metadata": {
+        "full_procedure": "dbo.usp_GetCustomer",
+        "procedure": "usp_GetCustomer",
+        "schema": "dbo"
+      }
+    },
+    {
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "swimlane_id": "sql:dbo_usp_GetCustomer.1",
+      "name": "Query Customer",
+      "description": "Reads table Customer within stored procedure usp_GetCustomer",
+      "type": "DatabaseQuery",
+      "language": "sql",
+      "source_file": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql",
+      "line_number": 1
+    }
+  ],
+  "links": [
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:2:30:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:1:8",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:3:49:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:2:30",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49-\u003eexamples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:3:49",
+      "target_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:orders-v1:3",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:payments-v1:17",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43:exec",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:views-and-procs:31",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:milestone-v1.1:43",
+      "label": "executes next",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:table:customers:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:customers",
+      "label": "references (fk_orders_customer)",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders-\u003eexamples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "target_step_id": "examples\\liquibase\\changeset\\core_changeset.1.xml:table:merchants",
+      "label": "references (fk_orders_merchant)",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments-\u003eexamples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders:fk",
+      "source_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:payments",
+      "target_step_id": "examples\\liquibase\\changeset\\sql_changeset.1.sql:table:orders",
+      "label": "references (fk_payments_order)",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1-\u003eexamples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "source_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "target_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:inner_select:Customer",
+      "label": "queries",
+      "is_cross_service": false
+    },
+    {
+      "id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10-\u003eexamples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1:sqlfile",
+      "source_step_id": "examples\\liquibase\\changeset\\customer_changeset.1.xml:dbbo_usp_GetCustomer.1:10",
+      "target_step_id": "examples\\liquibase\\ddl\\dbo_usp_GetCustomer.1.sql:stmt:1",
+      "label": "calls \u003csqlFile\u003e",
+      "is_cross_service": true
+    }
+  ]
+}

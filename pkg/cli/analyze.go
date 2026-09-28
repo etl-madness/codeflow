@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"os"
@@ -13,6 +14,7 @@ import (
 	"codeflow/pkg/analyzer/csharp"
 	"codeflow/pkg/analyzer/flowxml"
 	"codeflow/pkg/analyzer/golang"
+	"codeflow/pkg/analyzer/liquibase"
 	"codeflow/pkg/analyzer/python"
 	"codeflow/pkg/analyzer/sql"
 	"codeflow/pkg/analyzer/ssis"
@@ -38,9 +40,10 @@ type AnalyzeOptions struct {
 	ExcludeDirs    []string
 	IgnorePatterns []string
 	IgnoreTests    bool
-	DiagramType    string
-	NoTruncate     bool
-	NoGitignore    bool
+	DiagramType      string
+	NoTruncate       bool
+	NoGitignore      bool
+	PrimaryChangelog string
 }
 
 // NewAnalyzeCmd creates the 'analyze' cobra command.
@@ -80,6 +83,11 @@ func NewAnalyzeCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&opts.NoTruncate, "no-truncate", false, "Preserve full node title and description length without truncation in diagrams")
 	cmd.Flags().BoolVar(&opts.NoTruncate, "full-text", false, "Alias for --no-truncate")
 	cmd.Flags().BoolVar(&opts.NoGitignore, "no-gitignore", false, "Do not read or apply root .gitignore file during scanning")
+	cmd.Flags().StringVar(&opts.PrimaryChangelog, "primary-changelog", "", "Path to primary order changelog (e.g. changesets.xml or master.xml) to dictate execution order")
+	cmd.Flags().StringVar(&opts.PrimaryChangelog, "root-changelog", "", "Alias for --primary-changelog")
+	cmd.Flags().StringVar(&opts.PrimaryChangelog, "liquibase-root", "", "Alias for --primary-changelog")
+	cmd.Flags().StringVar(&opts.PrimaryChangelog, "changelog-order", "", "Alias for --primary-changelog")
+	cmd.Flags().StringVar(&opts.PrimaryChangelog, "changesets", "", "Alias for --primary-changelog")
 
 	return cmd
 }
@@ -171,17 +179,91 @@ func RunAnalyze(opts *AnalyzeOptions) error {
 
 	// Register Analyzers
 	analyzers := map[string]analyzer.Analyzer{
-		discovery.LangGo:      golang.New(),
-		discovery.LangCSharp:  csharp.New(),
-		discovery.LangPython:  python.New(),
-		discovery.LangSQL:     sql.New(),
-		discovery.LangFlowXML: flowxml.New(),
-		discovery.LangSSIS:    ssis.New(),
+		discovery.LangGo:        golang.New(),
+		discovery.LangCSharp:    csharp.New(),
+		discovery.LangPython:    python.New(),
+		discovery.LangSQL:       sql.New(),
+		discovery.LangFlowXML:   flowxml.New(),
+		discovery.LangSSIS:      ssis.New(),
+		discovery.LangLiquibase: liquibase.New(),
 	}
 
 	var results []*analyzer.FileAnalysisResult
 
+	var primaryChangelogFile string
+	if opts.PrimaryChangelog != "" {
+		primaryChangelogFile = opts.PrimaryChangelog
+		if _, err := os.Stat(primaryChangelogFile); err != nil && opts.SourceDir != "" {
+			cand := filepath.Join(opts.SourceDir, opts.PrimaryChangelog)
+			if _, err2 := os.Stat(cand); err2 == nil {
+				primaryChangelogFile = cand
+			}
+		}
+	} else if info, err := os.Stat(opts.SourceDir); err == nil && !info.IsDir() {
+		ext := strings.ToLower(filepath.Ext(opts.SourceDir))
+		if ext == ".xml" || ext == ".sql" {
+			cnt, err := os.ReadFile(opts.SourceDir)
+			if err == nil && (bytes.Contains(cnt, []byte("<include")) || bytes.Contains(cnt, []byte("<includeAll"))) {
+				primaryChangelogFile = opts.SourceDir
+			}
+		}
+	} else {
+		for _, f := range discoveredFiles {
+			base := strings.ToLower(filepath.Base(f.Path))
+			if base == "changesets.xml" || base == "master.xml" || base == "db.changelog-master.xml" || base == "root.xml" {
+				primaryChangelogFile = f.Path
+				break
+			}
+			if f.Language == discovery.LangLiquibase || strings.HasSuffix(strings.ToLower(f.Path), ".xml") {
+				cnt, err := os.ReadFile(f.Path)
+				if err == nil && (bytes.Contains(cnt, []byte("<include ")) || bytes.Contains(cnt, []byte("<includeAll "))) {
+					primaryChangelogFile = f.Path
+					break
+				}
+			}
+		}
+	}
+
+	var handledLiquibaseFiles map[string]bool
+	if primaryChangelogFile != "" {
+		fmt.Printf("[*] Primary order changelog: %s\n", primaryChangelogFile)
+		exec, err := liquibase.ResolveChangelogOrder(primaryChangelogFile)
+		if err == nil && exec != nil && len(exec.ChangeSets) > 0 {
+			primaryRes := liquibase.MapOrderedExecutionToProcessModel(exec)
+			results = append(results, primaryRes)
+			handledLiquibaseFiles = exec.HandledFiles
+
+			// Also ensure any external <sqlFile> referenced by changesets is analyzed and included
+			if len(exec.SQLFiles) > 0 {
+				for _, sf := range exec.SQLFiles {
+					normSQL := liquibase.NormalizeFilePath(sf.ResolvedPath)
+					cleanSQL := filepath.Clean(sf.ResolvedPath)
+					if handledLiquibaseFiles[normSQL] || handledLiquibaseFiles[cleanSQL] {
+						continue
+					}
+					handledLiquibaseFiles[normSQL] = true
+					handledLiquibaseFiles[cleanSQL] = true
+					if content, err := os.ReadFile(sf.ResolvedPath); err == nil {
+						if sqlAz, ok := analyzers[discovery.LangSQL]; ok && sqlAz != nil {
+							if sqlRes, err := sqlAz.AnalyzeFile(sf.ResolvedPath, content); err == nil && sqlRes != nil {
+								results = append(results, sqlRes)
+							}
+						}
+					}
+				}
+			}
+		} else if err != nil {
+			fmt.Printf("[-] Warning: Failed to resolve primary changelog order for %s: %v\n", primaryChangelogFile, err)
+		}
+	}
+
 	for _, file := range discoveredFiles {
+		normP := liquibase.NormalizeFilePath(file.Path)
+		cleanP := filepath.Clean(file.Path)
+		if handledLiquibaseFiles != nil && (handledLiquibaseFiles[normP] || handledLiquibaseFiles[cleanP] || handledLiquibaseFiles[file.Path]) {
+			continue // Already processed as part of primary execution order
+		}
+
 		az, ok := analyzers[file.Language]
 		if !ok {
 			continue

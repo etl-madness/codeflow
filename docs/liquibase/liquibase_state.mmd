@@ -1,0 +1,25 @@
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", "stateBkg": "#FFFFFF", "stateBorder": "#3B82F6", "stateLabelColor": "#0F172A", "labelColor": "#0F172A", "transitionColor": "#64748B", "transitionLabelColor": "#334155"}}}%%
+stateDiagram-v2
+    [*] --> Start
+    state "Liquibase (core_changeset.1)" as State_1
+    State_1: entry / db_admin:1
+    State_1: do / db_admin:2
+    State_1: do / db_admin:3
+    State_1: do / customers
+    State_1: ... +1 more steps
+    state "Liquibase (customer_changeset.1)" as State_2
+    State_2: entry / me:dbbo_usp_GetCustomer.1
+    state "Liquibase (sql_changeset.1)" as State_3
+    State_3: entry / architect:orders-v1
+    State_3: do / architect:payments-v1
+    State_3: do / architect:views-and-procs
+    State_3: do / architect:milestone-v1.1
+    State_3: ... +2 more steps
+    state "SQL Database (dbo_usp_GetCustomer.1)" as State_4
+    State_4: entry / Proc: usp_GetCustomer
+    State_4: exit / Query Customer
+    Start --> State_1
+    State_1 --> State_2: [next]
+    State_2 --> State_3: [next]
+    State_3 --> State_4: [next]
+    State_4 --> [*]

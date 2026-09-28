@@ -100,9 +100,10 @@ func (e *Enricher) Enrich(ctx context.Context, pm *model.ProcessModel) error {
 	}
 
 	if err != nil {
-		// If network call fails, fall back gracefully
+		// If the external AI call fails, degrade gracefully to the local semantic fallback
+		// without surfacing an error to callers that expect enrichment to complete.
 		e.fallbackRuleBasedEnrichment(pm)
-		return fmt.Errorf("AI enrichment call failed, applied semantic fallback: %w", err)
+		return nil
 	}
 
 	// Parse JSON array of descriptions
